@@ -3,17 +3,13 @@ To run all containers, run :
 ```
 make up
 ```
+Front :
 
-Access to front :
-
-```
-[http://localhost:7000](http://localhost:7000)
-```
+Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
 API URL :
-```
-[http://localhost:3000](http://localhost:3000)
-```
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 To see, front logs during development, run :
 
