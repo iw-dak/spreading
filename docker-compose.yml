@@ -13,6 +13,15 @@ services:
       - ./api:/webapp:cached
     depends_on:
       - db
+  react:
+    container_name: "${PROJECT_NAME}_react"
+    image: node:lts-alpine
+    working_dir: /home/my-project
+    volumes:
+      - ./front:/home/my-project
+    ports:
+      - "8000:3000"
+    command: ["yarn", "start"]
   db:
     image: mariadb:latest
     volumes:
