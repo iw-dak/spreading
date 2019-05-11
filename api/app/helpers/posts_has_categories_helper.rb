@@ -1,0 +1,2 @@
+module PostsHasCategoriesHelper
+end
