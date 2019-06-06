@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_223553) do
     t.string "address"
     t.string "email"
     t.string "phone"
-    t.string "password"
+    t.string "password_digest"
     t.string "roles"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
