@@ -1,13 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ firstname: 'Star Wars' }, { firstname: 'Lord of the Rings' }])
-#   Character.create(firstname: 'Luke', movie: movies.first)
 
 #Users
-#FIXME: seed doesn't generates error but doesn't create entries, use rails sonsole for tests
-User.create(firstname: 'Adam', lastname: 'Sow', birthdate: "2019-07-11 18:58:32", address: "242 rue du faubourg", email: "asow@gmail.com", phone: "8908789", password: "spread", roles: "admin")
+def time_rand from = 0.0, to = Time.now
+    Time.at(from + rand * (to.to_f - from.to_f))
+end
+
+random_date = time_rand Time.local(2010, 1, 1)
+
+User.create(firstname: 'Adam', lastname: 'Sow', birthdate: random_date, address: "242 rue du faubourg", email: "adam@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+User.create(firstname: 'Nakib', lastname: 'Abudu', birthdate: random_date, address: "242 rue du faubourg", email: "nakib@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+User.create(firstname: 'Driss', lastname: 'Belaroussi', birthdate: random_date, address: "242 rue du faubourg", email: "driss@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+User.create(firstname: 'Kaba', lastname: 'Conde', birthdate: random_date, address: "242 rue du faubourg", email: "kaba@gmail.com", phone: "8908789", password: "admin", roles: "admin")
 
 #Comments

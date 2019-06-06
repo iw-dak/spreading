@@ -47,3 +47,22 @@ To run seeds
 ```
 make db-seed
 ```
+
+To destroy database
+```
+make db-drop
+```
+To install project gems
+````
+make bdl-up
+```
+
+To update gems
+````
+
+make bdl-update
+
+To add a new gem
+````
+
+```
