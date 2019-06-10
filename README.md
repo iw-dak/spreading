@@ -1,33 +1,55 @@
-To run all containers, run :
+# Installation
+
+Run all containers
 
 ```
 make up
 ```
-Front :
 
-Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
-
-API URL :
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-To see, front logs during development, run :
+Install all front dependencies
 
 ```
-docker-compose run react yarn start
+make finstall
 ```
 
-To stop all containers, run :
+Clean all front dependencies
+
+```
+make fclean
+```
+
+React App URL
+
+[http://localhost:3000](http://localhost:3000)
+
+API URL
+
+[http://localhost:8000](http://localhost:8000)
+
+To stop all containers
 
 ```
 make down
+```
+
+# Others commands
+
+To see **front** logs during development
+
+```
+make flogs
+```
+
+To build project when you change **Dockerfile**
+
+```
+make build
 ```
 
 To run rails command use with necessary parameters:
 ```
 docker-compose run ruby rails <parameters>
 ```
-
 
 To migrate database
 
