@@ -37,7 +37,7 @@ make down
 To see **front** logs during development
 
 ```
-make flogs
+make fstart
 ```
 
 To build project when you change **Dockerfile**

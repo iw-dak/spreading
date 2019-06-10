@@ -36,6 +36,7 @@ class HeaderContainer extends Component {
             ]
         };
     }
+
     render() {
         return <Header menus={this.state.menus}/>
     }

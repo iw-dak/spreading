@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderMenu from './HeaderMenu';
 
-const Header = (menus) => <>
+const Header = ({ menus }) => <>
     <div className="Header d-flex flex-column">
         <div className="container-fluid">
             <div className="row">
@@ -12,9 +12,12 @@ const Header = (menus) => <>
                     <span className="headline">Idea for everyone</span>
                 </div>
             </div>
+
             <hr />
+
             <HeaderMenu menus={menus} />
         </div>
     </div>
 </>
+
 export default Header;
