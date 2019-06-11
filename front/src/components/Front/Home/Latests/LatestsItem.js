@@ -7,7 +7,9 @@ const LatestItem = ({ latest }) => <>
             <a href={latest.link}>
                 <div className="post-meta-info">
                     <div className="d-flex align-items-center">
-                        <span className="post-category-name"><a href="#Framework">{latest.category}</a></span>
+                        <span className="post-category-name">
+                            <div>{latest.category}</div>
+                        </span>
                         <time className="post-updated-at ml-2" dateTime="10/06/2019">10 mai 2019</time>
                     </div>
                     <div>

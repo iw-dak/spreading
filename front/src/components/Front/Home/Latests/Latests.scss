@@ -8,7 +8,7 @@
 
     &:hover {
         img.wrapper-post-image {
-            transform: scale(1.1);
+            transform: scale(1.02);
         }
     }
 
@@ -80,8 +80,14 @@
                 &-category-name {
                     background-color: $sp-red;
                     font-weight: bold;
+                    transition: all .2s ease-in-out;
 
-                    a {
+                    &:hover {
+                        background-color: $sp-white;
+                        color: $sp-red;
+                    }
+
+                    div {
                         padding: 5px 10px;
                     }
                 }
