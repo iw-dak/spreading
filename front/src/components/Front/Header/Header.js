@@ -3,7 +3,7 @@ import HeaderMenu from './HeaderMenu';
 
 const Header = ({ menus }) => <>
     <div className="Header d-flex flex-column">
-        <div className="container-fluid">
+        <div className="container">
             <div className="row">
                 <div className="col-12 d-flex flex-column align-items-center">
                     <a className="logo" href="/">
@@ -13,7 +13,7 @@ const Header = ({ menus }) => <>
                 </div>
             </div>
 
-            <hr />
+            <hr className="m-2" />
 
             <HeaderMenu menus={menus} />
         </div>

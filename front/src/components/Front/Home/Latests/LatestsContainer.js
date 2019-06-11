@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Latests from './Latests';
-
+import './Latests.scss';
 class LatestsContainer extends Component {
 
     constructor(props) {

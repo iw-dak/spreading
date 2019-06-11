@@ -1,13 +1,14 @@
 import React from 'react';
 import LatestItem from './LatestsItem';
+import './Latests.scss';
 
 const Latests = ({ latests }) => <>
-    <div className="container-fluid">
-        {latests.map((latest, key) => (
-            <div key={key} className="row">
-                <LatestItem latest={latest} />
-            </div>
-        ))}
+    <div className="container">
+        <div className="row">
+            {latests.map((latest, key) => (
+                <LatestItem key={key} latest={latest} />
+            ))}
+        </div>
     </div>
 </>
 

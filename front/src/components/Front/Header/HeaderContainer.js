@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import './Header.scss';
 
 
 class HeaderContainer extends Component {
@@ -38,7 +39,7 @@ class HeaderContainer extends Component {
     }
 
     render() {
-        return <Header menus={this.state.menus}/>
+        return <Header menus={this.state.menus} />
     }
 }
 
