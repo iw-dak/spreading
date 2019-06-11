@@ -62,14 +62,14 @@ To update gems
 
 make bdl-update
 
-To add a new gem :
+To add a new gem
 
-1. Add following to Gemfile
+1. Add following to Gemfile :
 ```
 gem '<ge-package-name>'
 ```
 
-2. Run this command:
+2. Run this command :
 ```
 docker-compose run ruby bundle install
 ```
