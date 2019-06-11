@@ -1,9 +1,9 @@
 # Installation
 
-Run all containers
+Run/build all containers
 
 ```
-make up
+make build
 ```
 
 Install all front dependencies
@@ -12,7 +12,15 @@ Install all front dependencies
 make finstall
 ```
 
-Clean all front dependencies
+# Launch
+
+Run all containers
+
+```
+make up
+```
+
+If error occur, clean all front dependencies
 
 ```
 make fclean
