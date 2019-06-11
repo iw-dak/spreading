@@ -6,8 +6,8 @@ WORKDIR /webapp
 COPY ./api/Gemfile /webapp/Gemfile
 COPY ./api/Gemfile.lock /webapp/Gemfile.lock
 
-RUN gem update --system
-RUN gem install bundler -v 2.0.1
+# RUN gem update --system
+# RUN gem install bundler
 
 RUN cd /webapp
 RUN bundle install
