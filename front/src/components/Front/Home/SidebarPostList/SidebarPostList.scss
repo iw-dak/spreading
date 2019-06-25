@@ -1,0 +1,33 @@
+@import '../../../../scss/variables';
+
+.sidebar-post-item {
+    position: relative;
+
+    &::before {
+        counter-increment: sidebarPostCount;
+        content: counter(sidebarPostCount);
+        font-size: 1.3rem;
+        color: $sp-grey-dark;
+        font-weight: bold;
+        position: absolute;
+    }
+
+    &-meta {
+        display: flex;
+        flex-wrap: wrap;
+
+        i+span {
+            margin-left: 5px;
+        }
+
+        span,
+        time {
+            color: $sp-grey-dark;
+            font-weight: 600;
+        }
+    }
+
+    &-content {
+        padding-left: 30px;
+    }
+}

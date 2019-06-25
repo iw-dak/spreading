@@ -2,8 +2,8 @@ import React from 'react';
 
 const LatestItem = ({ latest }) => <>
     <div className="col-4 latest-item">
-        <img className="wrapper-post-image" src="https://source.unsplash.com/random" alt={latest.title} />
-        <div className="wrapper">
+        <img className="latest-item-image" src="https://source.unsplash.com/random" alt={latest.title} />
+        <div className="latest-item-wrapper">
             <a href={latest.link}>
                 <div className="post-meta-info">
                     <div className="d-flex align-items-center">

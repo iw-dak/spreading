@@ -7,7 +7,7 @@
     overflow: hidden;
 
     &:hover {
-        img.wrapper-post-image {
+        img.latest-item-image {
             transform: scale(1.02);
         }
     }
@@ -28,22 +28,21 @@
         z-index: 1;
     }
 
-    img.wrapper-post-image {
+    &-image {
         transition: all .2s ease-in-out;
+        position: absolute;
+        height: 300px;
+        width: 100%;
     }
 
-    .wrapper {
+    &-wrapper {
         position: relative;
         z-index: 2;
         font-weight: bold;
         width: 100%;
         height: 100%;
 
-        &-post-image {
-            position: absolute;
-            height: 300px;
-            width: 100%;
-        }
+
 
         >a {
             padding: 15px;

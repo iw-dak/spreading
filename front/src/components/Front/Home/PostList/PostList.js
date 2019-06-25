@@ -1,15 +1,11 @@
 import React from 'react';
-import LatestItem from './PostListItem';
+import PostItem from './PostListItem';
 import './PostList.scss';
 
 const PostList = ({ postList }) => <>
-    <div className="container">
-        <div className="row">
-            {postList.map((latest, key) => (
-                <LatestItem key={key} latest={latest} />
-            ))}
-        </div>
-    </div>
+    {postList.map((postItem, key) => (
+        <PostItem key={key} postItem={postItem} />
+    ))}
 </>
 
 export default PostList;

@@ -6,7 +6,7 @@ const Header = ({ menus }) => <>
         <div className="container">
             <div className="row">
                 <div className="col-12 d-flex flex-column align-items-center">
-                    <a className="logo" href="/">
+                    <a className="sf-logo" href="/">
                         <span className="sitename">Spreading</span>
                     </a>
                     <span className="headline">Idea for everyone</span>

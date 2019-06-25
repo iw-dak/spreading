@@ -1,12 +1,14 @@
 @import '../../../scss/variables';
 
+.sf-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: $sp-black;
+    font-weight: bold;
+}
+
 .Header {
-    .logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.5rem;
-        color: $sp-black;
-        font-weight: bold;
-    }
+    background-color: $sp-white;
 
     .headline {
         color: $sp-grey-dark;
@@ -17,7 +19,7 @@
     ul {
         &.header-menu {
             padding: 0;
-            margin: 10px 0;
+            margin: 20px 0;
             list-style: none;
             display: flex;
             justify-content: center;

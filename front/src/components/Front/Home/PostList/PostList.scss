@@ -1,4 +1,44 @@
+@import '../../../../scss/variables.scss';
+
+$post-item-size: 200px;
 
 .post-item {
-    height: 200px;
+    display: flex;
+    background-color: $sp-white;
+    background-clip: content-box;
+    min-height: $post-item-size;
+
+    &-image {
+        >a {
+            img {
+                height: $post-item-size;
+                width: $post-item-size;
+            }
+        }
+
+    }
+
+    &-meta {
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+
+        i+span {
+            margin-left: 5px;
+        }
+
+        span,
+        time {
+            color: $sp-grey-dark;
+        }
+    }
+
+    &-title {
+        font-weight: bold;
+    }
+
+    &-description {
+        font-weight: 500;
+    }
 }
