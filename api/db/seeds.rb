@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+#Users
+def time_rand from = 0.0, to = Time.now
+    Time.at(from + rand * (to.to_f - from.to_f))
+end
+
+random_date = time_rand Time.local(2010, 1, 1)
+
+User.create(firstname: 'Adam', lastname: 'Sow', birthdate: random_date, address: "242 rue du faubourg", email: "adam@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+User.create(firstname: 'Nakib', lastname: 'Abudu', birthdate: random_date, address: "242 rue du faubourg", email: "nakib@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+User.create(firstname: 'Driss', lastname: 'Belaroussi', birthdate: random_date, address: "242 rue du faubourg", email: "driss@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+User.create(firstname: 'Kaba', lastname: 'Conde', birthdate: random_date, address: "242 rue du faubourg", email: "kaba@gmail.com", phone: "8908789", password: "admin", roles: "admin")
+
+#Comments

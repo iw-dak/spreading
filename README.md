@@ -1,72 +1,25 @@
 # Installation
+- Run/build all containers `make build`
+- Install front dependencies `make finstall`
 
-Run/build all containers
+## Add a new gem
+1. Add following to Gemfile `gem '<ge-package-name>'`
+2. Run this command : `docker-compose run ruby bundle install`
 
-```
-make build
-```
+## App access
+- React App URL [http://localhost:3000](http://localhost:3000)
+- API URL [http://localhost:8000](http://localhost:8000)
 
-Install all front dependencies
-
-```
-make finstall
-```
-
-# Launch
-
-Run all containers
-
-```
-make up
-```
-
-If error occur, clean all front dependencies
-
-```
-make fclean
-```
-
-React App URL
-
-[http://localhost:3000](http://localhost:3000)
-
-API URL
-
-[http://localhost:8000](http://localhost:8000)
-
-To stop all containers
-
-```
-make down
-```
-
-# Others commands
-
-To see **front** logs during development
-
-```
-make fstart
-```
-
-To build project when you change **Dockerfile**
-
-```
-make build
-```
-
-To run rails command use with necessary parameters:
-```
-docker-compose run ruby rails <parameters>
-```
-
-To migrate database
-
-```
-make db-migrate
-```
-
-To reset database
-
-```
-make db-reset
-```
+# Useful commands
+- Launch all containers if you have already installed application `make up`
+- If error occur, clean all front dependencies `make fclean`
+- To see **front** logs during development `make fstart`
+- To build project when you change **Dockerfile** `make build`
+- To stop all containers `make down`
+- To run rails command use with necessary parameters `docker-compose run ruby rails <parameters>`
+- To migrate database `make db-migrate`
+- To reset database `make db-reset`
+- To run seeds `make db-seed`
+- To destroy database `make db-drop`
+- To install project gems `make bdl-up`
+- To update gems `make bdl-update`
