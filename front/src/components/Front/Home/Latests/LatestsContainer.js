@@ -4,19 +4,18 @@ import { connect } from 'react-redux';
 import { fetchLatests } from '../../../../redux/actions/postActions'
 
 import './Latests.scss';
+
 class LatestsContainer extends Component {
 
     componentDidMount() {
-        console.log('ynic');
-
         this.props.fetchLatests();
-
-        console.log('ynic');
-        console.log(this.props.latests);
     }
 
     render() {
-        console.log('mais oui ou non ?')
+        if (!(this.props.latests.length > 0)) {
+            return 'Loading...'
+        }
+
         return (
             <Latests latests={this.props.latests} />
         );

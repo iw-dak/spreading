@@ -1,20 +1,23 @@
 import React from 'react';
+import { formatDate } from '../../../../helpers';
 
 const LatestItem = ({ latest }) => <>
-    <div className="col-12 mb-2 mb-lg-0 col-lg-4 latest-item">
-        <img className="latest-item-image" src="https://source.unsplash.com/random" alt={latest.title} />
+    <div className="col-12 mb-2 mb-lg-0 col-lg-6 latest-item">
+        <img className="latest-item-image" src={`${latest.image}?t=${Date.now()}`} alt={latest.title} />
         <div className="latest-item-wrapper">
-            <a href={latest.link}>
+            <a href={process.env.PUBLIC_URL + '/article/' + latest.slug}>
                 <div className="post-meta-info">
                     <div className="d-flex align-items-center">
-                        <span className="post-category-name">
-                            <div>{latest.category}</div>
-                        </span>
-                        <time className="post-updated-at ml-2" dateTime="10/06/2019">10 mai 2019</time>
+                        <div className="post-category-name">
+                            <div>{latest.categories[0].name}</div>
+                        </div>
+                        <time className="post-updated-at ml-2" dateTime={formatDate(latest.created_at)}>{formatDate(latest.created_at)}</time>
                     </div>
-                    <div>
-                        <span className="mr-2">Fatima</span>
-                        <img src="https://source.unsplash.com/random" height="35" width="35" alt="User" className="rounded-circle" />
+                    <div className="d-flex justify-content-center align-items-center">
+                        <span className="mr-2">{latest.user.firstname}</span>
+                        <span>
+                            <img src={`${latest.user.profile}?t=${Date.now()}`} height="35" width="35" alt="User" className="rounded-circle" />
+                        </span>
                     </div>
                 </div>
                 <div className="post-title">{latest.title}</div>

@@ -32,10 +32,22 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   def post_params
     params.permit(:title, :content, :status, :slug, :views, :image)
+  end
+
+  def latests
+    render json: Post.order("created_at desc").limit(4), status: :ok
+  end
+
+  def get_by_category
+    render json: Post.joins(:categories).where("categories.slug" => params[:category]).order("created_at desc").limit(2), status: :ok
+  end
+
+  def populars
+    render json: Post.order("views desc").limit(4)
   end
 end

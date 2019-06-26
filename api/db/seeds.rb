@@ -10,6 +10,7 @@ User.create(
   password: "admin",
   roles: "admin",
 )
+
 # Users
 20.times do
   User.create(
@@ -21,21 +22,33 @@ User.create(
     phone: Faker::PhoneNumber.cell_phone_with_country_code,
     password: "admin",
     roles: "admin",
+    profile: Faker::LoremPixel.image("200x200", false, "people", 3),
   )
 end
 
+# Categories
+categories = Category.create([
+  [name: "Mis en avant"],
+  [name: "Frameworks"],
+  [name: "Languages"],
+])
+
 # Posts
 100.times do
-  title = Faker::Lorem.sentence(rand(2..10)).chomp(".")
-  Post.create(
+  title = Faker::Quotes::Shakespeare.king_richard_iii_quote
+  date = Faker::Time.between(100.days.ago, Date.today, :all)
+  post = Post.create(
     title: title,
     content: Faker::Lorem.paragraphs(rand(1..3)).join('\n'),
     status: true,
-    slug: title.parameterize,
     views: rand(500),
-    image: Faker::LoremFlickr.image,
+    image: Faker::LoremPixel.image("570x300"),
     user: User.find(Faker::Number.between(1, 20)),
+    created_at: date,
+    updated_at: date
   )
+
+  post.categories << categories.sample
 end
 
 # Comments
@@ -46,5 +59,3 @@ end
     status: true,
   )
 end
-
-# categories

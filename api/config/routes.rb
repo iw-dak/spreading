@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :users
+  # Posts
+  get "/posts/latests", to: "posts#latests"
+  get "/posts/populars", to: "posts#populars"
+  get "/posts/category/:category", to: "posts#get_by_category"
   resources :posts
+
+  resources :users
   resources :comments
   resources :categories
   resources :posts_has_categories

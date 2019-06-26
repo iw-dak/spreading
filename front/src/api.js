@@ -41,8 +41,7 @@ class API {
         const globalConfig = {
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                "Access-Control-Allow-Origin": "*"
+                'Accept': 'application/json'
             }
         }
 
