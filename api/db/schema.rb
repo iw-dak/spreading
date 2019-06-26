@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2019_06_07_202547) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "posts_id"
-    t.index ["posts_id"], name: "index_comments_on_posts_id"
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 2019_06_07_202547) do
   end
 
   create_table "posts_has_categories", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "posts_id"
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_posts_has_categories_on_categories_id"
-    t.index ["posts_id"], name: "index_posts_has_categories_on_posts_id"
+    t.bigint "post_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_posts_has_categories_on_category_id"
+    t.index ["post_id"], name: "index_posts_has_categories_on_post_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,6 +60,6 @@ ActiveRecord::Schema.define(version: 2019_06_07_202547) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "posts", column: "posts_id"
+  add_foreign_key "comments", "posts", column: "post_id"
   add_foreign_key "posts", "users"
 end
