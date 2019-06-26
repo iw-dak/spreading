@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PostListItem = ({ postItem }) => <>
-    <div className="col-12 post-item mb-4">
+    <div className="col-12 post-item mb-4 d-flex align-items-center flex-column flex-md-row">
         <div className="post-item-image">
             <a href="#image">
                 <img src="https://source.unsplash.com/random" alt="Un article qui a un titre dans la vie" />

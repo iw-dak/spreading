@@ -39,4 +39,14 @@
             }
         }
     }
+
+    .collapse.show {
+        display: flex !important;
+    }
+
+    .burger-menu {
+        button {
+            background-color: $sp-grey-light;
+        }
+    }
 }

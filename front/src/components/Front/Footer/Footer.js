@@ -6,28 +6,28 @@ const Footer = ({ data }) => <>
             <div className="col-12">
                 <div className="container footer-menu-wrapper">
                     <div className="row w-100">
-                        <div className="col-3">
+                        <div className="col-12 col-md-3">
                             <h3>Languages</h3>
                             <ul className="footer-menu-item-group">
                                 {data.languages.map((menu, key) => <li key={key}><a href={menu.link}>{menu.name}</a></li>)}
                             </ul>
                         </div>
 
-                        <div className="col-3">
+                        <div className="col-12 col-md-3">
                             <h3>Frameworks</h3>
                             <ul className="footer-menu-item-group">
                                 {data.frameworks.map((menu, key) => <li key={key}><a href={menu.link}>{menu.name}</a></li>)}
                             </ul>
                         </div>
 
-                        <div className="col-3">
+                        <div className="col-12 col-md-3">
                             <h3>Informations</h3>
                             <ul className="footer-menu-item-group">
                                 {data.informations.map((menu, key) => <li key={key}><a href={menu.link}>{menu.name}</a></li>)}
                             </ul>
                         </div>
 
-                        <div className="col-3">
+                        <div className="col-12 col-md-3">
                             <h3>Compte</h3>
                             <ul className="footer-menu-item-group">
                                 {data.accounts.map((menu, key) => <li key={key}><a href={menu.link}>{menu.name}</a></li>)}
@@ -39,7 +39,7 @@ const Footer = ({ data }) => <>
         </div>
 
         <div className="row">
-            <div className="col-12">
+            <div className="col-12 mb-4">
                 <div className="container">
                     <div className="row">
                         <div className="col-12 d-flex flex-column align-items-center">

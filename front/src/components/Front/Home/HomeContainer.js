@@ -16,7 +16,7 @@ class HomeContainer extends Component {
 
                 <div className="container">
                     <div className="row">
-                        <div className="col-8">
+                        <div className="col-12 col-xl-8">
                             <div className="row">
                                 <div className="col-12 mt-4 mb-4">
                                     <h2>Mis en avant</h2>
@@ -48,7 +48,7 @@ class HomeContainer extends Component {
                             </div>
                         </div>
 
-                        <div className="col-4">
+                        <div className="col-12 col-xl-4">
                             <div className="row">
                                 <div className="col-12 mt-4 mb-4">
                                     <h2>Les plus populaires</h2>

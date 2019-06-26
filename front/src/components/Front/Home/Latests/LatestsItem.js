@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LatestItem = ({ latest }) => <>
-    <div className="col-4 latest-item">
+    <div className="col-12 mb-2 mb-lg-0 col-lg-4 latest-item">
         <img className="latest-item-image" src="https://source.unsplash.com/random" alt={latest.title} />
         <div className="latest-item-wrapper">
             <a href={latest.link}>

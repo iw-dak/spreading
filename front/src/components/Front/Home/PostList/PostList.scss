@@ -19,8 +19,9 @@ $post-item-size: 200px;
     }
 
     &-meta {
-        width: 400px;
+        max-width: 400px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         font-weight: 600;
 
@@ -40,5 +41,20 @@ $post-item-size: 200px;
 
     &-description {
         font-weight: 500;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .post-item {
+
+        &-image {
+            >a {
+                img {
+                    width: 100%;
+                }
+            }
+
+        }
     }
 }
