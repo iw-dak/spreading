@@ -8,7 +8,7 @@ services:
       dockerfile: ./docker/ruby/Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
-      - "3000:3000"
+      - "8000:3000"
     volumes:
       - ./api:/webapp:cached
     depends_on:
@@ -20,7 +20,7 @@ services:
     volumes:
       - ./front:/home/my-project
     ports:
-      - "8000:3000"
+      - "3000:3000"
     command: ["yarn", "start"]
   db:
     image: mariadb:latest

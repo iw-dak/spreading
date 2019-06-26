@@ -6,9 +6,45 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    background-color: #F9F9F9;
+    counter-reset: sidebarPostCount;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1.3rem;
+    color: $sp-grey-dark;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: $sp-black;
+    font-weight: bold;
+}
+
+a {
+    font-size: 1rem;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+p {
+    margin: 0;
 }

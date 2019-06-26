@@ -1,0 +1,47 @@
+@import '../../../scss/variables';
+
+.Footer {
+    background-color: $sp-grey-lighter;
+    min-height: 600px;
+
+    h3 {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .footer-menu {
+        &-wrapper {
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            margin-bottom: 100px;
+        }
+
+        &-item-group {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                margin-bottom: 20px;
+            }
+
+            a {
+                color: $sp-grey-dark;
+                font-weight: bold;
+                transition: all .2s ease-in-out;
+
+                &:hover {
+                    color: $sp-grey-light;
+                }
+            }
+        }
+
+        &-description {
+            font-weight: bold;
+            color: $sp-grey-dark;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+}

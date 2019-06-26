@@ -1,0 +1,52 @@
+@import '../../../scss/variables';
+
+.sf-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: $sp-black;
+    font-weight: bold;
+}
+
+.Header {
+    background-color: $sp-white;
+
+    .headline {
+        color: $sp-grey-dark;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    ul {
+        &.header-menu {
+            padding: 0;
+            margin: 20px 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+
+            li {
+                padding: 0 10px;
+
+                a {
+                    color: lighten($sp-black, 25%);
+                    font-weight: bold;
+                    transition: color .2s ease-in-out;
+
+                    &:hover {
+                        color: $sp-grey-light;
+                    }
+                }
+            }
+        }
+    }
+
+    .collapse.show {
+        display: flex !important;
+    }
+
+    .burger-menu {
+        button {
+            background-color: $sp-grey-light;
+        }
+    }
+}

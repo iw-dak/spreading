@@ -6,9 +6,6 @@ WORKDIR /webapp
 COPY ./api/Gemfile /webapp/Gemfile
 COPY ./api/Gemfile.lock /webapp/Gemfile.lock
 
-# RUN gem update --system
-# RUN gem install bundler
-
 RUN cd /webapp
 RUN bundle install
 
@@ -18,4 +15,4 @@ ADD . /webapp
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+EXPOSE 8000
