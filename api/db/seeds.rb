@@ -1,5 +1,15 @@
 require "faker"
 
+User.create(
+  firstname: "admin",
+  lastname: "admin",
+  birthdate: Faker::Time.between(25.years.ago, 18.years.ago, :all),
+  address: Faker::Address.full_address,
+  email: "admin@admin.com",
+  phone: Faker::PhoneNumber.cell_phone_with_country_code,
+  password: "admin",
+  roles: "admin",
+)
 # Users
 20.times do
   User.create(
@@ -33,6 +43,8 @@ end
   Comment.create(
     content: Faker::Lorem.paragraphs(1).join('\n'),
     post: Post.find(Faker::Number.between(1, 100)),
-    status: true
+    status: true,
   )
 end
+
+# categories

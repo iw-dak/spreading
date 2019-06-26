@@ -63,3 +63,5 @@ ActiveRecord::Schema.define(version: 2019_06_07_202547) do
   add_foreign_key "comments", "posts", column: "post_id"
   add_foreign_key "posts", "users"
 end
+
+# TODO: Add tags table
