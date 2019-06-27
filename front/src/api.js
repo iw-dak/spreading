@@ -5,7 +5,7 @@ function kebabCaseToCamel(str) {
 }
 
 class API {
-    constructor({ url }) {
+    constructor(url = process.env.REACT_APP_API_URL) {
         this.url = url
         this.endpoints = {}
     }
@@ -47,7 +47,7 @@ class API {
 
         endpoints.getAll = (config = {}) => axios.get(resourceURL, Object.assign(globalConfig, config))
 
-        endpoints.getOne = ({ id }, config = {}) => axios.get(`${resourceURL}/${id}`, Object.assign(globalConfig, config))
+        endpoints.getSpecific = ({ id }, config = {}) => axios.get(`${resourceURL}/${id}`, Object.assign(globalConfig, config))
 
         endpoints.create = (toCreate, config = {}) => axios.post(resourceURL, toCreate, Object.assign(globalConfig, config))
 

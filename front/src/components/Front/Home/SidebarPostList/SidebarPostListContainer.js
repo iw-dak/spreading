@@ -1,61 +1,37 @@
 import React, { Component } from 'react';
 import SidebarPostList from './SidebarPostList';
+import { connect } from 'react-redux';
+import { fetchPopulars } from '../../../../redux/actions/postActions'
 
 class SidebarContainer extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            postListItems: [
-                {
-                    title: "Comment manger sainement avec des recettes simples ?",
-                    link: "#",
-                    datetime: "18/03/2019",
-                    category: "Food",
-                    user: {
-                        firstname: "Kaba",
-                        lastname: "CONDE"
-                    }
-                },
-                {
-                    title: "Que va devenir la politique de demain avec l’écologie ?",
-                    link: "#",
-                    datetime: "06/02/2019",
-                    category: "Politique",
-                    user: {
-                        firstname: "Souad",
-                        lastname: "TOURE"
-                    }
-                },
-                {
-                    title: "La fabrication des produits cosmétiques réinventés",
-                    link: "#",
-                    datetime: "04/01/2019",
-                    category: "Science",
-                    user: {
-                        firstname: "Karim",
-                        lastname: "CONDE"
-                    }
-                },
-                {
-                    title: "La blockchain dans le monde du web",
-                    link: "#",
-                    datetime: "04/01/2019",
-                    category: "Science",
-                    user: {
-                        firstname: "Karim",
-                        lastname: "CONDE"
-                    }
-                }
-            ]
-        };
+    componentDidMount() {
+        this.props.fetchPopulars();
     }
 
     render() {
+        if (!(this.props.populars && this.props.populars.length > 0)) {
+            return 'Loading...'
+        }
+
         return <>
-            <SidebarPostList sidebarPostList={this.state.postListItems} />
+            <SidebarPostList sidebarPostList={this.props.populars} />
         </>;
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        populars: state.postReducer.populars
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchPopulars: () => dispatch(fetchPopulars()),
+    }
+};
+
+SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);
 
 export default SidebarContainer;

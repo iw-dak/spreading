@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2019_06_26_185451) do
     t.string "content"
     t.string "status"
     t.integer "views"
+    t.integer "votes"
+    t.integer "readtime"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

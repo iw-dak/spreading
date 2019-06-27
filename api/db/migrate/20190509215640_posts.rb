@@ -6,6 +6,8 @@ class Posts < ActiveRecord::Migration[5.2]
       t.string :content
       t.string :status
       t.integer :views
+      t.integer :votes
+      t.integer :readtime
       t.string :image
 
       t.timestamps

@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import LatestsContainer from './Latests/LatestsContainer';
 import SidebarPostListContainer from './SidebarPostList/SidebarPostListContainer';
 import PostListContainer from './PostList/PostListContainer';
+import { connect } from 'react-redux';
+import { fetchLatestsByCategory } from '../../../redux/actions/postActions';
 
 class HomeContainer extends Component {
+
+    componentDidMount() {
+        this.props.fetchLatestsByCategory();
+    }
 
     render() {
         return <>
@@ -24,7 +30,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer />
+                                <PostListContainer postListItems={this.props.latestFeatured} />
                             </div>
 
                             <div className="row">
@@ -34,7 +40,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer />
+                                <PostListContainer postListItems={this.props.latestFrameworks} />
                             </div>
 
                             <div className="row">
@@ -44,7 +50,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer />
+                                <PostListContainer postListItems={this.props.latestLanguages} />
                             </div>
                         </div>
 
@@ -63,5 +69,21 @@ class HomeContainer extends Component {
         </>;
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        latestFeatured: state.postReducer.latestFeatured,
+        latestFrameworks: state.postReducer.latestFeatured,
+        latestLanguages: state.postReducer.latestLanguages
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchLatestsByCategory: () => dispatch(fetchLatestsByCategory()),
+    }
+};
+
+HomeContainer = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
 
 export default HomeContainer;

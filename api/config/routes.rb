@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Posts
   get "/posts/latests", to: "posts#latests"
   get "/posts/populars", to: "posts#populars"
-  get "/posts/category/:category", to: "posts#get_by_category"
+  get "/posts/get-latest-posts-by-category/:category", to: "posts#get_latest_by_category"
   resources :posts
 
   resources :users

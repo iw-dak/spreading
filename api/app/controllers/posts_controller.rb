@@ -43,11 +43,11 @@ class PostsController < ApplicationController
     render json: Post.order("created_at desc").limit(4), status: :ok
   end
 
-  def get_by_category
+  def get_latest_by_category
     render json: Post.joins(:categories).where("categories.slug" => params[:category]).order("created_at desc").limit(2), status: :ok
   end
 
   def populars
-    render json: Post.order("views desc").limit(4)
+    render json: Post.order("views desc").limit(4), status: :ok
   end
 end

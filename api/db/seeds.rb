@@ -39,13 +39,15 @@ categories = Category.create([
   date = Faker::Time.between(100.days.ago, Date.today, :all)
   post = Post.create(
     title: title,
-    content: Faker::Lorem.paragraphs(rand(1..3)).join('\n'),
+    content: Faker::Lorem.paragraphs(rand(1..3)).join(''),
     status: true,
     views: rand(500),
+    votes: rand(500),
+    readtime: rand(20),
     image: Faker::LoremPixel.image("570x300"),
     user: User.find(Faker::Number.between(1, 20)),
     created_at: date,
-    updated_at: date
+    updated_at: date,
   )
 
   post.categories << categories.sample
