@@ -17,7 +17,10 @@
 - user `user` or `root`
 - password `password` or `root`
 
-For more information see `docker-compose.yml`
+For more informations see `docker-compose.yml`
+
+# Adding new packages to the project with yarn
+docker-compose run react yarn add package_name
 
 # Useful commands
 - Launch all containers if you have already installed application `make up`

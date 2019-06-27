@@ -74,11 +74,11 @@ class FooterContainer extends Component {
             accounts: [
                 {
                     name: "Se connecter",
-                    link: "#"
+                    link: "/login"
                 },
                 {
                     name: "S'inscrire",
-                    link: "#"
+                    link: "/register"
                 },
                 {
                     name: "S'abonner",
