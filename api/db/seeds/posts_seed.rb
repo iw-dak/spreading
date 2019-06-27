@@ -15,6 +15,6 @@
     updated_at: date,
   )
 
-#   post.categories << Category.find(Faker::Number.between(1, 3))
-#   post.tags << Tag.find(Faker::Number.between(1, 10))
+  post.categories << Category.find(Faker::Number.between(1, 3))
+  post.tags << Tag.find(Faker::Number.between(1, 10))
 end
