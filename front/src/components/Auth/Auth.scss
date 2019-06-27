@@ -1,32 +1,35 @@
 @import '../../scss/variables.scss';
 
-.btn-outline-primary 
+.auth
 {
-    color: $sp-grey-dark;
-    border-color: $sp-grey-dark;
+    .btn-outline-primary 
+    {
+        color: $sp-grey-dark;
+        border-color: $sp-grey-dark;
 
-    &:hover 
+        &:hover 
+        {
+            background-color: $sp-grey-dark;
+            color: $sp-white;
+            border-color: $sp-grey-dark;
+        }
+    }
+
+    a
+    {
+        color: $sp-grey-light;
+    }
+
+    .btn-primary 
     {
         background-color: $sp-grey-dark;
-        color: $sp-white;
         border-color: $sp-grey-dark;
-    }
-}
 
-a
-{
-    color: $sp-grey-light;
-}
-
-.btn-primary 
-{
-    background-color: $sp-grey-dark;
-    border-color: $sp-grey-dark;
-
-    &:hover 
-    {
-        background-color: $sp-white;
-        border-color: $sp-grey-dark;
-        color: $sp-grey-dark;
+        &:hover 
+        {
+            background-color: $sp-white;
+            border-color: $sp-grey-dark;
+            color: $sp-grey-dark;
+        }
     }
 }

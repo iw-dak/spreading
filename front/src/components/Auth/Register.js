@@ -4,7 +4,7 @@ class Register extends Component {
 
     render() {
         return <>
-            <div className="container">
+            <div className="container authr">
                 <div className="col-10 col-sm-6 col-lg-4 mx-auto mt-4 mb-4">
                     <div className="card">
                         <article className="card-body">
