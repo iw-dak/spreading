@@ -33,6 +33,14 @@ $post-item-size: 200px;
         time {
             color: $sp-grey-dark;
         }
+
+        .username {
+            color: $sp-grey-dark;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 
     &-title {

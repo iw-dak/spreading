@@ -12,6 +12,7 @@
         position: absolute;
     }
 
+
     &-meta {
         display: flex;
         flex-wrap: wrap;
@@ -24,6 +25,14 @@
         time {
             color: $sp-grey-dark;
             font-weight: 600;
+        }
+
+        .username {
+            color: $sp-grey-dark;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 

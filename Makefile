@@ -17,6 +17,8 @@ fstart:
 	docker-compose run react yarn start
 finstall:
 	docker-compose run react yarn install
+fbuild:
+	docker-compose run react yarn build
 fclean:
 	rm -rf front/node_modules front/yarn.lock front/yarn-error.log
 db-seed:
