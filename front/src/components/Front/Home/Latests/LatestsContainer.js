@@ -1,52 +1,39 @@
 import React, { Component } from 'react';
 import Latests from './Latests';
+import { connect } from 'react-redux';
+import { fetchLatests } from '../../../../redux/actions/postActions'
+
 import './Latests.scss';
+
 class LatestsContainer extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            latests: [
-                {
-                    title: "Comment manger sainement avec des recettes simples ?",
-                    link: "#",
-                    datetime: "18/03/2019",
-                    category: "Food",
-                    user: {
-                        firstname: "Kaba",
-                        lastname: "CONDE"
-                    }
-                },
-                {
-                    title: "Que va devenir la politique de demain avec l’écologie ?",
-                    link: "#",
-                    datetime: "06/02/2019",
-                    category: "Politique",
-                    user: {
-                        firstname: "Souad",
-                        lastname: "TOURE"
-                    }
-                },
-                {
-                    title: "La fabrication des produits cosmétiques réinventés",
-                    link: "#",
-                    datetime: "04/01/2019",
-                    category: "Science",
-                    user: {
-                        firstname: "Karim",
-                        lastname: "CONDE"
-                    }
-                }
-            ]
-        };
+    componentDidMount() {
+        this.props.fetchLatests();
     }
 
     render() {
+        if (!(this.props.latests.length > 0)) {
+            return 'Loading...'
+        }
+
         return (
-            <Latests latests={this.state.latests} />
+            <Latests latests={this.props.latests} />
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        latests: state.postReducer.latests
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchLatests: () => dispatch(fetchLatests()),
+    }
+};
+
+LatestsContainer = connect(mapStateToProps, mapDispatchToProps)(LatestsContainer);
 
 export default LatestsContainer;

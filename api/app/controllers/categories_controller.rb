@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :update, :destroy]
-  
+
   def index
     render json: Category.all
   end
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
   end
 
   def category_params

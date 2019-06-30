@@ -3,6 +3,7 @@
 - Install api database `make db-migrate`
 - [Optional] Populate database `make db-seed`
 - Install front dependencies `make finstall`
+- Launch react app front server `make fstart`
 
 ## Add a new gem
 1. Add following to Gemfile `gem '<ge-package-name>'`
@@ -11,7 +12,7 @@
 ## Applications access
 - API URL [http://localhost:8000](http://localhost:8000)
 - React App URL [http://localhost:3000](http://localhost:3000)
-- PHPMyAdmin [http://localhost:9000](http://localhost:9000
+- PHPMyAdmin [http://localhost:9000](http://localhost:9000)
 
 ## Database password
 - user `user` or `root`
@@ -27,6 +28,7 @@ For more information see `docker-compose.yml`
 - To build project when you change **Dockerfile** `make build`
 - To stop all containers `make down`
 - To run rails command use with necessary parameters `docker-compose run ruby rails <parameters>`
+- To create new model serializer  `docker-compose run ruby rails g serializer <entity-name>`
 - To migrate database `make db-migrate`
 - To reset database `make db-reset`
 - To run seeds `make db-seed`
