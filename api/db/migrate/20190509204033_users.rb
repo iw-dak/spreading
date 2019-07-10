@@ -6,9 +6,7 @@ class Users < ActiveRecord::Migration[5.2]
       t.string :username
       t.datetime :birthdate
       t.string :address
-      t.string :email
       t.string :phone
-      t.string :password_digest
       t.string :roles
       t.string :profile
 

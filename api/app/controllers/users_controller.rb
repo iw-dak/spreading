@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
   #TODO: check if password must figures here
   def user_params
     params.permit(:firstname, :lastname, :birthdate, :address, :email, :phone, :password, :roles)
