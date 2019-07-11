@@ -70,3 +70,7 @@ gem 'rack-cors'
 gem 'friendly_id', '~> 5.2.4'
 
 gem 'devise'
+
+gem 'jwt'
+
+gem 'simple_command'
