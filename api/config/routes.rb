@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  resources :users
+  # Posts
+  get "/posts/latests", to: "posts#latests"
+  get "/posts/populars", to: "posts#populars"
+  get "/posts/get-latest-posts-by-category/:category", to: "posts#get_latest_by_category"
+
+  # Resources
   resources :posts
+  resources :users
   resources :comments
   resources :categories
+  resources :tags
   resources :posts_has_categories
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

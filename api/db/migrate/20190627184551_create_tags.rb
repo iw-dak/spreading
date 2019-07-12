@@ -1,6 +1,6 @@
-class Categories < ActiveRecord::Migration[5.2]
+class CreateTags < ActiveRecord::Migration[5.2]
   def change
-    create_table :categories do |t|
+    create_table :tags do |t|
       t.string :name
       t.string :slug
 

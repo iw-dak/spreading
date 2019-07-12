@@ -48,3 +48,12 @@ a {
 p {
     margin: 0;
 }
+
+
+.post-title {
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        color: $sp-grey-light;
+    }
+}

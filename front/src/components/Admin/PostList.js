@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import './Back.scss';
 import Table from 'react-bootstrap/Table'

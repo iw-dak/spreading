@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_07_202547) do
+ActiveRecord::Schema.define(version: 2019_06_27_185308) do
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "categories_posts", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_posts_on_category_id"
+    t.index ["post_id"], name: "index_categories_posts_on_post_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "content"
     t.string "status"
     t.datetime "created_at", null: false
@@ -27,12 +37,14 @@ ActiveRecord::Schema.define(version: 2019_06_07_202547) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "title"
+    t.string "slug"
     t.string "content"
     t.string "status"
-    t.string "slug"
     t.integer "views"
+    t.integer "votes"
+    t.integer "readtime"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,28 +52,37 @@ ActiveRecord::Schema.define(version: 2019_06_07_202547) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "posts_has_categories", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts_tags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "post_id"
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_posts_has_categories_on_category_id"
-    t.index ["post_id"], name: "index_posts_has_categories_on_post_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_posts_tags_on_post_id"
+    t.index ["tag_id"], name: "index_posts_tags_on_tag_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
+    t.string "username"
     t.datetime "birthdate"
     t.string "address"
     t.string "email"
     t.string "phone"
     t.string "password_digest"
     t.string "roles"
+    t.string "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "posts", column: "post_id"
+  add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
 end
-
-# TODO: Add tags table
