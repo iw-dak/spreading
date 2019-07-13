@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import LatestsContainer from './Latests/LatestsContainer';
 import SidebarPostListContainer from './SidebarPostList/SidebarPostListContainer';
 import PostListContainer from './PostList/PostListContainer';
-import { connect } from 'react-redux';
-import { fetchLatestsByCategory } from '../../../redux/actions/postActions';
+import Latests from './Latests/Latests';
+import PostContext from '../../../context/PostContext';
 
 class HomeContainer extends Component {
 
     componentDidMount() {
-        this.props.fetchLatestsByCategory();
+        this.context.fetchLatestsByCategory();
     }
 
     render() {
+
         return <>
             <div className="Home">
                 <div className="container">
                     <div className="row">
-                        <LatestsContainer />
+                        <Latests />
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer postListItems={this.props.latestFeatured} />
+                                <PostListContainer postListItems={this.context.latestFeatured} />
                             </div>
 
                             <div className="row">
@@ -40,7 +40,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer postListItems={this.props.latestFrameworks} />
+                                <PostListContainer postListItems={this.context.latestFrameworks} />
                             </div>
 
                             <div className="row">
@@ -50,7 +50,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer postListItems={this.props.latestLanguages} />
+                                <PostListContainer postListItems={this.context.latestLanguages} />
                             </div>
                         </div>
 
@@ -70,20 +70,6 @@ class HomeContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        latestFeatured: state.postReducer.latestFeatured,
-        latestFrameworks: state.postReducer.latestFeatured,
-        latestLanguages: state.postReducer.latestLanguages
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchLatestsByCategory: () => dispatch(fetchLatestsByCategory()),
-    }
-};
-
-HomeContainer = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+HomeContainer.contextType = PostContext;
 
 export default HomeContainer;
