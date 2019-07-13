@@ -14,8 +14,8 @@ function App() {
             <Router>
                 <div>
                     <Route exact path="/" component={HomeContainer} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/connexion" component={Login} />
+                    <Route exact path="/inscription" component={Register} />
                 </div>
             </Router>
             <FooterContainer />

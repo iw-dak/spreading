@@ -9,7 +9,7 @@ const LatestItem = ({ latest }) => <>
                 <div className="post-meta-info">
                     <div className="d-flex align-items-center">
                         <div className="post-category-name">
-                            <span>{latest.categories[0].name}</span>
+                            <span>{latest.categories[0] && latest.categories[0].name}</span>
                         </div>
                         <time className="post-updated-at ml-2" dateTime={formatDate(latest.created_at)}>{formatDate(latest.created_at)}</time>
                     </div>

@@ -3,15 +3,19 @@ import axios from 'axios';
 import PostContext from './PostContext';
 import API from '../api';
 
-const myApi = new API()
-myApi.createEntity({ name: 'posts' })
+const api = new API()
+api.createEntity({ name: 'posts' })
 
 class PostProvider extends Component {
 
     state = {
         latests: [],
+        populars: [],
+        latestFeatured: [],
+        latestFrameworks: [],
         fetchLatests: () => {
-            myApi.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
+            api.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
+                console.log("latests", data);
                 this.setState({
                     latests: data
                 });
@@ -20,32 +24,30 @@ class PostProvider extends Component {
             })
         },
         fetchPopulars: () => {
-            myApi.endpoints.posts.getSpecific({ id: 'populars' }).then(({ data }) => {
+            api.endpoints.posts.getSpecific({ id: 'populars' }).then(({ data }) => {
                 this.setState({
                     populars: data
                 });
             }).catch(error => {
                 console.log("fetchPopulars", error.message);
             })
-
         },
         fetchLatestsByCategory: () => {
             axios.all([
-                myApi.endpoints.posts.getSpecific({ id: 'get-latest-posts-by-category/mis-en-avant' }),
-                myApi.endpoints.posts.getSpecific({ id: 'get-latest-posts-by-category/frameworks' }),
-                myApi.endpoints.posts.getSpecific({ id: 'get-latest-posts-by-category/languages' }),
-            ])
-                .then(axios.spread(function (featured, frameworks, languages) {
-                    this.setState({
-                        latestFeatured: featured.data,
-                        latestFrameworks: frameworks.data,
-                        latestLanguages: languages.data,
-                    });
-                })).catch(function (featuredError, frameworksError, languagesError) {
-                    console.log("featuredError", featuredError);
-                    console.log("frameworksError", frameworksError);
-                    console.log("languagesError", languagesError);
+                api.endpoints.posts.getSpecific({ id: 'get-latest-posts-by-category/mis-en-avant' }),
+                api.endpoints.posts.getSpecific({ id: 'get-latest-posts-by-category/frameworks' }),
+                api.endpoints.posts.getSpecific({ id: 'get-latest-posts-by-category/languages' }),
+            ]).then(axios.spread((featured, frameworks, languages) => {
+                this.setState({
+                    latestFeatured: featured.data,
+                    latestFrameworks: frameworks.data,
+                    latestLanguages: languages.data,
                 });
+            })).catch((featuredError, frameworksError, languagesError) => {
+                console.log("featuredError ====>", featuredError);
+                console.log("frameworksError ====>", frameworksError);
+                console.log("languagesError ====>", languagesError);
+            });
         },
     }
 
