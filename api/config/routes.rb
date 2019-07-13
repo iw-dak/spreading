@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  # Users
+  post '/login', to: 'users#login'
+
   # Posts
-  get "/posts/latests", to: "posts#latests"
-  get "/posts/populars", to: "posts#populars"
-  get "/posts/get-latest-posts-by-category/:category", to: "posts#get_latest_by_category"
+  get '/posts/latests', to: 'posts#latests'
+  get '/posts/populars', to: 'posts#populars'
+  get '/posts/get-latest-posts-by-category/:category', to: 'posts#get_latest_by_category'
 
   # Resources
   resources :posts

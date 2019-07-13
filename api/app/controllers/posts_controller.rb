@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
+  protect_from_forgery
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
     render json: Post.all
