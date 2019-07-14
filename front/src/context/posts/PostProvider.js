@@ -13,6 +13,7 @@ class PostProvider extends Component {
         populars: [],
         latestFeatured: [],
         latestFrameworks: [],
+        post: null,
         fetchLatests: () => {
             api.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
                 this.setState({
@@ -48,6 +49,23 @@ class PostProvider extends Component {
                 console.log("languagesError ====>", languagesError);
             });
         },
+        fetchPost: (slug) => {
+            api.endpoints.posts.getSpecific({ id: slug }).then(({ data }) => {
+                this.setState({
+                    post: data
+                });
+            }).catch(error => {
+                if (error.response) {
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
+            })
+        }
     }
 
     render() {

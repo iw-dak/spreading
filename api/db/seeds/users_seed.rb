@@ -1,7 +1,7 @@
 # Users
 User.create(
-  firstname: "user",
-  lastname: "password",
+  firstname: "Kaba",
+  lastname: "CONDE",
   birthdate: Faker::Time.between(25.years.ago, 18.years.ago, :all),
   address: Faker::Address.full_address,
   email: "admin@admin.com",
@@ -12,7 +12,7 @@ User.create(
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
 
-20.times do
+100.times do
   User.create(
     firstname: Faker::Name.first_name,
     lastname: Faker::Name.last_name,

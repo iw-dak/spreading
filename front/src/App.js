@@ -8,6 +8,8 @@ import Register from './components/Auth/Register';
 import PostProvider from './context/posts/PostProvider';
 import UserProvider from './context/users/UserProvider';
 import { PrivateRoute } from './helpers';
+import Error404 from './components/Errors/Error404';
+import Post from './components/Front/Post/Post';
 
 function App() {
     return <>
@@ -15,11 +17,13 @@ function App() {
             <PostProvider>
                 <HeaderContainer />
                 <Router>
-                    <div>
+                    <div className="ContentWrapper">
                         <Route exact path="/" component={HomeContainer} />
                         <Route exact path="/connexion" component={Login} />
                         <Route exact path="/inscription" component={Register} />
+                        <Route path="/article/:slug" component={Post} />
                         <PrivateRoute exact path="/admin/posts" component={HomeContainer} />
+                        <Route path="*" component={Error404} />
                     </div>
                 </Router>
                 <FooterContainer />

@@ -3,17 +3,27 @@ import SidebarPostListContainer from './SidebarPostList/SidebarPostListContainer
 import PostListContainer from './PostList/PostListContainer';
 import Latests from './Latests/Latests';
 import PostContext from '../../../context/posts/PostContext';
+import Spinner from '../../Spinner/Spinner';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 class HomeContainer extends Component {
 
     componentDidMount() {
-        this.context.fetchLatestsByCategory();
+        setTimeout(() => {
+            this.context.fetchLatestsByCategory();
+        }, 1000);
+
+        AOS.init()
     }
 
     render() {
+        if (!(this.context.latestFeatured && this.context.latestFeatured.length > 0)) {
+            return <Spinner />
+        }
 
         return <>
-            <div className="Home">
+            <div className="Home" data-aos="slide-up" data-aos-duration="1000">
                 <div className="container">
                     <div className="row">
                         <Latests />
