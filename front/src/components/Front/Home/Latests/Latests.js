@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import LatestItem from './LatestsItem';
-import PostContext from '../../../../context/PostContext';
+import PostContext from '../../../../context/posts/PostContext';
 import './Latests.scss';
 
 class Latests  extends Component {

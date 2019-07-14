@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   before_action :authenticate_request, only: [:update, :destroy]
 
   def index
-    render json: User.all
+    if params[:email]
+      render json: User.where("email" => params[:email]).first
+    else
+      render json: User.all
+    end
   end
 
   def show
@@ -39,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # POST /auth/login
+  # POST /login
   def login
     authenticate params[:email], params[:password]
   end

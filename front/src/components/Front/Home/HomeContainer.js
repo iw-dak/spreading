@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SidebarPostListContainer from './SidebarPostList/SidebarPostListContainer';
 import PostListContainer from './PostList/PostListContainer';
 import Latests from './Latests/Latests';
-import PostContext from '../../../context/PostContext';
+import PostContext from '../../../context/posts/PostContext';
 
 class HomeContainer extends Component {
 

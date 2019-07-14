@@ -9,6 +9,7 @@ User.create(
   password: "adminadmin",
   password_confirmation: "adminadmin",
   roles: "admin",
+  profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
 
 20.times do

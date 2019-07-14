@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SidebarPostList from './SidebarPostList';
-import PostContext from '../../../../context/PostContext';
+import PostContext from '../../../../context/posts/PostContext';
 
 class SidebarContainer extends Component {
 

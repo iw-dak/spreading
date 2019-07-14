@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PostContext from './PostContext';
-import API from '../api';
+import API from '../../api';
 
 const api = new API()
 api.createEntity({ name: 'posts' })
@@ -15,7 +15,6 @@ class PostProvider extends Component {
         latestFrameworks: [],
         fetchLatests: () => {
             api.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
-                console.log("latests", data);
                 this.setState({
                     latests: data
                 });
