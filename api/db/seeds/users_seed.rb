@@ -1,7 +1,7 @@
 # Users
 User.create(
-  firstname: "Kaba",
-  lastname: "CONDE",
+  firstname: "William",
+  lastname: "McFly",
   birthdate: Faker::Time.between(25.years.ago, 18.years.ago, :all),
   address: Faker::Address.full_address,
   email: "admin@admin.com",
