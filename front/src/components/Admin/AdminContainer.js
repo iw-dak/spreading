@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeBackoffice from './Home/HomeBackoffice';
 import Header from './Header/Header';
-import PostList from './Home/PostList';
-import UserList from './Home/UserList';
-import CommentList from './Home/CommentList';
+import PostList from './Posts/PostList';
+import UserList from './Users/UserList';
+import CommentList from './Comments/CommentList';
 import './Back.scss';
 
 function AdminContainer({ location }) {

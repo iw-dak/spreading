@@ -5,55 +5,53 @@ import API from "../../../api";
 import axios from 'axios';
 
 const myApi = new API()
-myApi.createEntity({ name: 'posts' });
+myApi.createEntity({ name: 'comments' });
 
-class PostList extends Component {
+class CommentList extends Component {
 
     constructor() {
         super();
         this.state = {
-            posts: [],
+            comments: [],
             offset: 0
         }
     }
 
-    handleClick(e, post) {
-        post.status = 1;
-        myApi.endpoints.posts.update(post).then(({ data }) => {
+    handleClick(e, comment) {
+        comment.status = 1;
+        myApi.endpoints.comments.update(comment).then(({ data }) => {
             this.forceUpdate();
             window.location.reload();
         }).catch(error => {
             console.log("error", error);
         })
-        console.log('post button', post);
     }
 
     loadCommentsFromServer() {
         axios.all([
-            myApi.endpoints.posts.getAll(),
-            myApi.endpoints.posts.getSpecific({ id: `16/${this.state.offset}` })
-        ]).then(axios.spread((posts, filteredPosts) => {
+            myApi.endpoints.comments.getAll(),
+            myApi.endpoints.comments.getSpecific({ id: `16/${this.state.offset}` })
+        ]).then(axios.spread((comments, filteredcomments) => {
             let status = "";
-            let postList = filteredPosts.data.map((post, index) => {
-                if (post.status === "1")
+            let commentList = filteredcomments.data.map((comment, index) => {
+                if (comment.status === "1")
                     status = "Approuvé";
                 else
                     status =
-                        <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
+                        <button type="button" onClick={(e) => this.handleClick(e, comment)} className="btn btn-success" id={comment.id}>
                             Approuver
                         </button>;
                 return (
                     <tr key={index}>
-                        <td className="text-center">{post.id}</td>
-                        <td>{post.title}</td>
-                        <td className="text-center">{post.views}</td>
+                        <td className="text-center">{comment.id}</td>
+                        <td>{comment.content}</td>
                         <td className="text-center">{status}</td>
                     </tr>
                 )
             })
             this.setState({
-                posts: postList,
-                pageCount: Math.ceil(Object.keys(posts.data).length / 15),
+                comments: commentList,
+                pageCount: Math.ceil(Object.keys(comments.data).length / 15),
             });
 
         })).catch(error => {
@@ -78,18 +76,17 @@ class PostList extends Component {
     render() {
         return <>
             <div className="container">
-                <h3 className="mx-auto mt-4 mb-4">Liste des articles</h3>
+                <h3 className="mx-auto mt-4 mb-4">Liste des commentaires</h3>
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th className="text-center">Views</th>
-                            <th className="text-center">Status</th>
+                            <th>Contenu</th>
+                            <th className="text-center">Statut</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.posts}
+                        {this.state.comments}
                     </tbody>
                 </Table>
                 <div className="react-paginate">
@@ -112,4 +109,4 @@ class PostList extends Component {
     }
 }
 
-export default PostList;
+export default CommentList;

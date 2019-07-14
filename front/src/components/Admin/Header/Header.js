@@ -15,11 +15,10 @@ class Header extends Component {
                     <Nav.Link href="/admin/users">Utilisateurs</Nav.Link>
                     <Nav.Link href="/admin/posts">Articles</Nav.Link>
                     <Nav.Link href="/admin/comments">Commentaires</Nav.Link>
-                    <NavDropdown title="Account" id="basic-nav-dropdown">
+                    <NavDropdown title="Mon compte" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+                        <NavDropdown.Item href="/admin/deconnexion">Déconnexion</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar>
