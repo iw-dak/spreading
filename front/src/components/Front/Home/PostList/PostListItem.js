@@ -1,16 +1,16 @@
 import React from 'react';
 
 const PostListItem = ({ postItem }) => <>
-    <div className="col-12 post-item mb-4 d-flex align-items-center flex-column flex-md-row">
+    <div className="col-12 post-item mb-4 d-flex align-items-center flex-column flex-md-row" data-aos="fade-up" data-aos-duration="2000">
         <div className="post-item-image">
             <a href={process.env.REACT_APP_URL + '/article/' + postItem.slug}>
-                <img src={`https://lorempixel.com/570/300?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
+                <img src={`https://lorempixel.com/1900/1400?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
             </a>
         </div>
 
         <div className="post-item-content p-4">
             <div className="post-item-meta">
-                <div>Par <a href={process.env.REACT_APP_URL + '/collaborators/' + postItem.user.username} className="username">Elizabeth</a></div>
+                <div>Par <a href={process.env.REACT_APP_URL + '/collaborators/' + postItem.user.username} className="username">{postItem.user.firstname}</a></div>
                 <div><i className="fas fa-hourglass-half"></i><span className="ml-1">5 min</span></div>
                 <div><i className="fas fa-eye ml-1"></i><span className="ml-1">23</span></div>
                 <div><i className="fas fa-heart"></i><span className="ml-1">20</span></div>

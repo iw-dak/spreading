@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_post, only: [:show, :update, :destroy]
+  before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
     render json: Post.all

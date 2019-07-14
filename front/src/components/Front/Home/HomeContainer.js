@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
-import LatestsContainer from './Latests/LatestsContainer';
 import SidebarPostListContainer from './SidebarPostList/SidebarPostListContainer';
 import PostListContainer from './PostList/PostListContainer';
-import { connect } from 'react-redux';
-import { fetchLatestsByCategory } from '../../../redux/actions/postActions';
+import Latests from './Latests/Latests';
+import PostContext from '../../../context/posts/PostContext';
+import Spinner from '../../Spinner/Spinner';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 class HomeContainer extends Component {
 
     componentDidMount() {
-        this.props.fetchLatestsByCategory();
+        setTimeout(() => {
+            this.context.fetchLatestsByCategory();
+        }, 1000);
+
+        AOS.init()
     }
 
     render() {
+        if (!(this.context.latestFeatured && this.context.latestFeatured.length > 0)) {
+            return <Spinner />
+        }
+
         return <>
-            <div className="Home">
+            <div className="Home" data-aos="slide-up" data-aos-duration="1000">
                 <div className="container">
                     <div className="row">
-                        <LatestsContainer />
+                        <Latests />
                     </div>
                 </div>
 
@@ -30,7 +40,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer postListItems={this.props.latestFeatured} />
+                                <PostListContainer postListItems={this.context.latestFeatured} />
                             </div>
 
                             <div className="row">
@@ -40,7 +50,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer postListItems={this.props.latestFrameworks} />
+                                <PostListContainer postListItems={this.context.latestFrameworks} />
                             </div>
 
                             <div className="row">
@@ -50,7 +60,7 @@ class HomeContainer extends Component {
                             </div>
 
                             <div className="row">
-                                <PostListContainer postListItems={this.props.latestLanguages} />
+                                <PostListContainer postListItems={this.context.latestLanguages} />
                             </div>
                         </div>
 
@@ -70,20 +80,6 @@ class HomeContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        latestFeatured: state.postReducer.latestFeatured,
-        latestFrameworks: state.postReducer.latestFeatured,
-        latestLanguages: state.postReducer.latestLanguages
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchLatestsByCategory: () => dispatch(fetchLatestsByCategory()),
-    }
-};
-
-HomeContainer = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+HomeContainer.contextType = PostContext;
 
 export default HomeContainer;

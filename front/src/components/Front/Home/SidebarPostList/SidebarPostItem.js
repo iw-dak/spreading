@@ -2,7 +2,7 @@ import React from 'react';
 import { formatDate } from '../../../../helpers';
 
 const SidebarPostItem = ({ sidebarPostItem }) => <>
-    <div className="col-12 sidebar-post-item mb-4">
+    <div className="col-12 sidebar-post-item mb-4" data-aos="fade-up" data-aos-duration="3000">
         <div className="sidebar-post-item-content">
             <a href={process.env.REACT_APP_URL + '/article/' + sidebarPostItem.slug}>
                 <h3 className="sidebar-post-item-title mt-2 mb-2 post-title">{sidebarPostItem.title}</h3>
