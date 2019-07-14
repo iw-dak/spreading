@@ -2,10 +2,14 @@ class UsersController < ApplicationController
   protect_from_forgery
   skip_before_action :authenticate_request, only: %i[login register]
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authenticate_request, only: [:update, :destroy]
+  before_action :authenticate_request, only: [:index, :show, :update, :destroy]
 
   def index
-    render json: User.all
+    if params[:email]
+      render json: User.where("email" => params[:email]).first
+    else
+      render json: User.all
+    end
   end
 
   def show
@@ -14,6 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_register_params)
+    @user.roles = 'subscriber'
 
     if @user.save
       response = { status: true, message: "User created successfully" }
@@ -39,7 +44,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # POST /auth/login
+  # POST /login
   def login
     authenticate params[:email], params[:password]
   end
@@ -61,8 +66,11 @@ class UsersController < ApplicationController
 
   def user_register_params
     params.permit(
+      :firstname,
+      :lastname,
       :email,
-      :password
+      :password,
+      :password_confirmation
     )
   end
 end

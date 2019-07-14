@@ -45,17 +45,35 @@ class API {
             }
         }
 
-        endpoints.getAll = (config = {}) => axios.get(resourceURL, Object.assign(globalConfig, config))
+        endpoints.getAll = (config = {}) => {
+            globalConfig.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+            return axios.get(resourceURL, Object.assign(globalConfig, config))
+        }
 
-        endpoints.getSpecific = ({ id }, config = {}) => axios.get(`${resourceURL}/${id}`, Object.assign(globalConfig, config))
+        endpoints.getSpecific = ({ id }, config = {}) => {
+            globalConfig.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+            return axios.get(`${resourceURL}/${id}`, Object.assign(globalConfig, config));
+        }
 
-        endpoints.create = (toCreate, config = {}) => axios.post(resourceURL, toCreate, Object.assign(globalConfig, config))
+        endpoints.create = (toCreate, config = {}) => {
+            globalConfig.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+            return axios.post(resourceURL, toCreate, Object.assign(globalConfig, config));
+        }
 
-        endpoints.update = (toUpdate, config = {}) => axios.put(`${resourceURL}/${toUpdate.id}`, toUpdate, Object.assign(globalConfig, config))
+        endpoints.update = (toUpdate, config = {}) => {
+            globalConfig.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+            return axios.put(`${resourceURL}/${toUpdate.id}`, toUpdate, Object.assign(globalConfig, config))
+        }
 
-        endpoints.patch = ({ id }, toPatch, config = {}) => axios.patch(`${resourceURL}/${id}`, toPatch, Object.assign(globalConfig, config))
+        endpoints.patch = ({ id }, toPatch, config = {}) => {
+            globalConfig.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+            return axios.patch(`${resourceURL}/${id}`, toPatch, Object.assign(globalConfig, config))
+        }
 
-        endpoints.delete = ({ id }, config = {}) => axios.delete(`${resourceURL}/${id}`, Object.assign(globalConfig, config))
+        endpoints.delete = ({ id }, config = {}) => {
+            globalConfig.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+            return axios.delete(`${resourceURL}/${id}`, Object.assign(globalConfig, config));
+        }
 
         return endpoints
     }
