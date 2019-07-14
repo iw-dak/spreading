@@ -12,6 +12,11 @@ class UsersController < ApplicationController
     end
   end
 
+  #paginated users
+  def filtered
+    render json: User.limit(params[:limit]).offset(params[:offset])
+  end
+
   def show
     render json: @user
   end

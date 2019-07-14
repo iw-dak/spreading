@@ -1,0 +1,38 @@
+@import '../../scss/variables';
+
+#back
+{
+  body
+  {
+    background-color: $sp-grey-lighter;
+  }
+  .react-paginate 
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B74831 !important;
+    ul 
+    {
+      text-align: center;
+      display: flex !important;
+      justify-content: space-around;
+      padding-left: 15px !important;
+      background-color: #fff;
+      padding-right: 15px !important;
+      width: 60%;
+      li 
+      {
+        padding: 8px;
+        display: inline-block !important;
+
+        &:hover
+        {
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+
+}

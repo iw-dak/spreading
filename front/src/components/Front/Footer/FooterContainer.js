@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Footer from './Footer';
 import './Footer.scss';
 
-
 class FooterContainer extends Component {
 
     constructor(props) {

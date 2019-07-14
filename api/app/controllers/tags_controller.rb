@@ -4,21 +4,13 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
+    render json: Tag.all
   end
 
   # GET /tags/1
   # GET /tags/1.json
   def show
-  end
-
-  # GET /tags/new
-  def new
-    @tag = Tag.new
-  end
-
-  # GET /tags/1/edit
-  def edit
+    render json: @tag
   end
 
   # POST /tags

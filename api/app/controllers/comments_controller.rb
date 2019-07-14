@@ -5,6 +5,11 @@ class CommentsController < ApplicationController
     render json: Comment.all
   end
 
+  #paginated comments
+  def filtered
+    render json: Comment.limit(params[:limit]).offset(params[:offset])
+  end
+
   def show
     render json: @comment
   end

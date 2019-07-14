@@ -69,6 +69,8 @@ gem 'rack-cors'
 
 gem 'friendly_id', '~> 5.2.4'
 
+gem 'kaminari'
+
 gem 'devise'
 
 gem 'jwt'
