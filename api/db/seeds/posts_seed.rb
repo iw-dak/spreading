@@ -5,7 +5,7 @@
   post = Post.create(
     title: title,
     content: Faker::Lorem.paragraphs(rand(1..100)).join(""),
-    status: true,
+    status: [true, false].sample,
     views: rand(1000),
     votes: rand(1000),
     readtime: rand(20),

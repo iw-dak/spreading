@@ -44,9 +44,38 @@ class PostProvider extends Component {
                     latestLanguages: languages.data,
                 });
             })).catch((featuredError, frameworksError, languagesError) => {
-                console.log("featuredError ====>", featuredError);
-                console.log("frameworksError ====>", frameworksError);
-                console.log("languagesError ====>", languagesError);
+                if (featuredError.response) {
+                    console.log(featuredError.response.data);
+                    console.log(featuredError.response.status);
+                    console.log(featuredError.response.headers);
+                } else if (featuredError.request) {
+                    console.log(featuredError.request);
+                } else {
+                    console.log('featuredError', featuredError.message);
+                }
+                console.log(featuredError);
+
+                if (frameworksError.response) {
+                    console.log(frameworksError.response.data);
+                    console.log(frameworksError.response.status);
+                    console.log(frameworksError.response.headers);
+                } else if (frameworksError.request) {
+                    console.log(frameworksError.request);
+                } else {
+                    console.log('frameworksError', frameworksError.message);
+                }
+                console.log(frameworksError);
+
+                if (languagesError.response) {
+                    console.log(languagesError.response.data);
+                    console.log(languagesError.response.status);
+                    console.log(languagesError.response.headers);
+                } else if (languagesError.request) {
+                    console.log(languagesError.request);
+                } else {
+                    console.log('languagesError', languagesError.message);
+                }
+                console.log(languagesError);
             });
         },
         fetchPost: (slug) => {

@@ -41,6 +41,26 @@ export function PrivateRoute({ component: Component, ...rest }) {
     );
 }
 
+export function AdminRoute({ component: Component, ...rest }) {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                AuthStore.isAuthenticated() && AuthStore.getUser().roles === 'admin' ? (
+                    <Component {...props} />
+                ) : (
+                        <Redirect
+                            to={{
+                                pathname: "/404",
+                                redirectUrl: { from: props.location }
+                            }}
+                        />
+                    )
+            }
+        />
+    );
+}
+
 export const AuthStore = {
     storeToken(token) {
         return new Promise((resolve, reject) => {

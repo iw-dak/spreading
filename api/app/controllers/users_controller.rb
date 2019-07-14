@@ -8,17 +8,17 @@ class UsersController < ApplicationController
     if params[:email]
       render json: User.where("email" => params[:email]).first
     else
-      render json: User.all
+      render json: User.all, status: :ok
     end
   end
 
   #paginated users
   def filtered
-    render json: User.limit(params[:limit]).offset(params[:offset])
+    render json: User.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
   def show
-    render json: @user
+    render json: @user, status: :ok
   end
 
   def create

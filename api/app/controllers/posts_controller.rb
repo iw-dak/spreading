@@ -4,12 +4,16 @@ class PostsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
-    render json: Post.all
+    render json: Post.where("status" => true)
   end
 
   #paginated posts
   def filtered
     render json: Post.limit(params[:limit]).offset(params[:offset])
+  end
+
+  def count
+    render json: Post.count
   end
 
   def show
@@ -47,14 +51,14 @@ class PostsController < ApplicationController
   end
 
   def latests
-    render json: Post.order("created_at desc").limit(4), status: :ok
+    render json: Post.where("status" => true).order("created_at desc").limit(4), status: :ok
   end
 
   def get_latest_by_category
-    render json: Post.joins(:categories).where("categories.slug" => params[:category]).order("created_at desc").limit(2), status: :ok
+    render json: Post.joins(:categories).where("categories.slug" => params[:category], "status" => true).order("created_at desc").limit(2), status: :ok
   end
 
   def populars
-    render json: Post.order("views desc").limit(4), status: :ok
+    render json: Post.where("status" => true).order("views desc").limit(4), status: :ok
   end
 end

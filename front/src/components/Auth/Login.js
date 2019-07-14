@@ -5,8 +5,8 @@ import UserContext from '../../context/users/UserContext';
 import { AuthStore } from '../../helpers';
 
 class Login extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -31,7 +31,7 @@ class Login extends Component {
 
     render() {
         if (this.context.status === 'authenticated' || AuthStore.isAuthenticated()) {
-            return <Redirect to={{ pathname: "/admin/posts" }} />
+            return <Redirect to={{ pathname: "/admin" }} />
         }
 
         return <>
