@@ -1,14 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import HomeBackoffice from './HomeBackoffice';
-import PostList from './PostList';
-import CommentList from './CommentList';
+import HomeBackoffice from './Home/HomeBackoffice';
+import Header from './Header/Header';
+import PostList from './Home/PostList';
+import UserList from './Home/UserList';
+import CommentList from './Home/CommentList';
+import './Back.scss';
 
 function AdminContainer({ location }) {
     return <>
-        <Route exact path='/admin' component={HomeBackoffice} />
-        <Route exact path='/admin/posts' component={PostList} />
-        <Route exact path='/admin/comments' component={CommentList} />
+        <Header />
+        <div id="back">
+            <Route exact path='/admin' component={HomeBackoffice} />
+            <Route exact path='/admin/posts' component={PostList} />
+            <Route exact path='/admin/users' component={UserList} />
+            <Route exact path='/admin/comments' component={CommentList} />
+        </div>
     </>;
 }
 

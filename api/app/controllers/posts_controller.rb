@@ -1,8 +1,14 @@
 class PostsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
     render json: Post.all
+  end
+
+  #paginated posts
+  def filtered
+    render json: Post.limit(params[:limit]).offset(params[:offset])
   end
 
   def show

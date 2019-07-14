@@ -1,0 +1,13 @@
+@import '../../../scss/variables';
+
+  #back-nav.navbar
+  {
+    background-color: $sp-white !important;
+
+      .navbar-brand
+      {
+        margin-left: 10% !important;
+        margin-right: 0;
+      }
+      
+  }

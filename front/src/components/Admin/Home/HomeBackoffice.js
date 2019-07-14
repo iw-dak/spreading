@@ -1,13 +1,15 @@
 
 import React, { Component } from 'react';
-import './Back.scss';
+import Chart from 'chart.js';
 
 class HomeBackoffice extends Component {
-    render() {
-        return <>
-            <p>Homepage backoffice</p>
-        </>;
-    }
+  render() {
+    return <>
+      <div class="container">
+
+      </div>
+    </>;
+  }
 }
 
 export default HomeBackoffice;
