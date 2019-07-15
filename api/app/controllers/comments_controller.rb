@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
-  
+  before_action :authenticate_request, only: [:create, :update, :destroy]
+
   def index
     render json: Comment.all
   end
@@ -8,6 +9,10 @@ class CommentsController < ApplicationController
   #paginated comments
   def filtered
     render json: Comment.limit(params[:limit]).offset(params[:offset])
+  end
+
+  def approved
+      render json: Comment.where("status = ? AND post_id = ?", true, params[:post])
   end
 
   def show

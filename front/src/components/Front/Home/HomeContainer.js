@@ -12,7 +12,7 @@ class HomeContainer extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.context.fetchLatestsByCategory();
-        }, 1000);
+        }, 50);
 
         AOS.init()
     }

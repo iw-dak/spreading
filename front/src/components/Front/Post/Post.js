@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PostContext from '../../../context/posts/PostContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Spinner from '../../Spinner/Spinner';
 import './Post.scss';
+import Spinner from '../../Spinner/Spinner';
 import { formatDate } from '../../../helpers';
 import CommentList from './Comment/CommentList';
 
@@ -12,7 +12,7 @@ class Post extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.context.fetchPost(this.props.match.params.slug);
-        }, 1000);
+        }, 500);
 
         AOS.init()
     }
@@ -44,9 +44,22 @@ class Post extends Component {
                     {post.content}
                 </div>
 
-                <div className="comments">
-                    <span className="commentCount">{post.nb_comments} commentaires</span>
-                    <CommentList comments={post.comments} />
+                <div className="row">
+                    <div className="col-12">
+                        <strong className="commentCount">{post.nb_comments} commentaire{post.nb_comments > 1 && "s"}</strong>
+                    </div>
+                </div>
+
+                <div className="row d-flex flex-column-reverse flex-sm-column-reverse flex-md-row">
+                    <div className="col-12 col-sm-12 col-md-6">
+                        <div className="CommentList comments">
+                            <CommentList comments={post.comments} />
+                        </div>
+                    </div>
+
+                    <div className="col-12 col-sm-12 col-md-6">
+                        Make Comment
+                    </div>
                 </div>
             </div>
         );
