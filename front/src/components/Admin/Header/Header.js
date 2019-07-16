@@ -21,7 +21,7 @@ class Header extends Component {
                     <NavDropdown title="Mon compte" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/admin/deconnexion">Déconnexion</NavDropdown.Item>
+                        <NavDropdown.Item href="/deconnexion">Déconnexion</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Users
   get "/comments/:limit/:offset", to: "comments#filtered"
+    get "/comments/count", to: "comments#count"
 
   # Resources
   resources :posts

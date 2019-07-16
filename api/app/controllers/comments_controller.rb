@@ -12,6 +12,10 @@ class CommentsController < ApplicationController
     render json: Comment.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
+  def count
+    render json: Comment.count, status: :ok
+  end
+
   def show
     render json: @comment, status: :ok
   end

@@ -73,7 +73,7 @@ class PostList extends Component {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
+                            <th>Titre</th>
                             <th className="text-center">Views</th>
                             <th className="text-center">Statut</th>
                         </tr>
@@ -99,8 +99,8 @@ class PostList extends Component {
                 </Table>
                 <div className="react-paginate">
                     <ReactPaginate
-                        previousLabel={'previous'}
-                        nextLabel={'next'}
+                        previousLabel={'<'}
+                        nextLabel={'>'}
                         breakLabel={'...'}
                         breakClassName={'break-me'}
                         pageCount={this.state.pageCount}
@@ -110,6 +110,7 @@ class PostList extends Component {
                         containerClassName={'pagination'}
                         subContainerClassName={'pages pagination'}
                         activeClassName={'active'}
+                        disabledClassName={'disable'}
                     />
                 </div>
             </div>

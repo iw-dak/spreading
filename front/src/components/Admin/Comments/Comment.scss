@@ -1,0 +1,53 @@
+@import '../../../scss/variables';
+
+//Comments list
+#comments-back
+{
+  .table
+  {
+    a
+    {
+      color: $sp-white !important;
+      
+    &:hover {
+      color: $sp-grey-dark !important;
+    }
+    }
+  }
+}
+
+//Single comment
+#comment-back
+{
+  .view-comment
+  {
+      width: 900px;
+      height: 450px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
+      background: rgba(255, 255, 255, 1);
+      margin-top: 10%;
+
+      .comment-fig
+      {
+        display: flex;
+        img
+        {
+          width: 54px;
+          height: 54px;
+        }
+        figcaption
+        {
+          align-self: flex-end
+        }
+      }
+
+      .article-fig
+      {
+        h4
+        {
+          color: #E39797;
+          font-size: 20px;
+        }
+      }
+  }
+}

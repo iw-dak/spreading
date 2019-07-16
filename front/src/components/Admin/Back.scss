@@ -2,6 +2,8 @@
 
 #back
 {
+  min-height: calc(100vh - 56px - 54px);
+  height: 100%;
   body
   {
     background-color: $sp-grey-lighter;
@@ -16,22 +18,35 @@
     {
       text-align: center;
       display: flex !important;
-      justify-content: space-around;
-      padding-left: 15px !important;
+      justify-content: center;
       background-color: #fff;
-      padding-right: 15px !important;
-      width: 60%;
+      // border: 1px solid $sp-grey-dark;
+
       li 
       {
-        padding: 8px;
+        padding:10px;
         display: inline-block !important;
 
         &:hover
         {
           cursor: pointer;
         }
+
+        a 
+        {
+          color: $sp-grey-dark;
+        }
       }
 
+    }
+      .active
+    {
+      border: 1px solid $sp-grey-dark;
+    }
+
+    .disable
+    {
+      background-color: #FCFCFC;
     }
   }
 

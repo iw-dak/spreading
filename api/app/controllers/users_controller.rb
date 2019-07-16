@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     render json: User.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
+  def count
+    render json: User.count, status: :ok
+  end
+
   def show
     render json: @user, status: :ok
   end
