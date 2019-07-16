@@ -44,4 +44,17 @@
             margin-top: 20px;
         }
     }
+
+    .btn-primary
+    {
+        background-color: $sp-grey-dark;
+        border-color: $sp-grey-dark;
+
+        &:hover
+        {
+            background-color: $sp-white;
+            border-color: $sp-grey-dark;
+            color: $sp-grey-dark;
+        }
+    }
 }
