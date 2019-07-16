@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: @user, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    head :no_content
   end
 
   def set_user
@@ -63,6 +64,7 @@ class UsersController < ApplicationController
       render json: {
         access_token: command.result,
         message: "Login Successful",
+        status: :ok
       }
     else
       render json: { error: command.errors }, status: :unauthorized

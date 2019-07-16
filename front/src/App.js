@@ -12,13 +12,12 @@ function App() {
             <PostProvider>
                 <Router>
                     <div className="ContentWrapper">
-                      <Switch>
-                          <Route path="/admin" component={AdminContainer} />
-                          <Route path="/" component={FrontContainer} />
-                      </Switch>
+                        <Switch>
+                            <Route path="/admin" component={AdminContainer} />
+                            <Route path="/" component={FrontContainer} />
+                        </Switch>
                     </div>
                 </Router>
-                <FooterContainer />
             </PostProvider>
         </UserProvider>
     </>;

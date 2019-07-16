@@ -1,17 +1,19 @@
 class CommentsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_comment, only: [:show, :update, :destroy]
-  
+  before_action :authenticate_request, only: [:create, :update, :destroy]
+
   def index
-    render json: Comment.all
+    render json: Comment.all, status: :ok
   end
 
   #paginated comments
   def filtered
-    render json: Comment.limit(params[:limit]).offset(params[:offset])
+    render json: Comment.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
   def show
-    render json: @comment
+    render json: @comment, status: :ok
   end
 
   def create
@@ -26,7 +28,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      render json: @comment
+      render json: @comment, status: :ok
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -34,6 +36,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    head :no_content
   end
 
   def set_comment
