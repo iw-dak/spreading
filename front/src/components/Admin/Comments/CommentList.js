@@ -75,12 +75,13 @@ class CommentList extends Component {
 
         return <>
             <div id="comments-back" className="container">
-                <h3 className="mx-auto mt-4 mb-4">Liste des commentaires</h3>
-                <Table striped bordered hover variant="dark">
+                <h3 className="mx-auto mt-5 mb-3 text-center
+                ">Liste des commentaires</h3>
+                <Table striped bordered hover variant="dark" size="sm">
                     <thead>
                         <tr>
                             <th className="text-center">#</th>
-                            <th>Contenu</th>
+                            <th className="pl-3">Contenu</th>
                             {(authUser && authUser.roles === 'admin') &&
                                 <th className="text-center">Statut</th>}
                         </tr>
@@ -90,7 +91,7 @@ class CommentList extends Component {
                             return (
                                 <tr key={index}>
                                     <td className="text-center comment">{comment.id}</td>
-                                    <td>{comment.content.length > 100 ?
+                                    <td className="pl-3">{comment.content.length > 100 ?
                                         <a href={`/admin/comments/${comment.id}`}> {comment.content.substring(0, 100)}... </a> :
                                         comment.content}
                                     </td>

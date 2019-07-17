@@ -73,12 +73,12 @@ class PostList extends Component {
 
         return <>
             <div id="posts-back" className="container">
-                <h3 className="mx-auto mt-4 mb-4">Liste des articles</h3>
-                <Table striped bordered hover variant="dark">
+                <h3 className="mx-auto mt-5 mb-3 text-center">Liste des articles</h3>
+                <Table striped bordered hover variant="dark" size="sm">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Titre</th>
+                            <th className="text-center">#</th>
+                            <th className="pl-3">Titre</th>
                             <th className="text-center">Views</th>
                             {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
                         </tr>
@@ -88,7 +88,7 @@ class PostList extends Component {
                             return (
                                 <tr key={index}>
                                     <td className="text-center">{post.id}</td>
-                                    <td><a href={`/article/${post.slug}`}>{post.title}</a></td>
+                                    <td className="pl-3"><a href={`/article/${post.slug}`}>{post.title}</a></td>
                                     <td className="text-center">{post.views}</td>
                                     {(authUser && authUser.roles === 'admin') && <td className="text-center">
                                         {(post.status === "1") ?

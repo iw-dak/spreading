@@ -88,7 +88,7 @@ class Profile extends Component {
   render() {
     return <>
       <div id="profile" className="container">
-        <h3 className="mx-auto mt-4 mb-4">Modifier mon profile</h3>
+        <h3 className="mx-auto mt-5 mb-3  text-center">Modifier mon profile</h3>
         {(this.state.alert.label !== '') &&
           <FlashMassage duration={5000} persistOnHover={true}>
             <div className={`alert alert-${this.state.alert.type} text-center`}>
@@ -118,7 +118,7 @@ class Profile extends Component {
               <Form.Label>Confirmer le mot de passe</Form.Label>
               <Form.Control type="password" name="password_confirmation" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="btn btn-outline-primary" type="submit">
               Modifier
             </Button>
           </Form>

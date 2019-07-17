@@ -92,7 +92,7 @@ class TagList extends Component {
 
     return <>
       <div className="container">
-        <h3 className="mx-auto mt-4 mb-4">Liste des tags</h3>
+        <h3 className="mx-auto mt-5 mb-3 text-center">Liste des tags</h3>
         {(this.state.alertDeleted !== '') &&
           <FlashMassage duration={5000} persistOnHover={true}>
             <div className="alert alert-success text-center">

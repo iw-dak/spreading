@@ -19,6 +19,9 @@
       justify-content: center;
       width: 24%;
 
+      &:hover{
+        border: 1px solid Tomato;
+      }
       span 
       {
         color: Tomato;

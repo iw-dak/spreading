@@ -68,14 +68,14 @@ class UserList extends Component {
     }
     return <>
       <div id="users-back" className="container">
-        <h3 className="mx-auto mt-4 mb-4">Liste des utilisateurs</h3>
-        <Table striped bordered hover variant="dark">
+        <h3 className="mx-auto mt-5 mb-3 text-center">Liste des utilisateurs</h3>
+        <Table striped bordered hover variant="dark" size="sm">
           <thead>
             <tr>
               <th className="text-center">#</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th className="text-center">Rôle</th>
+              <th className="pl-3">Prénom</th>
+              <th className="pl-3">Email</th>
+              <th className="pl-3">Rôle</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
@@ -84,9 +84,9 @@ class UserList extends Component {
               return (
                 <tr key={index}>
                   <td className="text-center user">{user.id}</td>
-                  <td>{user.firstname}</td>
-                  <td>{user.email}</td>
-                  <td className="text-center">
+                  <td className="pl-3">{user.firstname}</td>
+                  <td className="pl-3">{user.email}</td>
+                  <td className="pl-3">
                     {(user.roles === "admin") ? "Administrateur" : "Utilisateur"}
                   </td>
                   <td className="text-center">
