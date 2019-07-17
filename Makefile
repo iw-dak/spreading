@@ -25,6 +25,8 @@ db-seed:
 	docker-compose run ruby rails db:seed
 db-drop:
 	docker-compose run ruby rails db:drop
+db-create:
+	docker-compose run ruby rails db:create
 
 #bundler
 bdl-up:

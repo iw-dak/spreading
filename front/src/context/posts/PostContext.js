@@ -5,6 +5,7 @@ const PostContext = createContext({
     populars: [],
     latestFeatured: [],
     latestFrameworks: [],
+    post: null,
     latestLanguages: [],
     fetchLatests: () => { },
     fetchPopulars: () => { },
