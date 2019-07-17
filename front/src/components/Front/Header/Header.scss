@@ -25,6 +25,7 @@
             justify-content: center;
 
             li {
+                text-align: center;
                 padding: 0 10px;
 
                 a {
@@ -40,16 +41,16 @@
         }
     }
     .divlog {
-        margin-left : 50px;
-        .fa-user {
-            margin-right: 10px;
-        }
+        margin-left : 25px;
         .fa-power-off {
             margin-left: 30px;
         }
         .userProfileAccess{
             text-decoration: none;
             color : black;
+            .fa-user {
+                margin-right: 10px;
+            }
         }
     }
 
