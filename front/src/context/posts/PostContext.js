@@ -8,7 +8,9 @@ const PostContext = createContext({
     latestLanguages: [],
     fetchLatests: () => { },
     fetchPopulars: () => { },
-    fetchLatestsByCategory: () => { }
+    fetchLatestsByCategory: () => { },
+    fetchByCategory: () => { },
+    fetchByTag: () => { }
 });
 
 export default PostContext;

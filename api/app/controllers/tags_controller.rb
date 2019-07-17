@@ -65,4 +65,8 @@ class TagsController < ApplicationController
     def tag_params
       params.require(:tag).permit(:name, :slug)
     end
+
+  def set_tag
+      @tag = Tag.friendly.find(params[:id])
+  end
 end
