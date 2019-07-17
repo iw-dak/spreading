@@ -58,7 +58,7 @@ class HomeBackoffice extends Component {
               <i className="fas fa-newspaper fa-3x mb-2"></i>
             </span>
             <h5>
-              <a href="%process.env.REACT_APP_URL%/admin/posts">{this.state.postsToApprove} articles</a>
+              <a href="/admin/posts">{this.state.postsToApprove} articles</a>
             </h5>
           </div>
           <div className="div-shadow main-data">
@@ -66,7 +66,7 @@ class HomeBackoffice extends Component {
               <i className="far fa-user fa-3x mb-2"></i>
             </span>
             <h5>
-              <a href="%process.env.REACT_APP_URL%/admin/users">{this.state.totalUsers} utilisateurs</a>
+              <a href="/admin/users">{this.state.totalUsers} utilisateurs</a>
             </h5>
           </div>
           <div className="div-shadow main-data">
@@ -74,7 +74,7 @@ class HomeBackoffice extends Component {
               <i className="fas fa-eye fa-3x mb-2"></i>
             </span>
             <h5>
-              <a href="%process.env.REACT_APP_URL%/admin/#">200 visiteurs</a>
+              <a href="/admin/#">200 visiteurs</a>
             </h5>
           </div>
           <div className="div-shadow main-data">
@@ -82,7 +82,7 @@ class HomeBackoffice extends Component {
               <i className="fas fa-comments fa-3x mb-2"></i>
             </span>
             <h5>
-              <a href="%process.env.REACT_APP_URL%/admin/comments">{this.state.commentsToApprove} commentaires</a>
+              <a href="/admin/comments">{this.state.commentsToApprove} commentaires</a>
             </h5>
           </div>
         </section>
