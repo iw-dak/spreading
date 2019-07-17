@@ -32,7 +32,6 @@ class HomeBackoffice extends Component {
       myApi.endpoints.posts.getSpecific({ id: 'latests' }),
       myApi.endpoints.comments.getSpecific({ id: 'latests' })
     ]).then(axios.spread((postsToApprove, totalUsers, commentsToApprove, latestPosts, latestComments) => {
-      // console.log(latestPosts);
       this.setState({
         postsToApprove: postsToApprove.data,
         totalUsers: totalUsers.data,
