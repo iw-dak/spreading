@@ -8,8 +8,8 @@ class Footer extends Component {
     return <>
       <div id="back-footer">
         <footer className="page-footer font-small blue">
-          <div className="footer-copyright text-center py-3">© 2019 Copyright:
-            <a href="https://mdbootstrap.com/education/bootstrap/"> Spreading</a>
+          <div className="footer-copyright text-center py-3">© 2019 Copyright
+            <a href="https://localhost:3000"> Spreading</a>
           </div>
         </footer>
       </div>

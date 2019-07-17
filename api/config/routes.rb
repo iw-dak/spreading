@@ -10,10 +10,13 @@ Rails.application.routes.draw do
   get "/posts/get-latest-posts-by-category/:category", to: "posts#get_latest_by_category"
   get "/posts/:limit/:offset", to: "posts#filtered"
   get "/posts/count", to: "posts#count"
+  get "/posts/to_approve", to: "posts#to_approve"
 
   # Comments
+  get "/comments/latests", to: "comments#latests"
   get "/comments/:limit/:offset", to: "comments#filtered"
   get "/comments/count", to: "comments#count"
+  get "/comments/to_approve", to: "comments#to_approve"
 
   # Tags
   get "/tags/:limit/:offset", to: "tags#filtered"

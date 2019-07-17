@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Header.scss';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { AuthStore } from '../../../helpers';
 
 class Header extends Component {
@@ -25,11 +24,10 @@ class Header extends Component {
                             <Nav.Link href="/admin/profile" className="userProfileAccess">
                                 <i className="fas fa-user"></i>
                                 {authUser.firstname} {authUser.lastname}
-                                <a href="/deconnexion" className="userProfileAccess">
-                                    <i className="fas fa-power-off"></i>
-                                </a>
                             </Nav.Link>
-
+                            <a href="/deconnexion" className="userProfileAccess">
+                                <i className="fas fa-power-off"></i>
+                            </a>
                         </div>
                     }
                 </Nav>

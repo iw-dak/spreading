@@ -62,4 +62,9 @@ class PostsController < ApplicationController
   def populars
     render json: Post.where("status" => true).order("views desc").limit(4), status: :ok
   end
+
+  #GET /posts/to_approve
+  def to_approve
+    render json: Post.where("status" => false).count, status: :ok
+  end
 end

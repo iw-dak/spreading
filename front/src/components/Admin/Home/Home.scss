@@ -1,5 +1,11 @@
+@import '../../../scss/variables';
+
 #home-back
 {
+  h5, .h5 {
+    font-size: 1rem !important;
+  }
+  
   .main-section
   {
     padding: 5%;
@@ -11,6 +17,57 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      width: 24%;
+
+      span 
+      {
+        color: Tomato;
+      }
+
+      a
+      {
+        color: $sp-black-bis;
+        &:hover
+        {
+          color:$sp-grey-light;
+        }
+      }
+    }
+
+    figure
+    {
+      display: flex;
+        img
+        {
+          min-width: 60px;
+          width: 55px;
+          height: 55px;
+          border-radius: 45%
+        }
+        figcaption
+        {
+          align-self: center;
+        }
+    }
+
+    .latest-data
+    {
+        width: 50%;
+        h5
+        {
+          background-color: Tomato;
+          padding: 2%;
+          text-align: center;
+          color: $sp-white;
+        }
+    }
+    a
+    {
+      color:$sp-grey-dark;
+      &:hover
+      {
+        color:$sp-grey-light;
+      }
     }
   }
 }
