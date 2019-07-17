@@ -1,15 +1,24 @@
 class CommentsController < ApplicationController
-  protect_from_forgery
+  skip_before_action :verify_authenticity_token
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :authenticate_request, only: [:index, :update, :destroy]
+  before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
-    render json: Comment.all
+    render json: Comment.all, status: :ok
   end
 
   #paginated comments
   def filtered
-    render json: Comment.limit(params[:limit]).offset(params[:offset])
+    render json: Comment.limit(params[:limit]).offset(params[:offset]), status: :ok
+  end
+
+  def count
+    render json: Comment.count, status: :ok
+  end
+
+  #GET /comments/to_approve
+  def to_approve
+    render json: Comment.where("status" => false).count, status: :ok
   end
 
   def approved
@@ -17,7 +26,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    render json: @comment
+    render json: @comment, status: :ok
   end
 
   def create
@@ -32,7 +41,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      render json: @comment
+      render json: @comment, status: :ok
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -40,6 +49,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    head :no_content
   end
 
   def set_comment
@@ -48,5 +58,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.permit(:post_id, :user_id, :content, :status)
+  end
+
+  def latests
+    render json: Comment.where("status" => true).order("created_at desc").limit(4), status: :ok
   end
 end

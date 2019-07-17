@@ -1,13 +1,14 @@
 class CategoriesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_category, only: [:show, :update, :destroy]
   before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
-    render json: Category.all
+    render json: Category.all, status: :ok
   end
 
   def show
-    render json: @category
+    render json: @category, status: :ok
   end
 
   def create
@@ -22,7 +23,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      render json: @category
+      render json: @category, status: :ok
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -30,6 +31,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
+    head :no_content
   end
 
   def set_category

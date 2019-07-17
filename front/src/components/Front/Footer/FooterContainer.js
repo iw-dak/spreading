@@ -11,45 +11,45 @@ class FooterContainer extends Component {
             languages: [
                 {
                     name: "PHP",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/php",
                 },
                 {
                     name: "Dart",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/dart",
                 },
                 {
                     name: "Javascript",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/javascript",
                 },
                 {
                     name: "HTML",
-                    link: "#"
+                    link:process.env.REACT_APP_URL + "/articles/tag/html",
                 },
                 {
                     name: "CSS",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/css",
                 }
             ],
             frameworks: [
                 {
                     name: "Symfony",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/symfony",
                 },
                 {
                     name: "Laravel",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/laravel",
                 },
                 {
                     name: "Ruby On Rails",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/ruby-on-rails",
                 },
                 {
                     name: "Django",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/django",
                 },
                 {
                     name: "Zend Framework",
-                    link: "#"
+                    link: process.env.REACT_APP_URL + "/articles/tag/zend-framework",
                 }
             ],
             informations: [
@@ -78,10 +78,6 @@ class FooterContainer extends Component {
                 {
                     name: "S'inscrire",
                     link: "/inscription"
-                },
-                {
-                    name: "S'abonner",
-                    link: "#"
                 },
             ]
         };

@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     render json: User.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
+  def count
+    render json: User.count, status: :ok
+  end
+
   def show
     render json: @user, status: :ok
   end
@@ -34,8 +38,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
+    if @user.update_without_password(user_params)
+      render json: @user, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -43,6 +47,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    head :no_content
   end
 
   def set_user
@@ -63,6 +68,7 @@ class UsersController < ApplicationController
       render json: {
         access_token: command.result,
         message: "Login Successful",
+        status: :ok
       }
     else
       render json: { error: command.errors }, status: :unauthorized
@@ -77,5 +83,9 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation
     )
+  end
+
+  def user_params
+    params.permit(:firstname, :lastname, :email, :roles, :address, :birthdate, :username, :phone)
   end
 end

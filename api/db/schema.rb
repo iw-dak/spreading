@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2019_07_17_160744) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "newsletters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_newsletters_on_email", unique: true
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "slug"

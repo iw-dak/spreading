@@ -4,20 +4,20 @@ class PostsController < ApplicationController
   before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
-    render json: Post.where("status" => true)
+    render json: Post.where("status" => true), status: :ok
   end
 
   #paginated posts
   def filtered
-    render json: Post.limit(params[:limit]).offset(params[:offset])
+    render json: Post.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
   def count
-    render json: Post.count
+    render json: Post.count, status: :ok
   end
 
   def show
-    render json: @post
+    render json: @post, status: :ok
   end
 
   def create
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      render json: @post
+      render json: @post, status: :ok
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -48,6 +48,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    head :no_content
   end
 
   def set_post
@@ -72,5 +73,10 @@ class PostsController < ApplicationController
 
   def populars
     render json: Post.where("status" => true).order("views desc").limit(4), status: :ok
+  end
+
+  #GET /posts/to_approve
+  def to_approve
+    render json: Post.where("status" => false).count, status: :ok
   end
 end

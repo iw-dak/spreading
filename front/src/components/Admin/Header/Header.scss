@@ -9,5 +9,23 @@
         margin-left: 10% !important;
         margin-right: 0;
       }
+      .fa-user {
+          margin-right: 10px;
+      }
+      .userProfileAccess{
+          margin-left: 25px;
+          text-decoration: none;
+          color : black;
+          &:hover {
+                color: $sp-grey-light;
+          }
+      }
+
+      .divlog
+      {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       
   }

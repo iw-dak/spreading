@@ -16,6 +16,8 @@ class PostProvider extends Component {
         latestFrameworks: [],
         post: null,
         voteStatus: null,
+        posts: [],
+        name: '',
         fetchLatests: () => {
             api.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
                 this.setState({
@@ -152,6 +154,54 @@ class PostProvider extends Component {
                 }).catch(error => {
                     reject(error)
                 });
+            });
+        },
+        fetchByCategory: (id) => {
+            axios.get(`${process.env.REACT_APP_API_URL}/categories/` + id,
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
+                this.setState({
+                    posts: data["posts"],
+                    name: data["name"]
+                });
+            }).catch((error) => {
+                // Error 😨
+                if (error.response) {
+                    if (error.response.status === 500) {
+                        this.setState({
+                            status: 'Une erreur inattendue s\'est produite, réessayez ou contactez un administrateur'
+                        });
+                    }
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request and triggered an Error
+                    console.log('Error', error.message);
+                }
+            });
+        },
+        fetchByTag: (id) => {
+            axios.get(`${process.env.REACT_APP_API_URL}/tags/` + id,
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
+                this.setState({
+                    posts: data["posts"],
+                    name: data["name"]
+                });
+            }).catch((error) => {
+                // Error 😨
+                if (error.response) {
+                    if (error.response.status === 500) {
+                        this.setState({
+                            status: 'Une erreur inattendue s\'est produite, réessayez ou contactez un administrateur'
+                        });
+                    }
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request and triggered an Error
+                    console.log('Error', error.message);
+                }
             });
         }
     }
