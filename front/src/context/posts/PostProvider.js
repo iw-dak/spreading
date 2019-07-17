@@ -5,6 +5,7 @@ import API from '../../api';
 
 const api = new API()
 api.createEntity({ name: 'posts' })
+api.createEntity({ name: 'votes' })
 
 class PostProvider extends Component {
 
@@ -14,6 +15,7 @@ class PostProvider extends Component {
         latestFeatured: [],
         latestFrameworks: [],
         post: null,
+        voteStatus: null,
         posts: [],
         name: '',
         fetchLatests: () => {
@@ -81,7 +83,33 @@ class PostProvider extends Component {
             });
         },
         fetchPost: (slug) => {
-            api.endpoints.posts.getSpecific({ id: slug }).then(({ data }) => {
+            return new Promise((resolve, reject) => {
+                api.endpoints.posts.getSpecific({ id: slug }).then(({ data }) => {
+                    this.setState({
+                        post: data
+                    });
+                    resolve();
+                }).catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    reject(error)
+                })
+            });
+        },
+        updateViews: (oldViews, postId) => {
+            let new_views = oldViews + 1;
+
+            axios.put(`${process.env.REACT_APP_API_URL}/posts/update-views/${postId}`,
+                JSON.stringify({ views: new_views }),
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
                 this.setState({
                     post: data
                 });
@@ -97,8 +125,38 @@ class PostProvider extends Component {
                 }
             })
         },
+        updateVotes: (userId, postId) => {
+            return new Promise((resolve, reject) => {
+                api.endpoints.votes.create({ post_id: postId, user_id: userId }).then(({ data }) => {
+                    resolve(data);
+                }).catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    reject(error);
+                })
+            });
+        },
+        getVoteStatus: (userId, postId) => {
+            return new Promise((resolve, reject) => {
+                axios.get(`${process.env.REACT_APP_API_URL}/votes/status`, {
+                    params: { post_id: postId, user_id: userId }
+                },
+                    { headers: { 'Content-Type': 'application/json' } }
+                ).then(({ data }) => {
+                    resolve(data);
+                }).catch(error => {
+                    reject(error)
+                });
+            });
+        },
         fetchByCategory: (id) => {
-
             axios.get(`${process.env.REACT_APP_API_URL}/categories/` + id,
                 { headers: { 'Content-Type': 'application/json', } }
             ).then(({ data }) => {
@@ -106,7 +164,6 @@ class PostProvider extends Component {
                     posts: data["posts"],
                     name: data["name"]
                 });
-
             }).catch((error) => {
                 // Error 😨
                 if (error.response) {
@@ -123,9 +180,7 @@ class PostProvider extends Component {
                 }
             });
         },
-
         fetchByTag: (id) => {
-
             axios.get(`${process.env.REACT_APP_API_URL}/tags/` + id,
                 { headers: { 'Content-Type': 'application/json', } }
             ).then(({ data }) => {

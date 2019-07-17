@@ -9,8 +9,5 @@ class User < ApplicationRecord
   validates_presence_of :email
 
   has_many :posts
-
-  #   def as_json(options = {})
-  #     super(options.merge({ except: [:encrypted_password] }))
-  #   end
+  has_many :votes
 end

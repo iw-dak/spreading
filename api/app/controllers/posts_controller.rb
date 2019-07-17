@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy, :update_views]
   before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
@@ -38,6 +38,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def update_views
+    if @post.update(update_views_params)
+      render json: @post, status: :ok
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @post.destroy
     head :no_content
@@ -49,6 +57,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.permit(:title, :content, :status, :slug, :views, :image)
+  end
+
+  def update_views_params
+    params.permit(:id, :views)
   end
 
   def latests

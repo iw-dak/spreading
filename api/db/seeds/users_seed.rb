@@ -45,7 +45,7 @@ User.create(
   password: "DB",
   password_confirmation: "adminadmin",
   roles: "admin",
-  profile: Faker::LoremPixel.image("200x200", false, "people", 3),
+  profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
 )
 
 # Random users
@@ -58,7 +58,7 @@ User.create(
     email: Faker::Internet.free_email,
     phone: Faker::PhoneNumber.cell_phone_with_country_code,
     password: "adminadmin",
-    roles: ["admin","subscriber"].sample,
-    profile: Faker::LoremPixel.image("200x200", false, "people", 3),
+    roles: "admin",
+    profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
   )
 end

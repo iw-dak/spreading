@@ -21,6 +21,10 @@ class CommentsController < ApplicationController
     render json: Comment.where("status" => false).count, status: :ok
   end
 
+  def approved
+    render json: Comment.where("status = ? AND post_id = ?", true, params[:post])
+  end
+
   def show
     render json: @comment, status: :ok
   end
@@ -53,7 +57,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:content, :status)
+    params.permit(:post_id, :user_id, :content, :status)
   end
 
   def latests
