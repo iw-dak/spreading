@@ -31,7 +31,7 @@ class VotesController < ApplicationController
 
   def update
     if @vote.update(vote_params)
-      render json: @vote
+      render json: @vote, status: :ok
     else
       render json: @vote.errors, status: :unprocessable_entity
     end
@@ -39,6 +39,7 @@ class VotesController < ApplicationController
 
   def destroy
     @vote.destroy
+    head: :no_content
   end
 
   def set_vote
