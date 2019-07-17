@@ -6,8 +6,17 @@ import './Post.scss';
 import Spinner from '../../Spinner/Spinner';
 import { formatDate } from '../../../helpers';
 import CommentList from './Comment/CommentList';
-
+import RichTextEditor from '../../RichEditor/RichTextEditor';
+import { convertToRaw } from 'draft-js';
 class Post extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editorState: null,
+        };
+    }
 
     componentDidMount() {
         setTimeout(() => {
@@ -15,6 +24,13 @@ class Post extends Component {
         }, 500);
 
         AOS.init()
+    }
+
+    handleChange = editorState => {
+        const contentState = editorState.getCurrentContent();
+        const blocks = JSON.parse(JSON.stringify(convertToRaw(contentState)));
+        console.log('content state', blocks.blocks[0].text);
+       // console.log("Handle Change", editorState);
     }
 
     render() {
@@ -50,15 +66,21 @@ class Post extends Component {
                     </div>
                 </div>
 
-                <div className="row d-flex flex-column-reverse flex-sm-column-reverse flex-md-row">
-                    <div className="col-12 col-sm-12 col-md-6">
+                <div className="row d-flex flex-column-reverse flex-sm-column-reverse flex-md-row mb-4">
+                    <div className="col-12 col-sm-12 col-md-7">
                         <div className="CommentList comments">
                             <CommentList comments={post.comments} />
                         </div>
                     </div>
 
-                    <div className="col-12 col-sm-12 col-md-6">
-                        Make Comment
+                    <div className={`col-12 col-sm-12 ${post.nb_comments === 0 ? 'col-md-12' : 'col-md-5'}`}>
+                        <h2 className="mt-4 mb-4">Ecrire un commentaire</h2>
+                        <RichTextEditor
+                            editorState={this.state.editorState}
+                            onChange={this.handleChange}
+                            onBlur={this.handleChange}
+                            buttonLabel="Commenter"
+                        />
                     </div>
                 </div>
             </div>
