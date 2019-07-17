@@ -9,6 +9,15 @@ class TagsController < ApplicationController
     render json: Tag.all, status: :ok
   end
 
+  #paginated posts
+  def filtered
+    render json: Tag.limit(params[:limit]).offset(params[:offset]), status: :ok
+  end
+
+  def count
+    render json: Tag.count, status: :ok
+  end
+
   # GET /tags/1
   # GET /tags/1.json
   def show
@@ -20,14 +29,10 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
 
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.', status: :created }
-        format.json { render :show, status: :created, location: @tag }
-      else
-        format.html { render :new }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
-      end
+    if @tag.save
+      render json: @tag, status: :created, location: @tag
+    else
+      render json: @tag.errors, status: :unprocessable_entity
     end
   end
 

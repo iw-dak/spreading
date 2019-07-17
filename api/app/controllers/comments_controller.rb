@@ -12,6 +12,15 @@ class CommentsController < ApplicationController
     render json: Comment.limit(params[:limit]).offset(params[:offset]), status: :ok
   end
 
+  def count
+    render json: Comment.count, status: :ok
+  end
+
+  #GET /comments/to_approve
+  def to_approve
+    render json: Comment.where("status" => false).count, status: :ok
+  end
+
   def show
     render json: @comment, status: :ok
   end
@@ -45,5 +54,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.permit(:content, :status)
+  end
+
+  def latests
+    render json: Comment.where("status" => true).order("created_at desc").limit(4), status: :ok
   end
 end

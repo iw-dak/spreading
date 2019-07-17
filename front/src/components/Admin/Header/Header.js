@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Header.scss';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import {AuthStore} from '../../../helpers';
+import { AuthStore } from '../../../helpers';
 
 class Header extends Component {
 
@@ -18,20 +17,18 @@ class Header extends Component {
                     <Nav.Link href="/admin">Dashboard</Nav.Link>
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/users">Utilisateurs</Nav.Link>}
                     <Nav.Link href="/admin/posts">Articles</Nav.Link>
+                    {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/tags">Tags</Nav.Link>}
                     <Nav.Link href="/admin/comments">Commentaires</Nav.Link>
-
-
                     {(isAuthUser) &&
-                    <div className="divlog">
-                        <Nav.Link href="/admin/profile" className="userProfileAccess">
-                            <i className="fas fa-user"></i>
-                            {authUser.firstname} {authUser.lastname}
+                        <div className="divlog">
+                            <Nav.Link href="/admin/profile" className="userProfileAccess">
+                                <i className="fas fa-user"></i>
+                                {authUser.firstname} {authUser.lastname}
+                            </Nav.Link>
                             <a href="/deconnexion" className="userProfileAccess">
                                 <i className="fas fa-power-off"></i>
                             </a>
-                        </Nav.Link>
-
-                    </div>
+                        </div>
                     }
                 </Nav>
             </Navbar>

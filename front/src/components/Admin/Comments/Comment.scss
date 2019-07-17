@@ -1,0 +1,54 @@
+@import '../../../scss/variables';
+
+//Comments list
+#comments-back
+{
+  .table
+  {
+    a
+    {
+      color: $sp-white !important;
+      
+    &:hover {
+      color: $sp-grey-dark !important;
+    }
+    }
+  }
+}
+
+//Single comment
+#comment-back
+{
+  .retour
+  {
+    width: 900px;
+  }
+  .view-comment
+  {
+      width: 900px;
+      height: 450px;
+          
+      .comment-fig
+      {
+        display: flex;
+        img
+        {
+          width: 54px;
+          height: 54px;
+        }
+        figcaption
+        {
+          align-self: flex-end
+        }
+      }
+
+      .article-fig
+      {
+        h4
+        {
+          color: #E39797;
+          font-size: 20px;
+        }
+      }
+  }
+}
