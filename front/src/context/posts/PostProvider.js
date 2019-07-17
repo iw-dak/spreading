@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PostContext from './PostContext';
 import API from '../../api';
+import {AuthStore} from "../../helpers";
 
 const api = new API()
 api.createEntity({ name: 'posts' })
@@ -14,6 +15,8 @@ class PostProvider extends Component {
         latestFeatured: [],
         latestFrameworks: [],
         post: null,
+        posts: [],
+        name: '',
         fetchLatests: () => {
             api.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
                 this.setState({
@@ -94,6 +97,58 @@ class PostProvider extends Component {
                     console.log('Error', error.message);
                 }
             })
+        },
+        fetchByCategory: (id) => {
+
+            axios.get(`${process.env.REACT_APP_API_URL}/categories/` + id,
+                {headers: {'Content-Type': 'application/json',}}
+            ).then(({data}) => {
+                this.setState({
+                    posts: data["posts"],
+                    name: data["name"]
+                });
+
+            }).catch((error) => {
+                // Error 😨
+                if (error.response) {
+                    if (error.response.status === 500) {
+                        this.setState({
+                            status: 'Une erreur inattendue s\'est produite, réessayez ou contactez un administrateur'
+                        });
+                    }
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request and triggered an Error
+                    console.log('Error', error.message);
+                }
+            });
+        },
+
+        fetchByTag: (id) => {
+
+            axios.get(`${process.env.REACT_APP_API_URL}/tags/` + id,
+                {headers: {'Content-Type': 'application/json',}}
+            ).then(({data}) => {
+                this.setState({
+                    posts: data["posts"],
+                    name: data["name"]
+                });
+            }).catch((error) => {
+                // Error 😨
+                if (error.response) {
+                    if (error.response.status === 500) {
+                        this.setState({
+                            status: 'Une erreur inattendue s\'est produite, réessayez ou contactez un administrateur'
+                        });
+                    }
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request and triggered an Error
+                    console.log('Error', error.message);
+                }
+            });
         }
     }
 

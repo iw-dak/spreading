@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Header from './Header';
 import './Header.scss';
+import AOS from "aos";
+import axios from 'axios';
 
 
 class HeaderContainer extends Component {
@@ -11,35 +13,24 @@ class HeaderContainer extends Component {
         this.state = {
             menus: [
                 {
-                    name: "Informatique",
-                    link: "#"
+                    name: "Mis en avant",
+                    link: process.env.REACT_APP_URL + "/articles/category/mis-en-avant"
                 },
                 {
-                    name: "Sciences",
-                    link: "#"
+                    name: "Framework",
+                    link: process.env.REACT_APP_URL + "/articles/category/frameworks"
                 },
                 {
-                    name: "Politique",
-                    link: "#"
-                },
-                {
-                    name: "Philosiphie",
-                    link: "#"
-                },
-                {
-                    name: "Santé",
-                    link: "#"
-                },
-                {
-                    name: "Alimentation",
-                    link: "#"
+                    name: "Langages",
+                    link: process.env.REACT_APP_URL + "/articles/category/languages"
                 }
             ]
         };
     }
 
+
     render() {
-        return <Header menus={this.state.menus} />
+        return <Header menus={this.state.menus}/>
     }
 }
 
