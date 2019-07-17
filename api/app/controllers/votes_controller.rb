@@ -39,7 +39,7 @@ class VotesController < ApplicationController
 
   def destroy
     @vote.destroy
-    head: :no_content
+    render head: :no_content
   end
 
   def set_vote
