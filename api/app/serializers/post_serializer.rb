@@ -11,6 +11,10 @@ class PostSerializer < ActiveModel::Serializer
     Comment.where(post_id: object.id).count
   end
 
+  def votes
+    Vote.where(post_id: object.id).count
+  end
+
   def comments
     Comment.where("status = ? AND post_id = ?", true, object.id)
   end

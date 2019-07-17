@@ -17,15 +17,26 @@ class Post extends Component {
 
         this.state = {
             comment: false,
+            hasAlreadyVoted: false
         };
     }
 
     componentDidMount() {
+
         setTimeout(() => {
             this.props.fetchPost(this.props.match.params.slug).then(() => {
                 this.props.updateViews(this.props.post.views, this.props.post.id);
+                if (AuthStore.isAuthenticated() && !this.state.hasAlreadyVoted) {
+                    this.props.getVoteStatus(AuthStore.getUser().id, this.props.post.id).then((data) => {
+                        console.log("getVoteStatus | vote_exists ?", data);
+
+                        this.setState({
+                            hasAlreadyVoted: data
+                        });
+                    });
+                }
             });
-        }, 500);
+        }, 300);
 
         AOS.init()
     }
@@ -54,7 +65,7 @@ class Post extends Component {
     }
 
     handleVote = () => {
-        this.props.updateVotes(this.props.post.votes, this.props.post.id);
+        this.props.updateVotes(AuthStore.getUser().id, this.props.post.id);
     }
 
     render() {
@@ -87,9 +98,14 @@ class Post extends Component {
                     </div>
                 </div>
 
-                <div className="row mt-4">
+                {AuthStore.isAuthenticated() ? (!this.state.hasAlreadyVoted ? <div className="row mt-4">
                     <button onClick={this.handleVote} className="btn btn-dark">Voter pour cet article</button>
-                </div>
+                </div> : <div className="alert alert-success mt-4" role="alert">
+                        Vous avez déjà voté pour cet article
+                </div>) : <div className="row mt-4">
+                        <a href={`${process.env.REACT_APP_URL}/connexion`} className="badge badge-info">Voter pour cet article</a>
+                    </div>}
+
 
                 <div className="row d-flex flex-column-reverse flex-sm-column-reverse flex-md-row mb-4">
                     <div className="col-12 col-sm-12 col-md-7">
@@ -147,13 +163,14 @@ class Post extends Component {
 export default React.forwardRef((props, ref) => (
     <CommentContext.Consumer>
         {({ register, registerStatus }) => <PostContext.Consumer>
-            {({ post, fetchPost, updateViews, updateVotes }) =>
+            {({ post, fetchPost, updateViews, updateVotes, getVoteStatus }) =>
                 <Post
                     {...props}
                     post={post}
                     fetchPost={fetchPost}
                     updateViews={updateViews}
                     updateVotes={updateVotes}
+                    getVoteStatus={getVoteStatus}
                     registerStatus={registerStatus}
                     postComment={(comment) => register(comment)}
                     ref={ref}

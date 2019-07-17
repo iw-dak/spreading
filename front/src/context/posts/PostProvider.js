@@ -5,6 +5,7 @@ import API from '../../api';
 
 const api = new API()
 api.createEntity({ name: 'posts' })
+api.createEntity({ name: 'votes' })
 
 class PostProvider extends Component {
 
@@ -14,6 +15,7 @@ class PostProvider extends Component {
         latestFeatured: [],
         latestFrameworks: [],
         post: null,
+        voteStatus: null,
         fetchLatests: () => {
             api.endpoints.posts.getSpecific({ id: 'latests' }).then(({ data }) => {
                 this.setState({
@@ -121,15 +123,10 @@ class PostProvider extends Component {
                 }
             })
         },
-        updateVotes: (oldViews, postId) => {
-            let new_views = oldViews + 1;
-
-            axios.put(`${process.env.REACT_APP_API_URL}/posts/update-views/${postId}`,
-                JSON.stringify({ views: new_views }),
-                { headers: { 'Content-Type': 'application/json', } }
-            ).then(({ data }) => {
+        updateVotes: (userId, postId) => {
+            api.endpoints.votes.create({ post_id: postId, user_id: userId }).then(({ data }) => {
                 this.setState({
-                    post: data
+                    vote: data
                 });
             }).catch(error => {
                 if (error.response) {
@@ -142,6 +139,23 @@ class PostProvider extends Component {
                     console.log('Error', error.message);
                 }
             })
+        },
+        getVoteStatus: (userId, postId) => {
+            console.log({ post_id: postId, user_id: userId });
+
+            return new Promise((resolve, reject) => {
+                axios.get(`${process.env.REACT_APP_API_URL}/votes/status`, {
+                    params: { post_id: postId, user_id: userId }
+                },
+                    { headers: { 'Content-Type': 'application/json' } }
+                ).then((response) => {
+                    console.log(response);
+                    console.log("Server says ", response.data);
+                    resolve(response.data);
+                }).catch(error => {
+                    reject(error)
+                });
+            });
         }
     }
 
