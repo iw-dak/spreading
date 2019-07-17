@@ -8,16 +8,12 @@ class Logout extends Component {
 
   componentDidMount() {
     AuthStore.logout();
+    window.location.reload();
   }
 
   render() {
+    return <Redirect to={{ pathname: "/" }} />
 
-    if (!AuthStore.isAuthenticated()) {
-      return <Redirect to={{ pathname: "/" }} />
-    }
-    else {
-      return <p className="mx-auto">La déconnexion a échoué...</p>
-    }
   }
 }
 

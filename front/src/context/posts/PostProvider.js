@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PostContext from './PostContext';
 import API from '../../api';
-import {AuthStore} from "../../helpers";
 
 const api = new API()
 api.createEntity({ name: 'posts' })
@@ -101,8 +100,8 @@ class PostProvider extends Component {
         fetchByCategory: (id) => {
 
             axios.get(`${process.env.REACT_APP_API_URL}/categories/` + id,
-                {headers: {'Content-Type': 'application/json',}}
-            ).then(({data}) => {
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
                 this.setState({
                     posts: data["posts"],
                     name: data["name"]
@@ -128,8 +127,8 @@ class PostProvider extends Component {
         fetchByTag: (id) => {
 
             axios.get(`${process.env.REACT_APP_API_URL}/tags/` + id,
-                {headers: {'Content-Type': 'application/json',}}
-            ).then(({data}) => {
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
                 this.setState({
                     posts: data["posts"],
                     name: data["name"]
