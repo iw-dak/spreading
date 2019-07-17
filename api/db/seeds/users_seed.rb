@@ -58,7 +58,7 @@ User.create(
     email: Faker::Internet.free_email,
     phone: Faker::PhoneNumber.cell_phone_with_country_code,
     password: "adminadmin",
-    roles: "admin",
+    roles: ["admin", "subscriber"].sample,
     profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
   )
 end
