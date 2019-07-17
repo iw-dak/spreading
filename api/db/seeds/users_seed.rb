@@ -9,7 +9,7 @@ User.create(
   password: "adminadmin",
   password_confirmation: "adminadmin",
   roles: "admin",
-  profile: Faker::LoremPixel.image("200x200", false, "people", 3),
+  profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
 )
 
 100.times do
@@ -22,6 +22,6 @@ User.create(
     phone: Faker::PhoneNumber.cell_phone_with_country_code,
     password: "adminadmin",
     roles: "admin",
-    profile: Faker::LoremPixel.image("200x200", false, "people", 3),
+    profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
   )
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/posts/get-latest-posts-by-category/:category", to: "posts#get_latest_by_category"
   get "/posts/:limit/:offset", to: "posts#filtered"
   get "/posts/count", to: "posts#count"
+  put "/posts/update-views/:id", to: "posts#update_views"
 
   # Comments
   get "/comments/approved/:post", to: "comments#approved"

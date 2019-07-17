@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
+  protect_from_forgery
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :authenticate_request, only: [:create, :update, :destroy]
+  before_action :authenticate_request, only: [:index, :update, :destroy]
 
   def index
     render json: Comment.all
@@ -12,7 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def approved
-      render json: Comment.where("status = ? AND post_id = ?", true, params[:post])
+    render json: Comment.where("status = ? AND post_id = ?", true, params[:post])
   end
 
   def show
@@ -46,6 +47,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:content, :status)
+    params.permit(:post_id, :user_id, :content, :status)
   end
 end

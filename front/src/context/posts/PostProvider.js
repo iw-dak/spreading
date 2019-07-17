@@ -79,7 +79,55 @@ class PostProvider extends Component {
             });
         },
         fetchPost: (slug) => {
-            api.endpoints.posts.getSpecific({ id: slug }).then(({ data }) => {
+            return new Promise((resolve, reject) => {
+                api.endpoints.posts.getSpecific({ id: slug }).then(({ data }) => {
+                    this.setState({
+                        post: data
+                    });
+                    resolve();
+                }).catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    reject(error)
+                })
+            });
+        },
+        updateViews: (oldViews, postId) => {
+            let new_views = oldViews + 1;
+
+            axios.put(`${process.env.REACT_APP_API_URL}/posts/update-views/${postId}`,
+                JSON.stringify({ views: new_views }),
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
+                this.setState({
+                    post: data
+                });
+            }).catch(error => {
+                if (error.response) {
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
+            })
+        },
+        updateVotes: (oldViews, postId) => {
+            let new_views = oldViews + 1;
+
+            axios.put(`${process.env.REACT_APP_API_URL}/posts/update-views/${postId}`,
+                JSON.stringify({ views: new_views }),
+                { headers: { 'Content-Type': 'application/json', } }
+            ).then(({ data }) => {
                 this.setState({
                     post: data
                 });

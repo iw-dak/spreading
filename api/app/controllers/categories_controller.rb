@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :update, :destroy]
+  before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
     render json: Category.all
