@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # Users
   post '/login', to: 'users#login'
   get "/users/:limit/:offset", to: "users#filtered"
+  get "/users/count", to: "users#count"
 
   # Posts
   get "/posts/latests", to: "posts#latests"
@@ -10,9 +11,13 @@ Rails.application.routes.draw do
   get "/posts/:limit/:offset", to: "posts#filtered"
   get "/posts/count", to: "posts#count"
 
-  # Users
+  # Comments
   get "/comments/:limit/:offset", to: "comments#filtered"
-    get "/comments/count", to: "comments#count"
+  get "/comments/count", to: "comments#count"
+
+  # Tags
+  get "/tags/:limit/:offset", to: "tags#filtered"
+  get "/tags/count", to: "tags#count"
 
   # Resources
   resources :posts

@@ -4,6 +4,9 @@ import Table from 'react-bootstrap/Table';
 import API from "../../../api";
 import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
+import './Post.scss';
+import UserContext from '../../../context/users/UserContext';
+import { AuthStore } from '../../../helpers';
 
 const myApi = new API()
 myApi.createEntity({ name: 'posts' });
@@ -66,8 +69,10 @@ class PostList extends Component {
         if (!(this.state.posts && this.state.posts.length > 0)) {
             return <Spinner />
         }
+        let authUser = AuthStore.getUser();
+
         return <>
-            <div className="container">
+            <div id="posts-back" className="container">
                 <h3 className="mx-auto mt-4 mb-4">Liste des articles</h3>
                 <Table striped bordered hover variant="dark">
                     <thead>
@@ -75,7 +80,7 @@ class PostList extends Component {
                             <th>#</th>
                             <th>Titre</th>
                             <th className="text-center">Views</th>
-                            <th className="text-center">Statut</th>
+                            {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -83,15 +88,15 @@ class PostList extends Component {
                             return (
                                 <tr key={index}>
                                     <td className="text-center">{post.id}</td>
-                                    <td>{post.title}</td>
+                                    <td><a href={`/article/${post.slug}`}>{post.title}</a></td>
                                     <td className="text-center">{post.views}</td>
-                                    <td className="text-center">
+                                    {(authUser && authUser.roles === 'admin') && <td className="text-center">
                                         {(post.status === "1") ?
                                             "Approuvé" :
                                             <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
                                                 Approuver
                                         </button>}
-                                    </td>
+                                    </td>}
                                 </tr>
                             )
                         })}
@@ -117,5 +122,6 @@ class PostList extends Component {
         </>;
     }
 }
+PostList.contextType = UserContext;
 
 export default PostList;

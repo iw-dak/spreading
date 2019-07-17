@@ -5,6 +5,9 @@ import API from "../../../api";
 import axios from 'axios';
 import './Comment.scss';
 import Spinner from '../../Spinner/Spinner';
+import UserContext from '../../../context/users/UserContext';
+import { AuthStore } from '../../../helpers';
+
 
 const myApi = new API()
 myApi.createEntity({ name: 'comments' });
@@ -67,6 +70,9 @@ class CommentList extends Component {
         if (!(this.state.comments && this.state.comments.length > 0)) {
             return <Spinner />
         }
+
+        let authUser = AuthStore.getUser();
+
         return <>
             <div id="comments-back" className="container">
                 <h3 className="mx-auto mt-4 mb-4">Liste des commentaires</h3>
@@ -75,7 +81,8 @@ class CommentList extends Component {
                         <tr>
                             <th className="text-center">#</th>
                             <th>Contenu</th>
-                            <th className="text-center">Statut</th>
+                            {(authUser && authUser.roles === 'admin') &&
+                                <th className="text-center">Statut</th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -87,13 +94,14 @@ class CommentList extends Component {
                                         <a href={`/admin/comments/${comment.id}`}> {comment.content.substring(0, 100)}... </a> :
                                         comment.content}
                                     </td>
-                                    <td className="text-center">
-                                        {(comment.status === "1") ?
-                                            "Approuvé" :
-                                            <button type="button" onClick={(e) => this.handleClick(e, comment)} className="btn btn-success" id={comment.id}>
-                                                Approuver
+                                    {(authUser && authUser.roles === 'admin') &&
+                                        <td className="text-center">
+                                            {(comment.status === "1") ?
+                                                "Approuvé" :
+                                                <button type="button" onClick={(e) => this.handleClick(e, comment)} className="btn btn-success" id={comment.id}>
+                                                    Approuver
                                         </button>}
-                                    </td>
+                                        </td>}
                                 </tr>
                             )
                         })}
@@ -119,5 +127,7 @@ class CommentList extends Component {
         </>;
     }
 }
+
+CommentList.contextType = UserContext;
 
 export default CommentList;

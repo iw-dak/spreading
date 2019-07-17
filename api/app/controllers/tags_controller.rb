@@ -9,6 +9,15 @@ class TagsController < ApplicationController
     render json: Tag.all, status: :ok
   end
 
+  #paginated posts
+  def filtered
+    render json: Tag.limit(params[:limit]).offset(params[:offset]), status: :ok
+  end
+
+  def count
+    render json: Tag.count, status: :ok
+  end
+
   # GET /tags/1
   # GET /tags/1.json
   def show

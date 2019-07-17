@@ -17,6 +17,7 @@ class Header extends Component {
                     <Nav.Link href="/admin">Dashboard</Nav.Link>
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/users">Utilisateurs</Nav.Link>}
                     <Nav.Link href="/admin/posts">Articles</Nav.Link>
+                    {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/tags">Tags</Nav.Link>}
                     <Nav.Link href="/admin/comments">Commentaires</Nav.Link>
                     <NavDropdown title="Mon compte" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>

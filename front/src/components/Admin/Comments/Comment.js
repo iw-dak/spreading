@@ -1,22 +1,29 @@
 
 import React, { Component } from 'react';
-import '../Back.scss';
 import API from "../../../api";
 import FlashMassage from 'react-flash-message';
+import UserContext from '../../../context/users/UserContext';
+import { AuthStore } from '../../../helpers';
 
 const myApi = new API()
 myApi.createEntity({ name: 'comments' });
 
 class Comment extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+
     this.state = {
       comment: [],
       post: [],
       user: [],
       message: false
     }
+  }
+
+  goBack() {
+    this.props.history.goBack();
   }
 
   componentDidMount() {
@@ -54,7 +61,7 @@ class Comment extends Component {
   }
 
   render() {
-
+    let authUser = AuthStore.getUser();
     return <>
       <div id="comment-back" className="container">
         {this.state.message &&
@@ -63,6 +70,10 @@ class Comment extends Component {
           </FlashMassage>}
 
         <div className="mx-auto view-comment">
+          <button className="btn" onClick={this.goBack}>
+            <i className="mr-1 fas fa-arrow-circle-left"></i>
+            Retour
+          </button>
           <div className="article-fig pt-5 pb-2">
             <h4 className="mx-3 ">Consulter l'article</h4>
             <p className="mx-4">{this.state.post.title}</p>
@@ -76,7 +87,8 @@ class Comment extends Component {
           <p className="mx-4">
             "{this.state.comment.content}"
           </p><br />
-          {(this.state.comment.status === "0") &&
+          {(authUser && authUser.roles === 'admin') &&
+            (this.state.comment.status === "0") &&
             <div className="d-flex justify-content-end">
               <button type="button" onClick={() => this.handleClick(this.state.comment)} className="btn btn-success mx-4" >Approuver</button>
             </div>
@@ -87,5 +99,7 @@ class Comment extends Component {
 
   }
 }
+
+Comment.contextType = UserContext;
 
 export default Comment;
