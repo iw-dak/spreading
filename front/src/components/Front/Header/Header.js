@@ -1,5 +1,10 @@
 import React from 'react';
 import HeaderMenu from './HeaderMenu';
+import { AuthStore } from '../../../helpers';
+import Nav from "react-bootstrap/Nav";
+
+let isAuthUser = AuthStore.isAuthenticated();
+let authUser = AuthStore.getUser();
 
 const Header = ({ menus }) => <>
     <div className="Header d-flex flex-column">
@@ -25,6 +30,7 @@ const Header = ({ menus }) => <>
                         <HeaderMenu menus={menus} />
                     </nav>
                 </div>
+
             </div>
         </div>
     </div>
