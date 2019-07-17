@@ -79,10 +79,6 @@ class FooterContainer extends Component {
                     name: "S'inscrire",
                     link: "/inscription"
                 },
-                {
-                    name: "S'abonner",
-                    link: "#"
-                },
             ]
         };
     }
