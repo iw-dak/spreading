@@ -124,34 +124,31 @@ class PostProvider extends Component {
             })
         },
         updateVotes: (userId, postId) => {
-            api.endpoints.votes.create({ post_id: postId, user_id: userId }).then(({ data }) => {
-                this.setState({
-                    vote: data
-                });
-            }).catch(error => {
-                if (error.response) {
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log('Error', error.message);
-                }
-            })
+            return new Promise((resolve, reject) => {
+                api.endpoints.votes.create({ post_id: postId, user_id: userId }).then(({ data }) => {
+                    resolve(data);
+                }).catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    reject(error);
+                })
+            });
         },
         getVoteStatus: (userId, postId) => {
-            console.log({ post_id: postId, user_id: userId });
-
             return new Promise((resolve, reject) => {
                 axios.get(`${process.env.REACT_APP_API_URL}/votes/status`, {
                     params: { post_id: postId, user_id: userId }
                 },
                     { headers: { 'Content-Type': 'application/json' } }
-                ).then((response) => {
-                    console.log(response);
-                    console.log("Server says ", response.data);
-                    resolve(response.data);
+                ).then(({ data }) => {
+                    resolve(data);
                 }).catch(error => {
                     reject(error)
                 });

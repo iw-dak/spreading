@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PostContext from '../../../context/posts/PostContext';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
-import './Post.scss';
 import Spinner from '../../Spinner/Spinner';
 import { formatDate, AuthStore } from '../../../helpers';
 import CommentList from './Comment/CommentList';
@@ -10,6 +8,8 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CommentContext from '../../../context/comments/CommentContext';
 import parse from 'html-react-parser';
+import 'aos/dist/aos.css';
+import './Post.scss';
 class Post extends Component {
 
     constructor(props) {
@@ -17,7 +17,9 @@ class Post extends Component {
 
         this.state = {
             comment: false,
-            hasAlreadyVoted: false
+            hasAlreadyVoted: false,
+            approvedSuccess: false,
+            approvedMessage: false
         };
     }
 
@@ -28,8 +30,6 @@ class Post extends Component {
                 this.props.updateViews(this.props.post.views, this.props.post.id);
                 if (AuthStore.isAuthenticated() && !this.state.hasAlreadyVoted) {
                     this.props.getVoteStatus(AuthStore.getUser().id, this.props.post.id).then((data) => {
-                        console.log("getVoteStatus | vote_exists ?", data);
-
                         this.setState({
                             hasAlreadyVoted: data
                         });
@@ -65,7 +65,12 @@ class Post extends Component {
     }
 
     handleVote = () => {
-        this.props.updateVotes(AuthStore.getUser().id, this.props.post.id);
+        this.props.updateVotes(AuthStore.getUser().id, this.props.post.id).then((data) => {
+            this.setState({
+                approvedMessage: "Votre vote a été enregistrée",
+                approvedSuccess: true
+            });
+        });
     }
 
     render() {
@@ -98,14 +103,17 @@ class Post extends Component {
                     </div>
                 </div>
 
-                {AuthStore.isAuthenticated() ? (!this.state.hasAlreadyVoted ? <div className="row mt-4">
+                {!this.state.approvedSuccess && (AuthStore.isAuthenticated() ? (!this.state.hasAlreadyVoted ? <div className="row mt-4">
                     <button onClick={this.handleVote} className="btn btn-dark">Voter pour cet article</button>
-                </div> : <div className="alert alert-success mt-4" role="alert">
+                </div> : <div className="alert alert-info mt-4 w-300" role="alert" style={{ width: '100%', maxWidth: '400px' }}>
                         Vous avez déjà voté pour cet article
-                </div>) : <div className="row mt-4">
+                </div>) : (<div className="row mt-4">
                         <a href={`${process.env.REACT_APP_URL}/connexion`} className="badge badge-info">Voter pour cet article</a>
-                    </div>}
+                    </div>))}
 
+                {this.state.approvedSuccess && <div className="alert alert-info mt-4 w-300" role="alert" style={{ width: '100%', maxWidth: '400px' }}>
+                    {this.state.approvedMessage}
+                </div>}
 
                 <div className="row d-flex flex-column-reverse flex-sm-column-reverse flex-md-row mb-4">
                     <div className="col-12 col-sm-12 col-md-7">
@@ -119,7 +127,7 @@ class Post extends Component {
                             <h2 className="mt-4 mb-4">Ecrire un commentaire</h2>
 
                             <form onSubmit={this.handleSubmit}>
-                                {registerStatus && <div class="alert alert-success" role="alert">
+                                {registerStatus && <div className="alert alert-success" role="alert">
                                     {registerStatus}
                                 </div>}
 

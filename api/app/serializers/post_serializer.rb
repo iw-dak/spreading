@@ -8,7 +8,7 @@ class PostSerializer < ActiveModel::Serializer
   has_many :comments, serializer: CommentCustomSerializer
 
   def nb_comments
-    Comment.where(post_id: object.id).count
+    Comment.where("status = ? AND post_id = ?", true, object.id).count
   end
 
   def votes

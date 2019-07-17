@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 const CommentItem = ({ comment, index }) => <>
     <div className="comment-item">
         <div className={`c-logs__item c-logs__item--${index === 0 ? 'primary' : 'secondary'}`}>
-            <img className="c-logs__avatar" src={`${comment.user.profile}/${index}${Date.now()}`} alt="{comment.user.firstname}" />
+            <img className="c-logs__avatar" src={`${comment.user.profile}/${index}${Date.now()}`} alt={comment.user.firstname} title={`${comment.user.firstname} ${comment.user.lastname}`} />
             <div className="c-logs__body">
                 <div className="c-logs__header">
                     <h3 className="c-logs__title">{`${comment.user.firstname} ${comment.user.lastname}`}&nbsp;</h3>
