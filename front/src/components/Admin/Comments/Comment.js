@@ -68,12 +68,13 @@ class Comment extends Component {
           <FlashMassage duration={5000} persistOnHover={true}>
             <p className="p-approved mx-auto alert alert-success text-center mt-3 p-3"><strong>Le commentaire a été approuvé !</strong></p>
           </FlashMassage>}
-
-        <div className="mx-auto view-comment">
-          <button className="btn" onClick={this.goBack}>
+        <div className="retour mx-auto d-flex justify-content-start mb-3 mt-5">
+          <button type="button" className="btn btn-outline-secondary" onClick={this.goBack}>
             <i className="mr-1 fas fa-arrow-circle-left"></i>
             Retour
           </button>
+        </div>
+        <div className="mx-auto view-comment div-shadow">
           <div className="article-fig pt-5 pb-2">
             <h4 className="mx-3 ">Consulter l'article</h4>
             <p className="mx-4">{this.state.post.title}</p>

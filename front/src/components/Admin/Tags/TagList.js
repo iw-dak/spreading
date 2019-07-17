@@ -110,7 +110,7 @@ class TagList extends Component {
             <tr>
               <th className="text-center">#</th>
               <th className="text-center">Label</th>
-              <th className="text-center">Utilisé</th>
+              <th className="text-center">Tag utilisé ?</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>

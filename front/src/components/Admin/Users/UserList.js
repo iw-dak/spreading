@@ -91,7 +91,7 @@ class UserList extends Component {
                     {(user.roles === "admin") ? "Administrateur" : "Utilisateur"}
                   </td>
                   <td className="text-center">
-                    {(user.roles === "admin") ? <button type="button" id="admin" onClick={(e) => this.handleClick(e, user)} className="btn btn-warning mx-4" >Rétrograder</button> : <button type="button" id="subscriber" onClick={(e) => this.handleClick(e, user)} className="btn btn-success mx-4" >Promouvoir</button>}
+                    {(user.roles === "admin") ? <button type="button" id="subscriber" onClick={(e) => this.handleClick(e, user)} className="btn btn-warning mx-4" >Rétrograder</button> : <button type="button" id="admin" onClick={(e) => this.handleClick(e, user)} className="btn btn-success mx-4" >Promouvoir</button>}
                   </td>
                 </tr>
               )

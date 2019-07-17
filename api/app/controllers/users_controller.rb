@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update_without_password(user_params)
       render json: @user, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -83,5 +83,9 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation
     )
+  end
+
+  def user_params
+    params.permit(:firstname, :lastname, :email, :roles, :address, :birthdate, :username, :phone)
   end
 end
