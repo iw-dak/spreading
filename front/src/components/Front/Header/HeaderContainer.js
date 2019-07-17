@@ -1,9 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 import './Header.scss';
-import AOS from "aos";
-import axios from 'axios';
-
 
 class HeaderContainer extends Component {
 
@@ -30,7 +27,7 @@ class HeaderContainer extends Component {
 
 
     render() {
-        return <Header menus={this.state.menus}/>
+        return <Header menus={this.state.menus} />
     }
 }
 

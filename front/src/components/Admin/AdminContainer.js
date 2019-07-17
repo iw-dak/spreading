@@ -7,9 +7,10 @@ import UserList from './Users/UserList';
 import CommentList from './Comments/CommentList';
 import TagList from './Tags/TagList';
 import Comment from './Comments/Comment';
+import Profile from './Profile/Profile';
 import { PrivateRoute, AdminRoute } from './../../helpers';
-
 import './Back.scss';
+
 
 function AdminContainer({ location }) {
     return <>
@@ -19,6 +20,7 @@ function AdminContainer({ location }) {
             <PrivateRoute exact path='/admin/posts' component={PostList} />
             <PrivateRoute exact path='/admin/tags' component={TagList} />
             <AdminRoute exact path='/admin/users' component={UserList} />
+            <AdminRoute exact path='/admin/profile' component={Profile} />
             <AdminRoute exact path='/admin/comments' component={CommentList} />
             <AdminRoute exact path='/admin/comments/:id' component={Comment} />
         </div>

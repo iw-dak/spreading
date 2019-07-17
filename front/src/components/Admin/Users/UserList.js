@@ -3,7 +3,6 @@ import ReactPaginate from 'react-paginate';
 import Table from 'react-bootstrap/Table';
 import API from "../../../api";
 import axios from 'axios';
-// import './User.scss';
 import Spinner from '../../Spinner/Spinner';
 
 const myApi = new API()

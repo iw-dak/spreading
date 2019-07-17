@@ -1,13 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './PostsCategory.scss';
 import PostContext from '../../../context/posts/PostContext';
 import PostListContainer from "../Home/PostList/PostListContainer";
-import axios from 'axios';
-import Post from "../Post/Post";
 import AOS from "aos";
-import LatestItem from "../Home/Latests/LatestsItem";
-import Spinner from "../../Spinner/Spinner";
-
 
 class PostsCategory extends Component {
 
@@ -20,14 +15,14 @@ class PostsCategory extends Component {
     }
 
     componentDidMount() {
-        if(this.props.match.params.type == 'category'){
+        if (this.props.match.params.type === 'category') {
             this.setState({
                 title: 'la catégorie'
             })
             setTimeout(() => {
                 this.context.fetchByCategory(this.props.match.params.id);
             }, 1000);
-        } else if(this.props.match.params.type == 'tag'){
+        } else if (this.props.match.params.type === 'tag') {
             this.setState({
                 title: 'le tag'
             })
@@ -40,12 +35,12 @@ class PostsCategory extends Component {
 
     render() {
         let posts = this.context.posts;
-        let name =  this.context.name;
+        let name = this.context.name;
 
         return (
             <div className="container text-center">
-                    {name  ?   <h1><hr/>  Articles pour {this.state.title}  {name}   <hr/></h1>: ''}
-                <PostListContainer postListItems={posts}/>
+                {name ? <h1><hr />  Articles pour {this.state.title}  {name}   <hr /></h1> : ''}
+                <PostListContainer postListItems={posts} />
             </div>
         );
 
