@@ -14,7 +14,7 @@ class Header extends Component {
             <Navbar bg="light" variant="light" id="back-nav">
                 <a className="navbar-brand ml-6" href="/">Spreading</a>
                 <Nav className="mx-auto">
-                    <Nav.Link href="/admin">Dashboard</Nav.Link>
+                    <Nav.Link href="/admin">Tableau de bord</Nav.Link>
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/users">Utilisateurs</Nav.Link>}
                     <Nav.Link href="/admin/posts">Articles</Nav.Link>
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/tags">Tags</Nav.Link>}
