@@ -39,6 +39,20 @@
             }
         }
     }
+    .divlog {
+        margin-left : 50px;
+        .fa-user {
+            margin-right: 10px;
+        }
+        .fa-power-off {
+            margin-left: 30px;
+        }
+        .userProfileAccess{
+            text-decoration: none;
+            color : black;
+        }
+    }
+
 
     .collapse.show {
         display: flex !important;

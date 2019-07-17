@@ -1,5 +1,10 @@
 import React from 'react';
 import HeaderMenu from './HeaderMenu';
+import { AuthStore } from '../../../helpers';
+import Nav from "react-bootstrap/Nav";
+
+let isAuthUser = AuthStore.isAuthenticated();
+let authUser = AuthStore.getUser();
 
 const Header = ({ menus }) => <>
     <div className="Header d-flex flex-column">
@@ -23,8 +28,31 @@ const Header = ({ menus }) => <>
                 <div id="navbarToggleExternalContent" className="col-12 d-none d-md-flex collapse justify-content-center">
                     <nav className="navbar ">
                         <HeaderMenu menus={menus} />
+                        {(!isAuthUser) ?
+
+                        <div className="dropdown divlog">
+                            <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i className="fas fa-user"></i>
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="/connexion">Se connecter</a>
+                                <a className="dropdown-item" href="/inscription">S'inscrire</a>
+                            </div>
+                        </div>
+                            :
+                            <div className="divlog">
+                                <a href="/admin/profile" className="userProfileAccess">
+                                <i className="fas fa-user"></i>
+                                {authUser.firstname} {authUser.lastname}
+                                </a>
+                                <a href="/deconnexion" className="userProfileAccess">
+                                    <i className="fas fa-power-off"></i>
+                                </a>
+                            </div>}
                     </nav>
                 </div>
+
             </div>
         </div>
     </div>
