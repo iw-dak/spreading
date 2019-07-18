@@ -44,7 +44,6 @@ class Profile extends Component {
     let target = e.target;
     let value = target.type === 'checkbox' ? target.checked : target.value;
     let name = target.name;
-    console.log(name, value);
     this.setState({
       [name]: value
     });
@@ -99,15 +98,15 @@ class Profile extends Component {
           <Form onSubmit={(e) => this.edit(e)}>
             <Form.Group>
               <Form.Label>Prénom</Form.Label>
-              <Form.Control type="text" name="firstname" value={this.state.user.firstname} onChange={this.handleChange} />
+              <Form.Control type="text" name="firstname" defaultValue={this.state.user.firstname} onChange={this.handleChange} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Nom</Form.Label>
-              <Form.Control type="text" name="lastname" value={this.state.user.lastname} onChange={this.handleChange} />
+              <Form.Control type="text" name="lastname" defaultValue={this.state.user.lastname} onChange={this.handleChange} />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" value={this.state.user.email} onChange={this.handleChange} />
+              <Form.Control type="email" name="email" defaultValue={this.state.user.email} onChange={this.handleChange} />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
