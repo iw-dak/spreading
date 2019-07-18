@@ -39,7 +39,7 @@ class PostsCategory extends Component {
 
         return (
             <div className="container text-center">
-                {name ? <h1><hr />  Articles pour {this.state.title}  {name}   <hr /></h1> : ''}
+                {name ? <h1 className="mt-4 mb-4">Articles dans {this.state.title}  {name}</h1> : ''}
                 <PostListContainer postListItems={posts} />
             </div>
         );

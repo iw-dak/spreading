@@ -1,16 +1,17 @@
 # Admins
 User.create(
   firstname: "Kaba",
-  lastname: "Conde",
+  lastname: "Condé",
   birthdate: Faker::Time.between(25.years.ago, 18.years.ago, :all),
   address: Faker::Address.full_address,
   email: "kaba@admin.com",
   phone: Faker::PhoneNumber.cell_phone_with_country_code,
-  password: "KC",
+  password: "adminadmin",
   password_confirmation: "adminadmin",
   roles: "admin",
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
+
 User.create(
   firstname: "Adam",
   lastname: "Sow",
@@ -18,11 +19,12 @@ User.create(
   address: Faker::Address.full_address,
   email: "adam@admin.com",
   phone: Faker::PhoneNumber.cell_phone_with_country_code,
-  password: "AMS",
+  password: "adminadmin",
   password_confirmation: "adminadmin",
   roles: "admin",
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
+
 User.create(
   firstname: "Nakib",
   lastname: "Abudu",
@@ -30,11 +32,12 @@ User.create(
   address: Faker::Address.full_address,
   email: "nakib@admin.com",
   phone: Faker::PhoneNumber.cell_phone_with_country_code,
-  password: "NA",
+  password: "adminadmin",
   password_confirmation: "adminadmin",
   roles: "admin",
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
+
 User.create(
   firstname: "Driss",
   lastname: "Belaroussi",
@@ -42,13 +45,13 @@ User.create(
   address: Faker::Address.full_address,
   email: "driss@admin.com",
   phone: Faker::PhoneNumber.cell_phone_with_country_code,
-  password: "DB",
+  password: "adminadmin",
   password_confirmation: "adminadmin",
   roles: "admin",
   profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
 )
 
-# Random users
+# # Random users
 100.times do
   User.create(
     firstname: Faker::Name.first_name,

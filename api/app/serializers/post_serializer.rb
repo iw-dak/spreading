@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :content, :status, :slug, :views, :votes, :readtime, :image, :created_at, :updated_at, :user, :categories, :tags, :comments, :nb_comments
+  attributes :id, :title, :content, :status, :slug, :views, :votes, :readtime, :image, :is_external, :external_link, :created_at, :updated_at, :user, :categories, :tags, :comments, :nb_comments
 
   class CommentCustomSerializer < CommentSerializer
     # move shared code to a mixin or base class, customize here

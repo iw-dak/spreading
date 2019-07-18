@@ -20,6 +20,7 @@ function AdminContainer({ location }) {
             <PrivateRoute exact path='/admin' component={HomeBackoffice} />
             <PrivateRoute exact path='/admin/posts' component={PostList} />
             <PrivateRoute exact path='/admin/posts/add' component={PostEdit} />
+            <PrivateRoute exact path='/admin/posts/edit/:slug' component={PostEdit} />
             <PrivateRoute exact path='/admin/tags' component={TagList} />
             <AdminRoute exact path='/admin/users' component={UserList} />
             <AdminRoute exact path='/admin/profile' component={Profile} />

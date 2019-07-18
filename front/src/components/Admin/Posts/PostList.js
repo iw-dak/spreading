@@ -65,6 +65,15 @@ class PostList extends Component {
         });
     };
 
+    deleteItem = (e, post) => {
+        e.preventDefault();
+        myApi.endpoints.posts.delete({ id: post.id }).then((response) => {
+            alert("Article supprimé...");
+        }).catch(error => {
+            alert("Une erreur s'est produite lors de la  suppression de cet article");
+        });
+    }
+
     render() {
         if (!(this.state.posts && this.state.posts.length > 0)) {
             return <Spinner />
@@ -83,15 +92,19 @@ class PostList extends Component {
                         </div>
                     </div>
                 </div>
+
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Titre</th>
-                            <th className="text-center">Views</th>
+                            <th className="text-center">Vue</th>
+                            <th className="text-center">Type</th>
                             {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
+                            <th className="text-center">Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {this.state.posts.map((post, index) => {
                             return (
@@ -99,6 +112,7 @@ class PostList extends Component {
                                     <td className="text-center">{post.id}</td>
                                     <td><a href={`/article/${post.slug}`}>{post.title}</a></td>
                                     <td className="text-center">{post.views}</td>
+                                    <td className="text-center">{post.is_external === "1" ? "Oui" : "Non"}</td>
                                     {(authUser && authUser.roles === 'admin') && <td className="text-center">
                                         {(post.status === "1") ?
                                             "Approuvé" :
@@ -106,6 +120,17 @@ class PostList extends Component {
                                                 Approuver
                                         </button>}
                                     </td>}
+                                    <td className="text-center">
+                                        <div className="d-flex justify-content-center">
+                                            <a className="btn btn-secondary btn-sm" href={`${process.env.REACT_APP_URL}/admin/posts/edit/${post.slug}`}>Modifier</a>
+
+                                            <a href="#post-delete" onClick={(e) => {
+                                                e.preventDefault();
+                                                if (window.confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))
+                                                    this.deleteItem(e, post)
+                                            }} className="btn btn-danger btn-sm ml-2">Supprimer</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             )
                         })}

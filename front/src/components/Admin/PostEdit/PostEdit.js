@@ -5,6 +5,7 @@ import PostContext from '../../../context/posts/PostContext';
 import Select from 'react-select';
 import './PostEdit.scss';
 import { AuthStore } from '../../../helpers';
+import Spinner from '../../Spinner/Spinner';
 
 class PostEdit extends Component {
 
@@ -12,6 +13,7 @@ class PostEdit extends Component {
         super(props);
 
         this.state = {
+            id: false,
             title: "",
             content: "",
             status: false,
@@ -38,6 +40,31 @@ class PostEdit extends Component {
                     return { value: tag.id, label: tag.name };
                 })
             });
+
+
+            if (this.props.match.params.slug) {
+                this.props.fetchPost(this.props.match.params.slug).then((data) => {
+                    console.log(data);
+                    this.setState({
+                        id: data.id,
+                        title: data.title,
+                        content: data.content,
+                        status: data.status,
+                        views: data.views,
+                        readtime: data.readtime,
+                        image: data.image,
+                        user_id: data.user_id,
+                        externalLink: data.external_link,
+                        isExternal: data.is_external === "1" ? true : false,
+                        selectedCategories: data.categories.map(category => {
+                            return { value: category.id, label: category.name };
+                        }),
+                        selectedTags: data.tags.map(tag => {
+                            return { value: tag.id, label: tag.name };
+                        })
+                    });
+                });
+            }
         });
     }
 
@@ -93,7 +120,7 @@ class PostEdit extends Component {
                     });
                     return;
                 }
-            }else {
+            } else {
                 if (this.state.externalLink === "") {
                     this.setState({
                         success: 'no',
@@ -125,26 +152,45 @@ class PostEdit extends Component {
                 return;
             }
 
-            this.props.savePost(this.state, AuthStore.getUser().id).then(({ data }) => {
-                this.setState({
-                    success: 'yes',
-                    confirmationMessage: "Article enregistré avec succès, il sera visible sur le site après validation par un administrateur 🙂",
-                    title: "",
-                    content: "",
-                    status: false,
-                    views: 0,
-                    readtime: "",
-                    image: "",
-                    user_id: false,
-                    selectedCategories: [],
-                    selectedTags: []
+            if (this.state.id) {
+                console.log("Update");
+                // Update
+                this.props.updatePost(this.state, AuthStore.getUser().id, this.state.id).then(({ data }) => {
+                    this.setState({
+                        success: 'yes',
+                        confirmationMessage: "Article modifié avec succès 👍🏽",
+                    });
+                }).catch(error => {
+                    this.setState({
+                        success: 'no',
+                        confirmationMessage: "Une erreur s'est produite, lors de l'enregistrement de l'article. réessayez 🤔",
+                    })
                 });
-            }).catch(error => {
-                this.setState({
-                    success: 'no',
-                    confirmationMessage: "Une erreur s'est produite, lors de l'enregistrement de l'article. réessayez 🤔",
-                })
-            });
+            } else {
+                console.log("Save");
+                // Save
+                this.props.savePost(this.state, AuthStore.getUser().id).then(({ data }) => {
+                    this.setState({
+                        success: 'yes',
+                        confirmationMessage: "Article enregistré avec succès, il sera visible sur le site après validation par un administrateur 🙂",
+                        title: "",
+                        content: "",
+                        status: false,
+                        views: 0,
+                        readtime: "",
+                        image: "",
+                        user_id: false,
+                        selectedCategories: [],
+                        selectedTags: []
+                    });
+                }).catch(error => {
+                    this.setState({
+                        success: 'no',
+                        confirmationMessage: "Une erreur s'est produite, lors de l'enregistrement de l'article. réessayez 🤔",
+                    })
+                });
+            }
+
             this.setState({
                 submitting: false
             });
@@ -152,7 +198,6 @@ class PostEdit extends Component {
     }
 
     handleChangeContent = (data) => {
-        console.log("Register data", data);
         this.setState({
             content: data
         });
@@ -160,11 +205,16 @@ class PostEdit extends Component {
 
     render() {
 
+        if (!this.state.categories) {
+            return <Spinner />
+        }
+
         return (
             <div className="PostEdit container">
                 <div className="row">
                     <div className="col-12">
-                        <h1 className="mx-auto mt-4 mb-4">Créer un article</h1>
+                        {this.state.id ? <h1 className="mx-auto mt-4 mb-4">Modifier un article</h1> :
+                            <h1 className="mx-auto mt-4 mb-4">Créer un article</h1>}
                     </div>
                 </div>
 
@@ -187,7 +237,7 @@ class PostEdit extends Component {
                             </div>
 
                             <div className="form-group form-check">
-                                <input type="checkbox" name="isExternal" value={this.state.isExternal} onChange={this.handleChange} className="form-check-input" id="externalContent" />
+                                <input type="checkbox" name="isExternal" checked={this.state.isExternal && "checked"} value={this.state.isExternal} onChange={this.handleChange} className="form-check-input" id="externalContent" />
                                 <label className="form-check-label" htmlFor="externalContent">S'il s'agit d'un contenu externe, cochez cette case</label>
                             </div>
 
@@ -266,11 +316,13 @@ class PostEdit extends Component {
 
 export default React.forwardRef((props, ref) => (
     <PostContext.Consumer>
-        {({ getCategoriesAndTags, savePost }) =>
+        {({ getCategoriesAndTags, savePost, fetchPost, updatePost }) =>
             <PostEdit
                 {...props}
                 getCategoriesAndTags={getCategoriesAndTags}
                 savePost={savePost}
+                updatePost={updatePost}
+                fetchPost={fetchPost}
                 ref={ref}
             />
         }
