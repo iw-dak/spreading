@@ -51,7 +51,7 @@ class HomeBackoffice extends Component {
   render() {
     return <>
       <div id="home-back" className="container">
-        <h3 className="mx-auto mt-5 mb-3 text-center">Bienvenue sur votre tableau de bord</h3>
+        <h3 className="sp-homeback-title">Bienvenue sur votre tableau de bord</h3>
         <section className="main-section d-flex justify-content-between">
           <div className="div-shadow main-data">
             <span>

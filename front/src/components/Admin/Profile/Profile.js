@@ -87,7 +87,7 @@ class Profile extends Component {
   render() {
     return <>
       <div id="profile" className="container">
-        <h3 className="mx-auto mt-5 mb-3  text-center">Modifier mon profile</h3>
+        <h3 className="sp-back-title">Modifier mon profile</h3>
         {(this.state.alert.label !== '') &&
           <FlashMassage duration={5000} persistOnHover={true}>
             <div className={`alert alert-${this.state.alert.type} text-center`}>
@@ -98,24 +98,24 @@ class Profile extends Component {
           <Form onSubmit={(e) => this.edit(e)}>
             <Form.Group>
               <Form.Label>Prénom</Form.Label>
-              <Form.Control type="text" name="firstname" defaultValue={this.state.user.firstname} onChange={this.handleChange} />
+              <Form.Control type="text" name="firstname" defaultValue={this.state.user.firstname} onChange={this.handleChange} autoComplete="given-name" />
             </Form.Group>
             <Form.Group>
               <Form.Label>Nom</Form.Label>
-              <Form.Control type="text" name="lastname" defaultValue={this.state.user.lastname} onChange={this.handleChange} />
+              <Form.Control type="text" name="lastname" defaultValue={this.state.user.lastname} onChange={this.handleChange} autoComplete="family-name" />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" defaultValue={this.state.user.email} onChange={this.handleChange} />
+              <Form.Control type="email" name="email" defaultValue={this.state.user.email} onChange={this.handleChange} autoComplete="email" />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" name="password" onChange={this.handleChange} />
+              <Form.Control type="password" name="password" onChange={this.handleChange} autoComplete="new-password" />
             </Form.Group>
             <Form.Group>
               <Form.Label>Confirmer le mot de passe</Form.Label>
-              <Form.Control type="password" name="password_confirmation" />
+              <Form.Control type="password" name="password_confirmation" autoComplete="new-password" />
             </Form.Group>
             <Button variant="btn btn-outline-primary" type="submit">
               Modifier

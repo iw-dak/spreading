@@ -9,17 +9,20 @@ import FooterContainer from '../Front/Footer/FooterContainer';
 import Post from '../Front/Post/Post';
 import Error404 from '../Errors/Error404';
 import PostsCategory from "./PostsCategory/PostsCategory";
+import './Front.scss';
 
 function FrontContainer() {
     return <>
         <HeaderContainer />
-        <Route exact path="/" component={HomeContainer} />
-        <Route exact path="/connexion" component={Login} />
-        <Route exact path="/inscription" component={Register} />
-        <Route path="/article/:slug" component={Post} />
-        <Route path="/articles/:type/:id" component={PostsCategory} />
-        <Route exact path="/404" component={Error404} />
-        <Route exact path="/deconnexion" component={Logout} />
+        <div id="front">
+            <Route exact path="/" component={HomeContainer} />
+            <Route exact path="/connexion" component={Login} />
+            <Route exact path="/inscription" component={Register} />
+            <Route path="/article/:slug" component={Post} />
+            <Route path="/articles/:type/:id" component={PostsCategory} />
+            <Route exact path="/404" component={Error404} />
+            <Route exact path="/deconnexion" component={Logout} />
+        </div>
         <FooterContainer />
     </>;
 }

@@ -92,49 +92,51 @@ class TagList extends Component {
 
     return <>
       <div className="container">
-        <h3 className="mx-auto mt-5 mb-3 text-center">Liste des tags</h3>
+        <h3 className="sp-back-title">Liste des tags</h3>
         {(this.state.alertDeleted !== '') &&
           <FlashMassage duration={5000} persistOnHover={true}>
             <div className="alert alert-success text-center">
               {this.state.alertDeleted}
             </div>
           </FlashMassage>}
-        <div className="d-flex justify-content-end mb-3">
-          <button className="btn btn-outline-primary" data-target="#myModal" data-toggle="modal">
-            <i className="mr-2 fas fa-plus-circle"></i>
-            Ajouter
-        </button>
+        <div className="table-div">
+          <div className="d-flex justify-content-end mb-3">
+            <button className="btn btn-outline-primary" data-target="#myModal" data-toggle="modal">
+              <i className="mr-2 fas fa-plus-circle"></i>
+              Ajouter
+            </button>
+          </div>
+          <Table striped bordered hover variant="dark" size="sm">
+            <thead>
+              <tr>
+                <th className="text-center">#</th>
+                <th className="text-center">Label</th>
+                <th className="text-center">Tag utilisé ?</th>
+                <th className="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.tags.map((tag, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="text-center">{tag.id}</td>
+                    <td className="text-center">{tag.name}</td>
+                    <td className="text-center">
+                      {(tag.posts) ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times-circle"></i>}
+                    </td>
+                    <td className="text-center">
+                      {(tag.posts.length > 0) ?
+                        <button type="button" className="btn btn-danger disabled" id={tag.id}>Supprimer</button> :
+                        <button type="button" onClick={(e) => this.remove(e, tag)} className="btn btn-danger" id={tag.id}>
+                          Supprimer
+                        </button>}
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </Table>
         </div>
-        <Table striped bordered hover variant="dark" size="sm">
-          <thead>
-            <tr>
-              <th className="text-center">#</th>
-              <th className="text-center">Label</th>
-              <th className="text-center">Tag utilisé ?</th>
-              <th className="text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.tags.map((tag, index) => {
-              return (
-                <tr key={index}>
-                  <td className="text-center">{tag.id}</td>
-                  <td className="text-center">{tag.name}</td>
-                  <td className="text-center">
-                    {(tag.posts) ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times-circle"></i>}
-                  </td>
-                  <td className="text-center">
-                    {(tag.posts.length > 0) ?
-                      <button type="button" className="btn btn-danger disabled" id={tag.id}>Supprimer</button> :
-                      <button type="button" onClick={(e) => this.remove(e, tag)} className="btn btn-danger" id={tag.id}>
-                        Supprimer
-                      </button>}
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </Table>
         <div className="react-paginate">
           <ReactPaginate
             previousLabel={'<'}

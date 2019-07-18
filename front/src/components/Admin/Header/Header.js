@@ -12,7 +12,9 @@ class Header extends Component {
 
         return <>
             <Navbar bg="light" variant="light" id="back-nav">
-                <a className="navbar-brand ml-6" href="/">Spreading</a>
+                <a className="navbar-brand ml-6" href="/">
+                    <img src={process.env.REACT_APP_URL + '/images/logo.png'} alt="Logo" />
+                </a>
                 <Nav className="mx-auto">
                     <Nav.Link href="/admin">Tableau de bord</Nav.Link>
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/users">Utilisateurs</Nav.Link>}

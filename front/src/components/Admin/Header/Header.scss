@@ -15,10 +15,18 @@
       .userProfileAccess{
           margin-left: 25px;
           text-decoration: none;
-          color : black;
+          color : $sp-black;
           &:hover {
-                color: $sp-grey-light;
+              color: $sp-main;
           }
+      }
+      .nav-link
+      {
+        color : $sp-black;
+        &:hover
+        {
+          color: $sp-grey-dark;
+        }
       }
 
       .divlog
