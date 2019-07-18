@@ -5,10 +5,13 @@ const PostContext = createContext({
     populars: [],
     latestFeatured: [],
     latestFrameworks: [],
+    post: null,
     latestLanguages: [],
     fetchLatests: () => { },
     fetchPopulars: () => { },
-    fetchLatestsByCategory: () => { }
+    fetchLatestsByCategory: () => { },
+    fetchByCategory: () => { },
+    fetchByTag: () => { }
 });
 
 export default PostContext;

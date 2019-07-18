@@ -1,0 +1,28 @@
+@import '../../../scss/variables';
+
+#profile
+{
+  .update-user
+  {
+    width: 70%;
+    background-color: $sp-white;
+    padding: 4%;
+  }
+  h3
+  {
+    width: 70%;
+  }
+
+
+  .btn-outline-primary {
+    color: $sp-main;
+    border-color: $sp-main;
+    
+    &:hover
+    {
+      color: $sp-white;
+      border-color: $sp-main;
+      background-color: $sp-main;
+    }
+  }
+}

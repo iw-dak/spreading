@@ -2,9 +2,12 @@
 
 #back
 {
+  min-height: calc(100vh - 56px - 54px);
+  height: 100%;
   body
   {
     background-color: $sp-grey-lighter;
+    font-family: Raleway !important;
   }
   .react-paginate 
   {
@@ -16,23 +19,69 @@
     {
       text-align: center;
       display: flex !important;
-      justify-content: space-around;
-      padding-left: 15px !important;
-      background-color: #fff;
-      padding-right: 15px !important;
-      width: 60%;
+      justify-content: center;
+      background-color: $sp-white;
+
       li 
       {
-        padding: 8px;
+        padding:10px;
         display: inline-block !important;
 
         &:hover
         {
           cursor: pointer;
         }
+
+        a 
+        {
+          color: $sp-grey-dark;
+        }
       }
 
     }
+      .active
+    {
+      border: 1px solid $sp-grey-dark;
+    }
+
+    .disable
+    {
+      background-color: #FCFCFC;
+    }
   }
 
+  .hide
+  {
+    display: none;
+  }
+
+  .div-shadow
+  {
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
+      background: rgba(255, 255, 255, 1);
+  }
+
+  .table-div
+  {
+    width: 90%;
+    margin: auto;
+  }
+  
+  .sp-back-title, .sp-homeback-title
+  {
+    text-align: center;
+    font-size: 32px;
+    font-family: Raleway;
+    font-weight: 400;
+  }
+  .sp-back-title
+  {
+    color: $sp-main;
+    margin: 39px auto 39px auto; 
+  }
+  .sp-homeback-title
+  {
+    margin: 39px auto 15px auto; 
+  }
+ 
 }

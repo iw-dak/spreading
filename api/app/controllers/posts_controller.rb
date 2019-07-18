@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy, :update_views]
   before_action :authenticate_request, only: [:create, :update, :destroy]
 
   def index
@@ -38,6 +38,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def update_views
+    if @post.update(update_views_params)
+      render json: @post, status: :ok
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @post.destroy
     head :no_content
@@ -51,6 +59,10 @@ class PostsController < ApplicationController
     params.permit(:title, :content, :status, :slug, :views, :image)
   end
 
+  def update_views_params
+    params.permit(:id, :views)
+  end
+
   def latests
     render json: Post.where("status" => true).order("created_at desc").limit(4), status: :ok
   end
@@ -61,5 +73,10 @@ class PostsController < ApplicationController
 
   def populars
     render json: Post.where("status" => true).order("views desc").limit(4), status: :ok
+  end
+
+  #GET /posts/to_approve
+  def to_approve
+    render json: Post.where("status" => false).count, status: :ok
   end
 end

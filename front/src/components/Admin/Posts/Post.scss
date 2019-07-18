@@ -1,0 +1,16 @@
+@import '../../../scss/variables';
+
+#posts-back
+{
+  .table
+  {
+    a
+    {
+      color: $sp-white !important;
+        
+      &:hover {
+        color: $sp-grey-dark !important;
+      }
+      }
+  }
+}

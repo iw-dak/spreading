@@ -4,6 +4,9 @@ import Table from 'react-bootstrap/Table';
 import API from "../../../api";
 import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
+import './Post.scss';
+import UserContext from '../../../context/users/UserContext';
+import { AuthStore } from '../../../helpers';
 
 const myApi = new API()
 myApi.createEntity({ name: 'posts' });
@@ -66,41 +69,45 @@ class PostList extends Component {
         if (!(this.state.posts && this.state.posts.length > 0)) {
             return <Spinner />
         }
+        let authUser = AuthStore.getUser();
+
         return <>
-            <div className="container">
-                <h3 className="mx-auto mt-4 mb-4">Liste des articles</h3>
-                <Table striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th className="text-center">Views</th>
-                            <th className="text-center">Statut</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.posts.map((post, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td className="text-center">{post.id}</td>
-                                    <td>{post.title}</td>
-                                    <td className="text-center">{post.views}</td>
-                                    <td className="text-center">
-                                        {(post.status === "1") ?
-                                            "Approuvé" :
-                                            <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
-                                                Approuver
-                                        </button>}
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
+            <div id="posts-back" className="container">
+                <h3 className="sp-back-title">Liste des articles</h3>
+                <div className="table-div">
+                    <Table striped bordered hover variant="dark" size="sm">
+                        <thead>
+                            <tr>
+                                <th className="text-center">#</th>
+                                <th className="pl-3">Titre</th>
+                                <th className="text-center">Views</th>
+                                {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.posts.map((post, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td className="text-center">{post.id}</td>
+                                        <td className="pl-3"><a href={`/article/${post.slug}`}>{post.title}</a></td>
+                                        <td className="text-center">{post.views}</td>
+                                        {(authUser && authUser.roles === 'admin') && <td className="text-center">
+                                            {(post.status === "1") ?
+                                                "Approuvé" :
+                                                <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
+                                                    Approuver
+                                            </button>}
+                                        </td>}
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                </div>
                 <div className="react-paginate">
                     <ReactPaginate
-                        previousLabel={'previous'}
-                        nextLabel={'next'}
+                        previousLabel={'<'}
+                        nextLabel={'>'}
                         breakLabel={'...'}
                         breakClassName={'break-me'}
                         pageCount={this.state.pageCount}
@@ -110,11 +117,13 @@ class PostList extends Component {
                         containerClassName={'pagination'}
                         subContainerClassName={'pages pagination'}
                         activeClassName={'active'}
+                        disabledClassName={'disable'}
                     />
                 </div>
             </div>
         </>;
     }
 }
+PostList.contextType = UserContext;
 
 export default PostList;
