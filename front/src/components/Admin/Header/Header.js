@@ -20,6 +20,7 @@ class Header extends Component {
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/users">Utilisateurs</Nav.Link>}
                     <Nav.Link href="/admin/posts">Articles</Nav.Link>
                     {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/tags">Tags</Nav.Link>}
+                        {(authUser && authUser.roles === 'admin') && <Nav.Link href="/admin/faqs">FAQs</Nav.Link>}
                     <Nav.Link href="/admin/comments">Commentaires</Nav.Link>
                     {(isAuthUser) &&
                         <div className="divlog">
