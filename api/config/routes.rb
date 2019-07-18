@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/posts/count", to: "posts#count"
   get "/posts/to_approve", to: "posts#to_approve"
   put "/posts/update-views/:id", to: "posts#update_views"
-  
+
   # Comments
   get "/comments/latests", to: "comments#latests"
   get "/comments/:limit/:offset", to: "comments#filtered"
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # Tags
   get "/tags/:limit/:offset", to: "tags#filtered"
   get "/tags/count", to: "tags#count"
-  
+
   # Votes
   get "/votes/status", to: "votes#status"
 
@@ -35,5 +35,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :posts_has_categories
   resources :newsletters
+  resources :faqs
   resources :votes
+
 end
