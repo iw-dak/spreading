@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :sequentially_slugged
-  validates_presence_of :title, :content, :status, :slug, :views, :image
+  validates_presence_of :title, :content, :status, :views, :slug, :image
 
   belongs_to :user
   has_many :comments
@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
   def slug_candidates
     [
-        :title
+      :title,
     ]
   end
 end
