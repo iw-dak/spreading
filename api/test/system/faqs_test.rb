@@ -10,36 +10,36 @@ class FaqsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Faqs"
   end
 
-  test "creating a Faq" do
+  test "creating a Faqs" do
     visit faqs_url
-    click_on "New Faq"
+    click_on "New Faqs"
 
     fill_in "Answer", with: @faq.answer
     fill_in "Question", with: @faq.question
-    click_on "Create Faq"
+    click_on "Create Faqs"
 
-    assert_text "Faq was successfully created"
+    assert_text "Faqs was successfully created"
     click_on "Back"
   end
 
-  test "updating a Faq" do
+  test "updating a Faqs" do
     visit faqs_url
     click_on "Edit", match: :first
 
     fill_in "Answer", with: @faq.answer
     fill_in "Question", with: @faq.question
-    click_on "Update Faq"
+    click_on "Update Faqs"
 
-    assert_text "Faq was successfully updated"
+    assert_text "Faqs was successfully updated"
     click_on "Back"
   end
 
-  test "destroying a Faq" do
+  test "destroying a Faqs" do
     visit faqs_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end
 
-    assert_text "Faq was successfully destroyed"
+    assert_text "Faqs was successfully destroyed"
   end
 end

@@ -9,14 +9,18 @@ import Spinner from "../../Spinner/Spinner";
 class FaqListContainer extends Component {
 
     componentDidMount() {
-        this.context.fetchFaqs();
-        console.log(this.context);
+
+        setTimeout(() => {
+            this.context.fetchFaqs();
+        }, 50);
+
+        AOS.init()
     }
 
     render() {
         /*console.log(this.context.allFaqs);*/
         if (!(this.context.allFaqs && this.context.allFaqs.length > 0)) {
-            console.log(this.context.allFaqs);
+
             return <Spinner />
         }
 

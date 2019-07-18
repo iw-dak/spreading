@@ -16,7 +16,7 @@ class FaqsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create faq" do
-    assert_difference('Faq.count') do
+    assert_difference('Faqs.count') do
       post faqs_url, params: { faq: { answer: @faq.answer, question: @faq.question } }
     end
 
@@ -39,7 +39,7 @@ class FaqsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy faq" do
-    assert_difference('Faq.count', -1) do
+    assert_difference('Faqs.count', -1) do
       delete faq_url(@faq)
     end
 

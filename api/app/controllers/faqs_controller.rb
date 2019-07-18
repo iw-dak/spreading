@@ -20,29 +20,22 @@ class FaqsController < ApplicationController
   # POST /faqs.json
   def create
     @faq = Faq.new(faq_params)
-
-    respond_to do |format|
       if @faq.save
-        format.html { redirect_to @faq, notice: 'Faq was successfully created.', status: :created }
-        format.json { render :show, status: :created, location: @faq }
+         render :show, status: :created, location: @faq
       else
-        format.html { render :new }
-        format.json { render json: @faq.errors, status: :unprocessable_entity }
-      end
+        render json: @faq.errors, status: :unprocessable_entity
+
     end
   end
 
   # PATCH/PUT /faqs/1
   # PATCH/PUT /faqs/1.json
   def update
-    respond_to do |format|
+
       if @faq.update(faq_params)
-        format.html { redirect_to @faq, notice: 'Faq was successfully updated.' }
-        format.json { render :show, status: :ok, location: @faq }
+         render :show, status: :ok, location: @faq
       else
-        format.html { render :edit }
-        format.json { render json: @faq.errors, status: :unprocessable_entity }
-      end
+        render json: @faq.errors, status: :unprocessable_entity
     end
   end
 
@@ -50,10 +43,8 @@ class FaqsController < ApplicationController
   # DELETE /faqs/1.json
   def destroy
     @faq.destroy
-    respond_to do |format|
-      format.html { redirect_to faqs_url, notice: 'Faq was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+     head :no_content
+
   end
 
   private
