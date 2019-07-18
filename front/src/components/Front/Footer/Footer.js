@@ -4,7 +4,7 @@ import API from '../../../api';
 
 
 const api = new API()
-api.createEntity({name: 'newsletters'})
+api.createEntity({ name: 'newsletters' })
 
 export class Footer extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ export class Footer extends React.Component {
         this.state = {
             email: '',
             message: false,
-            error_message : false
+            error_message: false
         }
     }
 
@@ -35,16 +35,16 @@ export class Footer extends React.Component {
             console.log('email vide');
             this.setState({
                 message: false,
-                error_message : "Merci de réessayer en vérifiant votre adresse email."
+                error_message: "Merci de réessayer en vérifiant votre adresse email."
             })
             return;
         }
 
-        api.endpoints.newsletters.create({"email": this.state.email}).then(({data}) => {
+        api.endpoints.newsletters.create({ "email": this.state.email }).then(({ data }) => {
             console.log(data);
             this.setState({
-                error_message : false,
-                message : "Votre abonnement à la newsletter a été pris en compte."
+                error_message: false,
+                message: "Votre abonnement à la newsletter a été pris en compte."
             })
 
         }).catch((error) => {
@@ -53,17 +53,17 @@ export class Footer extends React.Component {
             if (error.response) {
                 this.setState({
                     message: false,
-                    error_message : error.response.data.message
+                    error_message: error.response.data.message
                 })
             } else if (error.request) {
                 this.setState({
                     message: false,
-                    error_message : error.request.data.message
+                    error_message: error.request.data.message
                 })
             } else {
                 this.setState({
                     message: false,
-                    error_message : "Une erreur est survenue, merci de rééssayer utlérieurement..."
+                    error_message: "Une erreur est survenue, merci de rééssayer utlérieurement..."
                 })
             }
         });
@@ -109,7 +109,7 @@ export class Footer extends React.Component {
                                             href={menu.link}>{menu.name}</a>
                                         </li>)}
                                         <li><a href='/' data-toggle="modal"
-                                               data-target="#exampleModal">S'abonner</a>
+                                            data-target="#exampleModal">S'abonner</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -119,7 +119,7 @@ export class Footer extends React.Component {
                 </div>
 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
 
@@ -127,7 +127,7 @@ export class Footer extends React.Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="form-group">
                                         <input name="email" className="form-control" placeholder="Email"
-                                               value={this.state.email} onChange={this.handleChange} type="email"/>
+                                            value={this.state.email} onChange={this.handleChange} type="email" />
                                     </div>
                                     <div className="form-group">
                                         <button type="submit" className="btn btn-primary btn-block"> S'abonner
@@ -138,9 +138,9 @@ export class Footer extends React.Component {
                                         {this.state.message}
                                     </div>}
 
-                                        {this.state.error_message && <div className="alert alert-danger" role="alert">
-                                            {this.state.error_message}
-                                        </div>}
+                                    {this.state.error_message && <div className="alert alert-danger" role="alert">
+                                        {this.state.error_message}
+                                    </div>}
 
                                 </form>
                             </div>
@@ -154,7 +154,7 @@ export class Footer extends React.Component {
                             <div className="row">
                                 <div className="col-12 d-flex flex-column align-items-center">
                                     <a className="sf-logo" href="/">
-                                        <span className="sitename">Spreading</span>
+                                        <img src={process.env.REACT_APP_URL + '/images/logo.png'} alt="Un article qui a un titre dans la vie" />
                                     </a>
                                 </div>
                             </div>

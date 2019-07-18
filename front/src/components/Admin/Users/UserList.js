@@ -68,35 +68,37 @@ class UserList extends Component {
     }
     return <>
       <div id="users-back" className="container">
-        <h3 className="mx-auto mt-4 mb-4">Liste des utilisateurs</h3>
-        <Table striped bordered hover variant="dark">
-          <thead>
-            <tr>
-              <th className="text-center">#</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th className="text-center">Rôle</th>
-              <th className="text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.users.map((user, index) => {
-              return (
-                <tr key={index}>
-                  <td className="text-center user">{user.id}</td>
-                  <td>{user.firstname}</td>
-                  <td>{user.email}</td>
-                  <td className="text-center">
-                    {(user.roles === "admin") ? "Administrateur" : "Utilisateur"}
-                  </td>
-                  <td className="text-center">
-                    {(user.roles === "admin") ? <button type="button" id="subscriber" onClick={(e) => this.handleClick(e, user)} className="btn btn-warning mx-4" >Rétrograder</button> : <button type="button" id="admin" onClick={(e) => this.handleClick(e, user)} className="btn btn-success mx-4" >Promouvoir</button>}
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </Table>
+        <h3 className="sp-back-title">Liste des utilisateurs</h3>
+        <div className="table-div">
+          <Table striped bordered hover variant="dark" size="sm">
+            <thead>
+              <tr>
+                <th className="text-center">#</th>
+                <th className="pl-3">Prénom</th>
+                <th className="pl-3">Email</th>
+                <th className="pl-3">Rôle</th>
+                <th className="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.users.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="text-center user">{user.id}</td>
+                    <td className="pl-3">{user.firstname}</td>
+                    <td className="pl-3">{user.email}</td>
+                    <td className="pl-3">
+                      {(user.roles === "admin") ? "Administrateur" : "Utilisateur"}
+                    </td>
+                    <td className="text-center">
+                      {(user.roles === "admin") ? <button type="button" id="subscriber" onClick={(e) => this.handleClick(e, user)} className="btn btn-warning mx-4" >Rétrograder</button> : <button type="button" id="admin" onClick={(e) => this.handleClick(e, user)} className="btn btn-success mx-4" >Promouvoir</button>}
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </Table>
+        </div>
         <div className="react-paginate">
           <ReactPaginate
             previousLabel={'<'}

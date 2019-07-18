@@ -75,38 +75,40 @@ class CommentList extends Component {
 
         return <>
             <div id="comments-back" className="container">
-                <h3 className="mx-auto mt-4 mb-4">Liste des commentaires</h3>
-                <Table striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                            <th className="text-center">#</th>
-                            <th>Contenu</th>
-                            {(authUser && authUser.roles === 'admin') &&
-                                <th className="text-center">Statut</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.comments.map((comment, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td className="text-center comment">{comment.id}</td>
-                                    <td>{comment.content.length > 100 ?
-                                        <a href={`/admin/comments/${comment.id}`}> {comment.content.substring(0, 100)}... </a> :
-                                        comment.content}
-                                    </td>
-                                    {(authUser && authUser.roles === 'admin') &&
-                                        <td className="text-center">
-                                            {(comment.status === "1") ?
-                                                "Approuvé" :
-                                                <button type="button" onClick={(e) => this.handleClick(e, comment)} className="btn btn-success" id={comment.id}>
-                                                    Approuver
+                <h3 className="sp-back-title">Liste des commentaires</h3>
+                <div className="table-div">
+                    <Table striped bordered hover variant="dark" size="sm">
+                        <thead>
+                            <tr>
+                                <th className="text-center">#</th>
+                                <th className="pl-3">Contenu</th>
+                                {(authUser && authUser.roles === 'admin') &&
+                                    <th className="text-center">Statut</th>}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.comments.map((comment, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td className="text-center comment">{comment.id}</td>
+                                        <td className="pl-3">{comment.content.length > 100 ?
+                                            <a href={`/admin/comments/${comment.id}`}> {comment.content.substring(0, 100)}... </a> :
+                                            comment.content}
+                                        </td>
+                                        {(authUser && authUser.roles === 'admin') &&
+                                            <td className="text-center">
+                                                {(comment.status === "1") ?
+                                                    "Approuvé" :
+                                                    <button type="button" onClick={(e) => this.handleClick(e, comment)} className="btn btn-success" id={comment.id}>
+                                                        Approuver
                                         </button>}
-                                        </td>}
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
+                                            </td>}
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                </div>
                 <div className="react-paginate">
                     <ReactPaginate
                         previousLabel={'<'}
