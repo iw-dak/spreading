@@ -225,16 +225,30 @@ class PostProvider extends Component {
             });
         },
         savePost: (post, userId) => {
-            console.log({ title: post.title, content: post.content, status: post.status, views: post.views, image: post.image });
 
             let post_image = post.image ? post.image : "http://localhost:8000/external.png";
+            let categoryIds = post.selectedCategories.map(category => category.id);
+            let tagIds = post.selectedTags.map(tag => tag.id);
+            let postContent =  post.isExternal ? "" : post.content;
 
             return new Promise((resolve, reject) => {
-                api.endpoints.posts.create({ title: post.title, content: post.content, status: post.status, views: post.views, image: post_image, user_id: userId }).then(({ data }) => {
-                    resolve(data);
-                }).catch(error => {
-                    reject(error);
-                });
+                api.endpoints.posts.create(
+                    {
+                        title: post.title,
+                        content: postContent,
+                        status: post.status,
+                        views: post.views,
+                        image: post_image,
+                        is_external: post.isExternal,
+                        external_link: post.externalLink,
+                        user_id: userId,
+                        category_ids: categoryIds,
+                        tag_ids: tagIds
+                    }).then(({ data }) => {
+                        resolve(data);
+                    }).catch(error => {
+                        reject(error);
+                    });
             });
         }
     }

@@ -5,7 +5,7 @@ const PostListItem = ({ postItem }) => <>
     <div className="col-12 post-item mb-4 d-flex align-items-center flex-column flex-md-row" data-aos="fade-up" data-aos-duration="1000">
         <div className="post-item-image">
             <a href={process.env.REACT_APP_URL + '/article/' + postItem.slug}>
-                <img src={`https://lorempixel.com/650/650?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
+                <img src={`${postItem.image}?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
             </a>
         </div>
 

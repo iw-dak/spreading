@@ -90,7 +90,7 @@ class Post extends Component {
                 </div>
 
                 <div className="poster mb-4">
-                    <img src={`https://lorempixel.com/1600/600?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
+                    <img src={`${post.image}t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
                 </div>
 
                 <div className="content mb-4">

@@ -17,18 +17,19 @@ class PostEdit extends Component {
             status: false,
             views: 0,
             readtime: "",
-            image: null,
+            image: "",
             user_id: false,
             categories: false,
             tags: false,
             selectedCategories: [],
-            selectedTags: []
+            selectedTags: [],
+            isExternal: false,
+            externalLink: ""
         };
     }
 
     componentDidMount() {
         this.props.getCategoriesAndTags().then((data) => {
-            console.log(data);
             this.setState({
                 categories: data.categories.map(category => {
                     return { value: category.id, label: category.name };
@@ -44,6 +45,13 @@ class PostEdit extends Component {
         let target = e.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
         let name = target.name;
+
+        if (name === 'isExternal') {
+            this.setState({
+                content: "",
+                externalLink: ""
+            });
+        }
 
         this.setState({
             [name]: value
@@ -66,8 +74,6 @@ class PostEdit extends Component {
         } else {
             this.setState({ selectedTags: [] });
         }
-
-        console.log(`Option selected:`, selectedTags);
     };
 
     handleSubmit = (e) => {
@@ -78,7 +84,26 @@ class PostEdit extends Component {
         });
 
         setTimeout(() => {
-            if (this.state.title === "" || this.state.content === "" || this.state.readtime === "") {
+
+            if (!this.state.isExternal) {
+                if (this.state.content === "") {
+                    this.setState({
+                        success: 'no',
+                        confirmationMessage: "Le contenu de l'article est obligatoire",
+                    });
+                    return;
+                }
+            }else {
+                if (this.state.externalLink === "") {
+                    this.setState({
+                        success: 'no',
+                        confirmationMessage: "Saisissez un lien externe s'il vous plaît",
+                    });
+                    return;
+                }
+            }
+
+            if (this.state.title === "" || this.state.readtime === "") {
                 this.setState({
                     success: 'no',
                     confirmationMessage: "Remplissez tous les champs obligatoires",
@@ -109,7 +134,7 @@ class PostEdit extends Component {
                     status: false,
                     views: 0,
                     readtime: "",
-                    image: null,
+                    image: "",
                     user_id: false,
                     selectedCategories: [],
                     selectedTags: []
@@ -161,7 +186,22 @@ class PostEdit extends Component {
                                 <input type="number" id="readtime" name="readtime" value={this.state.readtime} onChange={this.handleChange} className="form-control" placeholder="Entrer le temps" />
                             </div>
 
-                            <CKEditor
+                            <div className="form-group form-check">
+                                <input type="checkbox" name="isExternal" value={this.state.isExternal} onChange={this.handleChange} className="form-check-input" id="externalContent" />
+                                <label className="form-check-label" htmlFor="externalContent">S'il s'agit d'un contenu externe, cochez cette case</label>
+                            </div>
+
+                            {this.state.isExternal && <div className="form-group">
+                                <input type="text" id="externalLink" name="externalLink" value={this.state.externalLink} onChange={this.handleChange} className="form-control" placeholder="Lien vers l'article externe" />
+                            </div>}
+
+                            {!this.state.isExternal && <div className="form-group">
+                                <label htmlFor="image">Poster de l'article</label>
+                                <small id="imageHelp" className="form-text text-muted">Si aucune image n'est spécifié, un poster par défaut sera utilisé</small>
+                                <input type="text" id="image" name="image" value={this.state.image} onChange={this.handleChange} className="form-control" placeholder="http://banque-images.com/poster.png" />
+                            </div>}
+
+                            {!this.state.isExternal && <CKEditor
                                 editor={ClassicEditor}
                                 data={this.state.content}
                                 onInit={editor => {
@@ -178,7 +218,8 @@ class PostEdit extends Component {
                                 onFocus={editor => {
                                     console.log('Focus.', editor);
                                 }}
-                            />
+                            />}
+
 
                             {this.state.categories && <div className="d-flex">
                                 <button type="submit" className="btn btn-secondary mt-4 mb-4">Enregistrer</button>
