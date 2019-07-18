@@ -45,7 +45,8 @@
         .fa-power-off {
             margin-left: 30px;
         }
-        .userProfileAccess{
+        .userProfileAccess
+        {
             text-decoration: none;
             color : black;
             .fa-user {
@@ -54,7 +55,13 @@
         }
     }
 
-
+    .fa-power-off
+    {
+        &:hover
+        {
+            color: $sp-main !important;
+        }
+    }
     .collapse.show {
         display: flex !important;
     }

@@ -51,7 +51,7 @@ class HomeBackoffice extends Component {
   render() {
     return <>
       <div id="home-back" className="container">
-        <h3 className="mx-auto mt-4 mb-4">Bienvenue sur votre tableau de bord</h3>
+        <h3 className="sp-homeback-title">Bienvenue sur votre tableau de bord</h3>
         <section className="main-section d-flex justify-content-between">
           <div className="div-shadow main-data">
             <span>
@@ -94,7 +94,7 @@ class HomeBackoffice extends Component {
                 <figure className=" mx-4 pt-2" key={index}>
                   <img src="https://lorempixel.com/570/400?t=1563300889815" alt="latest posts" />
                   <figcaption className="pl-2" >
-                    Le framework Symfony<br />
+                    {post.title}<br />
                     {(post.content.length > 100) ?
                       <a href={`/article/${post.slug}`}> {post.content.substring(0, 100)}... </a> :
                       post.content}

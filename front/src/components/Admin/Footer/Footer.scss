@@ -5,5 +5,9 @@
   .page-footer 
   {
     background-color: $sp-white !important;
+    a 
+    {
+      color: $sp-main;
+    }
   }
 }

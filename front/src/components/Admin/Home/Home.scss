@@ -19,9 +19,12 @@
       justify-content: center;
       width: 24%;
 
+      &:hover{
+        border: 1px solid $sp-main;
+      }
       span 
       {
-        color: Tomato;
+        color: $sp-main;
       }
 
       a
@@ -55,7 +58,7 @@
         width: 50%;
         h5
         {
-          background-color: Tomato;
+          background-color: $sp-main;
           padding: 2%;
           text-align: center;
           color: $sp-white;

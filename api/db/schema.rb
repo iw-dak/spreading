@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2019_07_18_183320) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "faqs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "question"
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "newsletters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
@@ -52,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_183320) do
     t.text "content"
     t.string "status"
     t.integer "views"
+    t.integer "votes"
     t.integer "readtime"
     t.string "image"
     t.datetime "created_at", null: false

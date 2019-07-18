@@ -6,6 +6,7 @@ import PostList from './Posts/PostList';
 import UserList from './Users/UserList';
 import CommentList from './Comments/CommentList';
 import TagList from './Tags/TagList';
+import FaqList from './Faqs/FaqList';
 import Comment from './Comments/Comment';
 import Profile from './Profile/Profile';
 import { PrivateRoute, AdminRoute } from './../../helpers';
@@ -22,6 +23,7 @@ function AdminContainer({ location }) {
             <PrivateRoute exact path='/admin/posts/add' component={PostEdit} />
             <PrivateRoute exact path='/admin/posts/edit/:slug' component={PostEdit} />
             <PrivateRoute exact path='/admin/tags' component={TagList} />
+            <AdminRoute exact path='/admin/faqs' component={FaqList} />
             <AdminRoute exact path='/admin/users' component={UserList} />
             <AdminRoute exact path='/admin/profile' component={Profile} />
             <AdminRoute exact path='/admin/comments' component={CommentList} />

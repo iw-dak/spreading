@@ -85,57 +85,59 @@ class PostList extends Component {
 
                 <div className="row">
                     <div className="col-12 d-flex justify-content-between">
-                        <h3 className="mt-4 mb-4">Liste des articles</h3>
+                        <h3 className="sp-back-title">Liste des articles</h3>
 
                         <div className="post-action">
                             <a href={`${process.env.REACT_APP_URL}/admin/posts/add`} className="btn btn-outline-secondary">Ajouter un article</a>
                         </div>
                     </div>
                 </div>
+                <div className="table-div">
+                    <Table striped bordered hover variant="dark" size="sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Titre</th>
+                                <th className="text-center">Vue</th>
+                                <th className="text-center">Type</th>
+                                {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
+                                <th className="text-center">Actions</th>
+                            </tr>
+                        </thead>
 
-                <Table striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Titre</th>
-                            <th className="text-center">Vue</th>
-                            <th className="text-center">Type</th>
-                            {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
-                            <th className="text-center">Actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {this.state.posts.map((post, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td className="text-center">{post.id}</td>
-                                    <td><a href={`/article/${post.slug}`}>{post.title}</a></td>
-                                    <td className="text-center">{post.views}</td>
-                                    <td className="text-center">{post.is_external === "1" ? "Oui" : "Non"}</td>
-                                    {(authUser && authUser.roles === 'admin') && <td className="text-center">
-                                        {(post.status === "1") ?
-                                            "Approuvé" :
-                                            <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
-                                                Approuver
+                        <tbody>
+                            {this.state.posts.map((post, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td className="text-center">{post.id}</td>
+                                        <td><a href={`/article/${post.slug}`}>{post.title}</a></td>
+                                        <td className="text-center">{post.views}</td>
+                                        <td className="text-center">{post.is_external === "1" ? "Oui" : "Non"}</td>
+                                        {(authUser && authUser.roles === 'admin') && <td className="text-center">
+                                            {(post.status === "1") ?
+                                                "Approuvé" :
+                                                <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
+                                                    Approuver
                                         </button>}
-                                    </td>}
-                                    <td className="text-center">
-                                        <div className="d-flex justify-content-center">
-                                            <a className="btn btn-secondary btn-sm" href={`${process.env.REACT_APP_URL}/admin/posts/edit/${post.slug}`}>Modifier</a>
+                                        </td>}
+                                        <td className="text-center">
+                                            <div className="d-flex justify-content-center">
+                                                <a className="btn btn-secondary btn-sm" href={`${process.env.REACT_APP_URL}/admin/posts/edit/${post.slug}`}>Modifier</a>
 
-                                            <a href="#post-delete" onClick={(e) => {
-                                                e.preventDefault();
-                                                if (window.confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))
-                                                    this.deleteItem(e, post)
-                                            }} className="btn btn-danger btn-sm ml-2">Supprimer</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
+                                                <a href="#post-delete" onClick={(e) => {
+                                                    e.preventDefault();
+                                                    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))
+                                                        this.deleteItem(e, post)
+                                                }} className="btn btn-danger btn-sm ml-2">Supprimer</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                </div>
+
                 <div className="react-paginate">
                     <ReactPaginate
                         previousLabel={'<'}
