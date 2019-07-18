@@ -1,16 +1,20 @@
 @import '../../../scss/variables';
 
-#posts-back
-{
-  .table
-  {
-    a
-    {
-      color: $sp-white !important;
-        
-      &:hover {
-        color: $sp-grey-dark !important;
-      }
-      }
-  }
+#posts-back {
+    .table {
+        a {
+            color: $sp-white !important;
+
+            &:hover {
+                color: $sp-grey-dark !important;
+            }
+        }
+    }
+
+    .post-action {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 15px;
+    }
 }

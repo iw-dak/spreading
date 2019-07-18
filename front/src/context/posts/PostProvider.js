@@ -6,6 +6,8 @@ import API from '../../api';
 const api = new API()
 api.createEntity({ name: 'posts' })
 api.createEntity({ name: 'votes' })
+api.createEntity({ name: 'categories' })
+api.createEntity({ name: 'tags' })
 
 class PostProvider extends Component {
 
@@ -202,6 +204,37 @@ class PostProvider extends Component {
                     // Something happened in setting up the request and triggered an Error
                     console.log('Error', error.message);
                 }
+            });
+        },
+        getCategoriesAndTags: () => {
+            return new Promise((resolve, reject) => {
+                axios.all([
+                    api.endpoints.categories.getAll(),
+                    api.endpoints.tags.getAll(),
+                ]).then(axios.spread((categories, tags) => {
+                    resolve({
+                        categories: categories.data,
+                        tags: tags.data
+                    })
+                })).catch((categories, tags) => {
+                    reject({
+                        categories,
+                        tags
+                    })
+                });
+            });
+        },
+        savePost: (post, userId) => {
+            console.log({ title: post.title, content: post.content, status: post.status, views: post.views, image: post.image });
+
+            let post_image = post.image ? post.image : "http://localhost:8000/external.png";
+
+            return new Promise((resolve, reject) => {
+                api.endpoints.posts.create({ title: post.title, content: post.content, status: post.status, views: post.views, image: post_image, user_id: userId }).then(({ data }) => {
+                    resolve(data);
+                }).catch(error => {
+                    reject(error);
+                });
             });
         }
     }

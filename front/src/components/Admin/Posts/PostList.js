@@ -73,7 +73,16 @@ class PostList extends Component {
 
         return <>
             <div id="posts-back" className="container">
-                <h3 className="mx-auto mt-4 mb-4">Liste des articles</h3>
+
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-between">
+                        <h3 className="mt-4 mb-4">Liste des articles</h3>
+
+                        <div className="post-action">
+                            <a href={`${process.env.REACT_APP_URL}/admin/posts/add`} className="btn btn-outline-secondary">Ajouter un article</a>
+                        </div>
+                    </div>
+                </div>
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>

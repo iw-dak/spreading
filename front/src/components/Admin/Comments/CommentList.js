@@ -7,7 +7,7 @@ import './Comment.scss';
 import Spinner from '../../Spinner/Spinner';
 import UserContext from '../../../context/users/UserContext';
 import { AuthStore } from '../../../helpers';
-
+import parse from 'html-react-parser';
 
 const myApi = new API()
 myApi.createEntity({ name: 'comments' });
@@ -91,8 +91,8 @@ class CommentList extends Component {
                                 <tr key={index}>
                                     <td className="text-center comment">{comment.id}</td>
                                     <td>{comment.content.length > 100 ?
-                                        <a href={`/admin/comments/${comment.id}`}> {comment.content.substring(0, 100)}... </a> :
-                                        comment.content}
+                                        <a href={`/admin/comments/${comment.id}`}> {parse(comment.content.substring(0, 100))}... </a> :
+                                        parse(comment.content)}
                                     </td>
                                     {(authUser && authUser.roles === 'admin') &&
                                         <td className="text-center">
