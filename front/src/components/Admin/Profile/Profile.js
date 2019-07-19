@@ -87,7 +87,7 @@ class Profile extends Component {
   render() {
     return <>
       <div id="profile" className="container">
-        <h3 className="sp-back-title">Modifier mon profile</h3>
+        <h3 className="sp-back-title mb-5">Modifier mon profile</h3>
         {(this.state.alert.label !== '') &&
           <FlashMassage duration={5000} persistOnHover={true}>
             <div className={`alert alert-${this.state.alert.type} text-center`}>

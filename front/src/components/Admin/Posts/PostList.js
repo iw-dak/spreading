@@ -65,6 +65,16 @@ class PostList extends Component {
         });
     };
 
+    deleteItem = (e, post) => {
+        e.preventDefault();
+        myApi.endpoints.posts.delete({ id: post.id }).then((response) => {
+            alert("Article supprimé...");
+            window.location.reload();
+        }).catch(error => {
+            alert("Une erreur s'est produite lors de la  suppression de cet article");
+        });
+    }
+
     render() {
         if (!(this.state.posts && this.state.posts.length > 0)) {
             return <Spinner />
@@ -73,37 +83,63 @@ class PostList extends Component {
 
         return <>
             <div id="posts-back" className="container">
-                <h3 className="sp-back-title">Liste des articles</h3>
+
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-between">
+                        <h3 className="sp-back-title">Liste des articles</h3>
+                    </div>
+                </div>
+
                 <div className="table-div">
-                    <Table striped bordered hover variant="dark" size="sm">
+                    <div className="post-action">
+                        <a href={`${process.env.REACT_APP_URL}/admin/posts/add`} className="btn btn-outline-secondary"><i className="mr-2 fas fa-plus-circle"></i>Ajouter un article</a>
+                    </div>
+                    <Table striped bordered hover variant="dark">
                         <thead>
                             <tr>
-                                <th className="text-center">#</th>
-                                <th className="pl-3">Titre</th>
-                                <th className="text-center">Views</th>
+                                <th>#</th>
+                                <th>Titre</th>
+                                <th className="text-center">Vue</th>
+                                <th className="text-center">Contenu externe ?</th>
                                 {(authUser && authUser.roles === 'admin') && <th className="text-center">Statut</th>}
+                                <th className="text-center">Actions</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             {this.state.posts.map((post, index) => {
                                 return (
+
                                     <tr key={index}>
                                         <td className="text-center">{post.id}</td>
-                                        <td className="pl-3"><a href={`/article/${post.slug}`}>{post.title}</a></td>
+                                        <td><a href={`/article/${post.slug}`}>{post.title}</a></td>
                                         <td className="text-center">{post.views}</td>
+                                        <td className="text-center">{post.is_external === "1" ? "Oui" : "Non"}</td>
                                         {(authUser && authUser.roles === 'admin') && <td className="text-center">
                                             {(post.status === "1") ?
                                                 "Approuvé" :
                                                 <button type="button" onClick={(e) => this.handleClick(e, post)} className="btn btn-success" id={post.id}>
                                                     Approuver
-                                            </button>}
+                                        </button>}
                                         </td>}
+                                        <td className="text-center">
+                                            <div className="d-flex justify-content-center">
+                                                {(authUser.id === post.user.id || authUser.roles === 'admin') && <a className="btn btn-secondary btn-sm" href={`${process.env.REACT_APP_URL}/admin/posts/edit/${post.slug}`}>Modifier</a>}
+
+                                                {authUser.roles === 'admin' && <a href="#post-delete" onClick={(e) => {
+                                                    e.preventDefault();
+                                                    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))
+                                                        this.deleteItem(e, post)
+                                                }} className="btn btn-danger btn-sm ml-2">Supprimer</a>}
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             })}
                         </tbody>
                     </Table>
                 </div>
+
                 <div className="react-paginate">
                     <ReactPaginate
                         previousLabel={'<'}

@@ -10,6 +10,8 @@
     readtime: rand(20),
     image: Faker::LoremPixel.image("570x400"),
     user: User.find(Faker::Number.between(1, 20)),
+    is_external: [true, false].sample,
+    external_link: ["https://medium.com/flutter-community/flutter-bloc-and-provider-a-shopping-cart-example-af75004e1666", "https://medium.com/flutter-community/flutter-redux-toast-notification-fcd0971eaf0f"].sample,
     created_at: date,
     updated_at: date,
   )

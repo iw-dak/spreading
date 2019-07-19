@@ -1,7 +1,7 @@
 # Admins
 User.create(
   firstname: "Kaba",
-  lastname: "Conde",
+  lastname: "Condé",
   birthdate: Faker::Time.between(25.years.ago, 18.years.ago, :all),
   address: Faker::Address.full_address,
   email: "kaba@admin.com",
@@ -11,6 +11,7 @@ User.create(
   roles: "admin",
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
+
 User.create(
   firstname: "Adam",
   lastname: "Sow",
@@ -23,6 +24,7 @@ User.create(
   roles: "admin",
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
+
 User.create(
   firstname: "Nakib",
   lastname: "Abudu",
@@ -35,6 +37,7 @@ User.create(
   roles: "admin",
   profile: Faker::LoremPixel.image("200x200", false, "people", 3),
 )
+
 User.create(
   firstname: "Driss",
   lastname: "Belaroussi",
@@ -48,7 +51,7 @@ User.create(
   profile: Faker::LoremPixel.image("1600x600", false, "people", 3),
 )
 
-# Random users
+# # Random users
 100.times do
   User.create(
     firstname: Faker::Name.first_name,

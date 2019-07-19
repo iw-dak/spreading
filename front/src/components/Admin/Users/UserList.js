@@ -68,9 +68,9 @@ class UserList extends Component {
     }
     return <>
       <div id="users-back" className="container">
-        <h3 className="sp-back-title">Liste des utilisateurs</h3>
-        <div className="table-div">
-          <Table striped bordered hover variant="dark" size="sm">
+        <h3 className="sp-back-title mb-5">Liste des utilisateurs</h3>
+        <div className="table-div mt-4">
+          <Table striped bordered hover variant="dark" >
             <thead>
               <tr>
                 <th className="text-center">#</th>

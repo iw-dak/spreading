@@ -6,6 +6,8 @@ import API from '../../api';
 const api = new API()
 api.createEntity({ name: 'posts' })
 api.createEntity({ name: 'votes' })
+api.createEntity({ name: 'categories' })
+api.createEntity({ name: 'tags' })
 
 class PostProvider extends Component {
 
@@ -88,7 +90,7 @@ class PostProvider extends Component {
                     this.setState({
                         post: data
                     });
-                    resolve();
+                    resolve(data);
                 }).catch(error => {
                     if (error.response) {
                         console.log(error.response.data);
@@ -160,6 +162,7 @@ class PostProvider extends Component {
             axios.get(`${process.env.REACT_APP_API_URL}/categories/` + id,
                 { headers: { 'Content-Type': 'application/json', } }
             ).then(({ data }) => {
+                console.log(data);
                 this.setState({
                     posts: data["posts"],
                     name: data["name"]
@@ -202,6 +205,81 @@ class PostProvider extends Component {
                     // Something happened in setting up the request and triggered an Error
                     console.log('Error', error.message);
                 }
+            });
+        },
+        getCategoriesAndTags: () => {
+            return new Promise((resolve, reject) => {
+                axios.all([
+                    api.endpoints.categories.getAll(),
+                    api.endpoints.tags.getAll(),
+                ]).then(axios.spread((categories, tags) => {
+                    resolve({
+                        categories: categories.data,
+                        tags: tags.data
+                    })
+                })).catch((categories, tags) => {
+                    reject({
+                        categories,
+                        tags
+                    })
+                });
+            });
+        },
+        savePost: (post, userId) => {
+            let post_image = post.image ? post.image : "http://localhost:8000/spreading.png";
+            let categoryIds = post.selectedCategories.map(category => category.value);
+            let tagIds = post.selectedTags.map(tag => tag.value);
+            let postContent = post.isExternal ? "" : post.content;
+
+            let postToSave = {
+                title: post.title,
+                content: postContent,
+                status: post.status,
+                views: post.views,
+                image: post_image,
+                readtime: post.readtime,
+                is_external: post.isExternal,
+                external_link: post.externalLink,
+                user_id: userId,
+                category_ids: categoryIds,
+                tag_ids: tagIds
+            };
+
+            return new Promise((resolve, reject) => {
+                api.endpoints.posts.create(postToSave).then(({ data }) => {
+                    resolve(data);
+                }).catch(error => {
+                    reject(error);
+                });
+            });
+        },
+        updatePost: (post, userId, postId) => {
+            let post_image = post.image ? post.image : "http://localhost:8000/spreading.png";
+            let categoryIds = post.selectedCategories.map(category => category.value);
+            let tagIds = post.selectedTags.map(tag => tag.value);
+            let postContent = post.isExternal ? "" : post.content;
+
+            let postToUpdate = {
+                id: postId,
+                title: post.title,
+                content: postContent,
+                status: post.status,
+                views: post.views,
+                readtime: post.readtime,
+                image: post_image,
+                is_external: post.isExternal,
+                external_link: post.externalLink,
+                user_id: userId,
+                category_ids: categoryIds,
+                tag_ids: tagIds
+            };
+
+            return new Promise((resolve, reject) => {
+                api.endpoints.posts.update(postToUpdate).then(({ data }) => {
+                    resolve(data);
+                }).catch(error => {
+                    reject(error);
+                });
             });
         }
     }

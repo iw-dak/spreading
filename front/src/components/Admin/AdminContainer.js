@@ -10,6 +10,7 @@ import FaqList from './Faqs/FaqList';
 import Comment from './Comments/Comment';
 import Profile from './Profile/Profile';
 import { PrivateRoute, AdminRoute } from './../../helpers';
+import PostEdit from './PostEdit/PostEdit';
 import './Back.scss';
 
 
@@ -19,6 +20,8 @@ function AdminContainer({ location }) {
         <div id="back">
             <PrivateRoute exact path='/admin' component={HomeBackoffice} />
             <PrivateRoute exact path='/admin/posts' component={PostList} />
+            <PrivateRoute exact path='/admin/posts/add' component={PostEdit} />
+            <PrivateRoute exact path='/admin/posts/edit/:slug' component={PostEdit} />
             <PrivateRoute exact path='/admin/tags' component={TagList} />
             <AdminRoute exact path='/admin/faqs' component={FaqList} />
             <AdminRoute exact path='/admin/users' component={UserList} />

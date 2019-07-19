@@ -89,13 +89,25 @@ class Post extends Component {
                     <div><time dateTime={post.created_at}>{date}</time></div>
                 </div>
 
-                <div className="poster mb-4">
-                    <img src={`https://lorempixel.com/1600/600?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
+                <div className="categories-tags">
+                    {post.categories.map((category, index) => <span key={category.id} className={`${index !== 0 ? "ml-2" : ""} badge badge-info mb-2`}>{category.name}</span>)}
+                    {post.tags.map(tag => <span key={tag.id} className="ml-2 badge badge-info mb-2">{tag.name}</span>)}
                 </div>
 
-                <div className="content mb-4">
-                    {parse(post.content)}
-                </div>
+                {
+                    post.is_external === "1" ? <div className="alert alert-info" role="alert">
+                        Cet article disponible en tant que lien externe <a target="_blank" rel="noopener noreferrer" href={`${post.external_link}`} className="alert-link">Consulter l'article</a>
+                    </div>
+                        : <>
+                            <div className="poster mb-4">
+                                <img src={`${post.image}?t=${Date.now()}`} alt="Un article qui a un titre dans la vie" />
+                            </div>
+
+                            <div className="content mb-4">
+                                {parse(post.content)}
+                            </div>
+                        </>
+                }
 
                 <div className="row">
                     <div className="col-12">

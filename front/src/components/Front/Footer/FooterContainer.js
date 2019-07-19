@@ -60,14 +60,6 @@ class FooterContainer extends Component {
                 {
                     name: "FAQ",
                     link: process.env.REACT_APP_URL + "/faq"
-                },
-                {
-                    name: "Mentions légales",
-                    link: "#"
-                },
-                {
-                    name: "Conditions d'utilisation",
-                    link: "#"
                 }
             ],
             accounts: [

@@ -25,6 +25,8 @@ db-seed:
 	docker-compose run ruby rails db:seed
 db-drop:
 	docker-compose run ruby rails db:drop
+db-reload:
+	 docker-compose run ruby rails db:drop && docker-compose run ruby rails db:create && docker-compose run ruby rails db:migrate && docker-compose run ruby rails db:seed
 db-create:
 	docker-compose run ruby rails db:create
 

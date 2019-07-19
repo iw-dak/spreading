@@ -11,7 +11,8 @@ const PostContext = createContext({
     fetchPopulars: () => { },
     fetchLatestsByCategory: () => { },
     fetchByCategory: () => { },
-    fetchByTag: () => { }
+    fetchByTag: () => { },
+    getCategoriesAndTags: () => { },
 });
 
 export default PostContext;
