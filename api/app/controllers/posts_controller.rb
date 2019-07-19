@@ -31,6 +31,9 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.categories.clear
+    @post.tags.clear
+
     if @post.update(post_params)
       render json: @post, status: :ok
     else

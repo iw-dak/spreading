@@ -40,12 +40,10 @@ class TagList extends Component {
         myApi.endpoints.tags.create(fields).then(({ data }) => {
             this.setState({
                 alertModal: 'Le tag a bien été ajouté',
-                tags: this.state.tags.map(tag => {
-                    if (tag.id === data.id) {
-                        return data;
-                    }
-                    return tag;
-                })
+                tags: [
+                    ...this.state.tags,
+                    data
+                ]
             })
         }).catch(error => {
             console.log("error", error);
@@ -122,7 +120,7 @@ class TagList extends Component {
                                         <td className="text-center">{tag.id}</td>
                                         <td className="text-center">{tag.name}</td>
                                         <td className="text-center">
-                                            {(tag.posts) ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times-circle"></i>}
+                                            {(tag.posts.length > 0) ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times-circle"></i>}
                                         </td>
                                         <td className="text-center">
                                             {(tag.posts.length > 0) ?
