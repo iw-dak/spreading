@@ -41,8 +41,6 @@ class PostEdit extends Component {
                     return { value: tag.id, label: tag.name };
                 })
             });
-
-
             if (this.props.match.params.slug) {
                 this.props.fetchPost(this.props.match.params.slug).then((data) => {
                     console.log("data =>", data);
@@ -323,7 +321,7 @@ class PostEdit extends Component {
 
 export default React.forwardRef((props, ref) => (
     <PostContext.Consumer>
-        {({ getCategoriesAndTags, savePost, fetchPost, updatePost }) =>
+        {({ getCategoriesAndTags, fetchPost, savePost, updatePost }) =>
             <PostEdit
                 {...props}
                 getCategoriesAndTags={getCategoriesAndTags}

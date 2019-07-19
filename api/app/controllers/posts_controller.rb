@@ -56,7 +56,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit(:title, :content, :status, :views, :readtime, :image, :user_id, :is_external, :external_link, category_ids: [], tag_ids: [])
+    params.permit(:title, :content, :status, :views, :readtime, :image, :user_id, :is_external, :external_link,  category_ids: [], tag_ids: [])
   end
 
   def update_views_params

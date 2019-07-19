@@ -39,7 +39,7 @@ class Login extends Component {
                 <div className="col-10 col-sm-6 col-lg-4 mx-auto mt-4 mb-4">
                     <div className="card">
                         <article className="card-body">
-                            <a href="/connexion" className="float-right btn btn-outline-primary">Inscription</a>
+                            <a href={`${process.env.REACT_APP_URL}/inscription`} className="float-right btn btn-outline-primary">Inscription</a>
                             <h5 className="card-title mb-4 mt-1">Connexion</h5>
                             <form onSubmit={this.handleSubmit}>
 

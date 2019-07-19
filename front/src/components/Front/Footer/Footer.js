@@ -160,14 +160,7 @@ export class Footer extends React.Component {
                             </div>
                             <div className="row">
                                 <div className="col-12 footer-menu-description">
-                                    <p>© 2019 Spreading. All rights reserved. Use of this site constitutes
-                                        acceptance of
-                                        our
-                                        User Agreement and Privacy Policy. The material on this site may not be
-                                        reproduced,
-                                        distributed, transmitted, cached or otherwise used, except with prior
-                                        written
-                                        permission of Featured.</p>
+                                    <p>© 2019 Spreading. Tous les droits sont réservés. L'utilisation de ce site constitue une acceptation de notre accord d'utilisation et de notre politique de confidentialité. Le contenu de ce site ne peut être reproduit, distribué, transmis, mis en cache ou utilisé de quelque manière que ce soit sans l'autorisation écrite préalable de Spreading.</p>
                                 </div>
                             </div>
                         </div>

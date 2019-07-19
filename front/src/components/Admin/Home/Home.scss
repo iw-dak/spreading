@@ -5,7 +5,7 @@
   h5, .h5 {
     font-size: 1rem !important;
   }
-  
+
   .main-section
   {
     padding: 5%;
@@ -18,11 +18,12 @@
       align-items: center;
       justify-content: center;
       width: 24%;
+      border: 1px solid white;
 
       &:hover{
         border: 1px solid $sp-main;
       }
-      span 
+      span
       {
         color: $sp-main;
       }

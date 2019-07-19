@@ -13,6 +13,7 @@ const PostContext = createContext({
     fetchByCategory: () => { },
     fetchByTag: () => { },
     getCategoriesAndTags: () => { },
+    updatePost: () => { }
 });
 
 export default PostContext;
