@@ -1,87 +1,79 @@
 @import '../../scss/variables';
 
-#back
-{
-  min-height: calc(100vh - 56px - 54px);
-  height: 100%;
-  body
-  {
-    background-color: $sp-grey-lighter;
-    font-family: Raleway !important;
-  }
-  .react-paginate 
-  {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #B74831 !important;
-    ul 
-    {
-      text-align: center;
-      display: flex !important;
-      justify-content: center;
-      background-color: $sp-white;
+#back {
+    min-height: calc(100vh - 56px - 54px);
+    height: 100%;
 
-      li 
-      {
-        padding:10px;
-        display: inline-block !important;
+    body {
+        background-color: $sp-grey-lighter;
+        font-family: Raleway !important;
+    }
 
-        &:hover
-        {
-          cursor: pointer;
+    .react-paginate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #B74831 !important;
+
+        ul {
+            text-align: center;
+            display: flex !important;
+            justify-content: center;
+            background-color: $sp-white;
+
+            li {
+                padding: 10px;
+                display: inline-block !important;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                a {
+                    color: $sp-grey-dark;
+                }
+            }
+
         }
 
-        a 
-        {
-          color: $sp-grey-dark;
+        .active {
+            border: 1px solid $sp-grey-dark;
         }
-      }
 
-    }
-      .active
-    {
-      border: 1px solid $sp-grey-dark;
+        .disable {
+            background-color: #FCFCFC;
+        }
     }
 
-    .disable
-    {
-      background-color: #FCFCFC;
+    .hide {
+        display: none;
     }
-  }
 
-  .hide
-  {
-    display: none;
-  }
+    .div-shadow {
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
+        background: rgba(255, 255, 255, 1);
+    }
 
-  .div-shadow
-  {
-      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
-      background: rgba(255, 255, 255, 1);
-  }
+    .table-div {
+        width: 95%;
+        margin: auto;
+    }
 
-  .table-div
-  {
-    width: 90%;
-    margin: auto;
-  }
-  
-  .sp-back-title, .sp-homeback-title
-  {
-    text-align: center;
-    font-size: 32px;
-    font-family: Raleway;
-    font-weight: 400;
-  }
-  .sp-back-title
-  {
-    color: $sp-main;
-    margin: 39px auto 39px auto; 
-  }
-  .sp-homeback-title
-  {
-    margin: 39px auto 15px auto; 
-  }
- 
+    .sp-back-title,
+    .sp-homeback-title {
+        text-align: center;
+        font-size: 32px;
+        font-family: Raleway;
+        font-weight: 400;
+    }
+
+    .sp-back-title {
+        color: $sp-main;
+        margin: 39px auto -4px auto;
+    }
+
+    .sp-homeback-title {
+        margin: 39px auto 15px auto;
+    }
+
 }

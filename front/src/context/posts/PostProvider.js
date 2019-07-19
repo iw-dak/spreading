@@ -162,6 +162,7 @@ class PostProvider extends Component {
             axios.get(`${process.env.REACT_APP_API_URL}/categories/` + id,
                 { headers: { 'Content-Type': 'application/json', } }
             ).then(({ data }) => {
+                console.log(data);
                 this.setState({
                     posts: data["posts"],
                     name: data["name"]

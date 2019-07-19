@@ -75,9 +75,9 @@ class CommentList extends Component {
 
         return <>
             <div id="comments-back" className="container">
-                <h3 className="sp-back-title">Liste des commentaires</h3>
+                <h3 className="sp-back-title mb-5">Liste des commentaires</h3>
                 <div className="table-div">
-                    <Table striped bordered hover variant="dark" size="sm">
+                    <Table striped bordered hover variant="dark" >
                         <thead>
                             <tr>
                                 <th className="text-center">#</th>

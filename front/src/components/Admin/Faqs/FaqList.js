@@ -3,7 +3,6 @@ import ReactPaginate from 'react-paginate';
 import Table from 'react-bootstrap/Table';
 import FlashMassage from 'react-flash-message';
 import API from "../../../api";
-import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
 // import './Auth.scss';
 
@@ -25,13 +24,13 @@ class FaqList extends Component {
 
     handleChange = e => {
         let target = e.target;
-        if(target.name === 'question'){
+        if (target.name === 'question') {
             this.setState({
-                ["question"]: target.value
+                question: target.value
             });
-        }else {
+        } else {
             this.setState({
-                ["answer"]: target.value
+                answer: target.value
             });
         }
     }
@@ -39,7 +38,7 @@ class FaqList extends Component {
 
     add(e) {
         e.preventDefault();
-        const fields = { question: this.state.question, answer: this.state.answer};
+        const fields = { question: this.state.question, answer: this.state.answer };
         console.log(fields);
         myApi.endpoints.faqs.create(fields).then(({ data }) => {
             this.setState({
@@ -61,14 +60,14 @@ class FaqList extends Component {
     }
 
     loadFaqs() {
-            myApi.endpoints.faqs.getAll().then(({data}) => {
-                this.setState({
-                    faqs: data
-                });
-            }).catch(error => {
-                console.log("fetchAllFAQs", error.message);
-            })
-        }
+        myApi.endpoints.faqs.getAll().then(({ data }) => {
+            this.setState({
+                faqs: data
+            });
+        }).catch(error => {
+            console.log("fetchAllFAQs", error.message);
+        })
+    }
 
 
     componentDidMount() {
@@ -92,99 +91,99 @@ class FaqList extends Component {
         }
 
         return <>
-    <div className="container">
-            <h3 className="sp-back-title">Liste des Faqs</h3>
-        {(this.state.alertDeleted !== '') &&
-        <FlashMassage duration={5000} persistOnHover={true}>
-            <div className="alert alert-success text-center">
-            {this.state.alertDeleted}
-            </div>
-            </FlashMassage>}
-            <div className="table-div">
-            <div className="d-flex justify-content-end mb-3">
+            <div className="container">
+                <h3 className="sp-back-title">Liste des Faqs</h3>
+                {(this.state.alertDeleted !== '') &&
+                    <FlashMassage duration={5000} persistOnHover={true}>
+                        <div className="alert alert-success text-center">
+                            {this.state.alertDeleted}
+                        </div>
+                    </FlashMassage>}
+                <div className="table-div">
+                    <div className="d-flex justify-content-end mb-3">
 
-            </div>
+                    </div>
 
-            <Table striped bordered hover variant="dark" size="sm">
-            <thead>
-            <tr>
-            <th className="text-center">#</th>
-            <th className="text-center">Question</th>
-            <th className="text-center">Answers</th>
-        <th className="text-center">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            {this.state.faqs.map((faq, index) => {
-                    return (
-                        <tr key={index}>
-                        <td className="text-center">{faq.id}</td>
-                        <td className="text-center">{faq.question}</td>
-                        <td className="text-center">
-                    {faq.answer}
-                </td>
-                    <td className="text-center">
-                        <button type="button" onClick={(e) => this.remove(e, faq)} className="btn btn-danger" id={faq.id}>
-                        Supprimer
+                    <Table striped bordered hover variant="dark" >
+                        <thead>
+                            <tr>
+                                <th className="text-center">#</th>
+                                <th className="text-center">Questions</th>
+                                <th className="text-center">Réponses</th>
+                                <th className="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.faqs.map((faq, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td className="text-center">{faq.id}</td>
+                                        <td className="text-center">{faq.question}</td>
+                                        <td className="text-center">
+                                            {faq.answer}
+                                        </td>
+                                        <td className="text-center">
+                                            <button type="button" onClick={(e) => this.remove(e, faq)} className="btn btn-danger" id={faq.id}>
+                                                Supprimer
                         </button>
-                        </td>
-                        </tr>
-                )
-                })}
-            </tbody>
-            </Table>
-            </div>
-            <div className="react-paginate">
-            <ReactPaginate
-            previousLabel={'<'}
-            nextLabel={'>'}
-            breakLabel={'...'}
-            breakClassName={'break-me'}
-            pageCount={this.state.pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageClick}
-            containerClassName={'pagination'}
-            subContainerClassName={'pages pagination'}
-            activeClassName={'active'}
-            disabledClassName={'disable'}
-            />
-            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                </div>
+                <div className="react-paginate">
+                    <ReactPaginate
+                        previousLabel={'<'}
+                        nextLabel={'>'}
+                        breakLabel={'...'}
+                        breakClassName={'break-me'}
+                        pageCount={this.state.pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={this.handlePageClick}
+                        containerClassName={'pagination'}
+                        subContainerClassName={'pages pagination'}
+                        activeClassName={'active'}
+                        disabledClassName={'disable'}
+                    />
+                </div>
 
-            {/* Modal to add new tag */}
-        <div className={`modal ${!this.state.activeModal} ?? hide`} id="myModal">
-            <div className="modal-dialog">
-            <div className="modal-content">
+                {/* Modal to add new tag */}
+                <div className={`modal ${!this.state.activeModal} ?? hide`} id="myModal">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
 
-            <div className="modal-header">
-            <h5 className="modal-title">Ajout d'un nouveau tag </h5>
-        <button type="button" className="close" data-dismiss="modal">&times;</button>
-        </div>
+                            <div className="modal-header">
+                                <h5 className="modal-title">Ajout d'un nouveau tag </h5>
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                            </div>
 
-        <div className="modal-body">
-            <form onSubmit={(e) => this.add(e)}>
-        <div className="form-group">
-            {(this.state.alertModal !== '') &&
-            <FlashMassage duration={5000} persistOnHover={true}>
-            <div className="alert alert-info text-center">
-            {this.state.alertModal}
+                            <div className="modal-body">
+                                <form onSubmit={(e) => this.add(e)}>
+                                    <div className="form-group">
+                                        {(this.state.alertModal !== '') &&
+                                            <FlashMassage duration={5000} persistOnHover={true}>
+                                                <div className="alert alert-info text-center">
+                                                    {this.state.alertModal}
+                                                </div>
+                                            </FlashMassage>}
+                                        <label htmlFor="exampleInputEmail1">FAQ</label>
+                                        <input type="text" className="form-control" aria-describedby="tag" placeholder="Label de la question" name="question" onChange={this.handleChange} />
+                                        <br />
+                                        <input type="text" className="form-control" aria-describedby="tag" placeholder="Label du reponse" name="answer" onChange={this.handleChange} />
+                                    </div>
+                                    <button className="btn btn-outline-info">Ajouter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </FlashMassage>}
-            <label htmlFor="exampleInputEmail1">FAQ</label>
-            <input type="text" className="form-control" aria-describedby="tag" placeholder="Label de la question" name="question" onChange={this.handleChange} />
-        <br />
-        <input type="text" className="form-control" aria-describedby="tag" placeholder="Label du reponse" name="answer" onChange={this.handleChange} />
-        </div>
-        <button className="btn btn-outline-info">Ajouter</button>
-            </form>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </>;
+        </>;
 
-        }
-        }
+    }
+}
 
-        export default FaqList;
+export default FaqList;

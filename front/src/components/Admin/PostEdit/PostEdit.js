@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import PostContext from '../../../context/posts/PostContext';
+import { Redirect } from 'react-router-dom';
 import Select from 'react-select';
 import './PostEdit.scss';
 import { AuthStore } from '../../../helpers';
@@ -44,8 +45,9 @@ class PostEdit extends Component {
 
             if (this.props.match.params.slug) {
                 this.props.fetchPost(this.props.match.params.slug).then((data) => {
-                    console.log(data);
+                    console.log("data =>", data);
                     this.setState({
+                        authUser: data.user,
                         id: data.id,
                         title: data.title,
                         content: data.content,
@@ -204,6 +206,11 @@ class PostEdit extends Component {
     }
 
     render() {
+        if (this.props.match.params.slug) {
+            if (AuthStore.getUser().roles !== 'admin' && (this.state.authUser && AuthStore.getUser().id !== this.state.authUser.id)) {
+                return <Redirect to={{ pathname: "/404" }} />
+            }
+        }
 
         if (!this.state.categories) {
             return <Spinner />
@@ -213,8 +220,8 @@ class PostEdit extends Component {
             <div className="PostEdit container">
                 <div className="row">
                     <div className="col-12">
-                        {this.state.id ? <h1 className="mx-auto mt-4 mb-4">Modifier un article</h1> :
-                            <h1 className="mx-auto mt-4 mb-4">Créer un article</h1>}
+                        {this.state.id ? <h1 className="sp-back-title mb-5">Modifier un article</h1> :
+                            <h1 className="sp-back-title mb-5">Créer un article</h1>}
                     </div>
                 </div>
 
@@ -232,7 +239,7 @@ class PostEdit extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="readtime">Temps de lecture (en min)</label>
+                                <label htmlFor="readtime">Temps de lecture (en minutes)</label>
                                 <input type="number" id="readtime" name="readtime" value={this.state.readtime} onChange={this.handleChange} className="form-control" placeholder="Entrer le temps" />
                             </div>
 
