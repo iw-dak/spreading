@@ -41,3 +41,4 @@ docker-compose run react yarn add package_name
 
 # Useful links
 - [Faker](https://github.com/stympy/faker)
+- [Présentation](https://docs.google.com/presentation/d/1EdJ9RuN295nIDB6EZX5bQ_jPawAIPYZnDys8b_dM2do/edit?usp=drive_web&ouid=108341744930756447103)
